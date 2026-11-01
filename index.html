@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arunachal Dam Watch</title>
+<meta name="description" content="Hydropower projects, forest land, costs and incidents in Arunachal Pradesh, compiled from public records up to 1 Nov 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+:root {
+  --font-anthropic-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-anthropic-serif: 'Source Serif 4', Georgia, serif;
+  --color-fg: #1f1e1c; --color-fg-muted: #6b6a66; --color-bg: #f7f6f3; --color-panel: #ffffff; --color-border-line: #e5e3de;
+  --color-ok: #2f7d4f; --color-warn: #a86400; --color-bad: #c0392b;
+  --cds-font-size-caption: 13px; --cds-font-size-body: 15px; --cds-font-size-heading: 18px; --cds-font-size-title: 30px;
+  --cds-font-weight-medium: 500;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 32px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 20px; --cds-pad-xl: 28px;
+  --cds-radius: 10px;
+  --cds-chart-grid: #ecebe7; --cds-chart-axis: #c9c7c1; --cds-chart-muted: #c9c7c1; --cds-chart-reference: #8c8a84; --cds-chart-status-critical: #c8463d;
+  --cds-surface-popover: #ffffff; --cds-border: #e5e3de; --cds-shadow-popover: 0 4px 16px rgba(0,0,0,.12); --cds-text-secondary: #6b6a66;
+  --cds-dur-slow: 300ms; --cds-ease-out: cubic-bezier(.2,.8,.2,1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fg: #ecebe7; --color-fg-muted: #a3a19b; --color-bg: #1b1a18; --color-panel: #252422; --color-border-line: #3a3936;
+    --color-warn: #e3a64a; --color-bad: #e2665a;
+    --cds-chart-grid: #33322f; --cds-chart-axis: #55534f; --cds-chart-muted: #55534f;
+    --cds-surface-popover: #2c2b28; --cds-border: #3a3936; --cds-shadow-popover: 0 4px 16px rgba(0,0,0,.5); --cds-text-secondary: #a3a19b;
+  }
+}
+html { background: var(--color-bg); }
+body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); line-height: 1.5; }
+#dash-root { max-width: 1280px; margin: 0 auto; padding: clamp(16px, 4vw, 40px); }
+a { color: inherit; }
+.footer { margin-top: var(--cds-gap-lg); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+</style>
+<script>
+window.DASH_DATA = {"projects": [{"project": "Subansiri Lower", "district": "Kamle (Arunachal) / Dhemaji (Assam)", "river": "Subansiri", "developer": "NHPC", "status": "Partly operating", "stage": 1, "capacity_mw": 2000, "operating_mw": 1250, "dam_height_m": 116, "land_total_ha": null, "forest_ha": 3183, "submergence_ha": 3436, "trees": null, "note": "On the Assam–Arunachal border. 5 of 8 units running; full commissioning targeted Dec 2026. Forest figure is the Arunachal share; another 816.3 ha was diverted in Assam (3,999.3 ha in all).", "source": "NE Now; Indian PSU; Wikipedia", "proposed_year": 2003, "proposed_note": "CEA techno-economic clearance (Jan 2003); earlier planning date not found", "proposed_caveat": true, "started_year": 2005, "started_note": "Construction began (Jan 2005); halted Dec 2011–Oct 2019", "started_caveat": false, "finish_year": 2026, "finish_note": "Target for full completion (Dec 2026); 5 of 8 units running", "finish_caveat": true}, {"project": "Kameng", "district": "West Kameng", "river": "Bichom & Tenga", "developer": "NEEPCO", "status": "Operating", "stage": 0, "capacity_mw": 600, "operating_mw": 600, "dam_height_m": 69, "land_total_ha": 710, "forest_ha": 710, "submergence_ha": null, "trees": null, "note": "Two dams: Bichom 69 m, Tenga 24.4 m (CEA). Land figure is a 2003 estimate (all forest).", "source": "CEA status report; The Ecologist Asia 2003", "proposed_year": 2001, "proposed_note": "Environmental clearance (2001); earlier planning date not found", "proposed_caveat": true, "started_year": 2004, "started_note": "Government approval (Dec 2004)", "started_caveat": false, "finish_year": 2021, "finish_note": "Commissioned (Feb 2021)", "finish_caveat": false}, {"project": "Panyor Lower (Ranganadi)", "district": "Keyi Panyor", "river": "Ranganadi", "developer": "NEEPCO", "status": "Operating", "stage": 0, "capacity_mw": 405, "operating_mw": 405, "dam_height_m": 68, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "Commissioned 2002. Diverts water into the Dikrong; releases linked to repeated floods in Lakhimpur, Assam.", "source": "PIB 2002", "proposed_year": null, "proposed_note": "Proposal date not found", "proposed_caveat": true, "started_year": 1988, "started_note": "Construction began", "started_caveat": false, "finish_year": 2002, "finish_note": "Commissioned (Mar 2002)", "finish_caveat": false}, {"project": "Pare", "district": "Papum Pare", "river": "Dikrong", "developer": "NEEPCO", "status": "Operating", "stage": 0, "capacity_mw": 110, "operating_mw": 110, "dam_height_m": 63, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "Commissioned 2018; run-of-river, uses tailrace water from Panyor Lower.", "source": "Arunachal Times; HCC", "proposed_year": 2006, "proposed_note": "State agreement with NEEPCO (2006)", "proposed_caveat": false, "started_year": 2008, "started_note": "Government approval (Dec 2008)", "started_caveat": false, "finish_year": 2018, "finish_note": "Commissioned (May 2018)", "finish_caveat": false}, {"project": "Dibang Multipurpose", "district": "Lower Dibang Valley, Dibang Valley", "river": "Dibang", "developer": "NHPC", "status": "Under construction", "stage": 2, "capacity_mw": 2880, "operating_mw": 0, "dam_height_m": 278, "land_total_ha": 5349.14, "forest_ha": 4577.84, "submergence_ha": 3546, "trees": 324000, "note": "Height cut from 288 m to 278 m to save forest. Completion target Feb 2032. Will be India's tallest dam.", "source": "MoEF 2015 clearance via The Wire; Arunachal Times", "proposed_year": 2008, "proposed_note": "Foundation stone laid (Jan 2008); earlier planning date not found", "proposed_caveat": true, "started_year": 2019, "started_note": "Government approval (Jul 2019); main construction from Sept 2025", "started_caveat": false, "finish_year": 2032, "finish_note": "Target (Feb 2032)", "finish_caveat": true}, {"project": "Heo", "district": "Shi Yomi", "river": "Yarjep", "developer": "NEEPCO", "status": "Under construction", "stage": 2, "capacity_mw": 240, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "Run-of-river. CCEA approved Nov 2024; foundation stone Sept 2025.", "source": "PIB / News on Air; Renewable Watch", "proposed_year": 2015, "proposed_note": "CEA concurrence (28 Jul 2015); first allotted to a private developer", "proposed_caveat": false, "started_year": 2025, "started_note": "Foundation stone (Sept 2025); approved Nov 2024", "started_caveat": false, "finish_year": 2029, "finish_note": "Estimate: 50-month build period from approval", "finish_caveat": true}, {"project": "Tato-I", "district": "Shi Yomi", "river": "Yarjep", "developer": "NEEPCO", "status": "Under construction", "stage": 2, "capacity_mw": 186, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "Run-of-river. CCEA approved Nov 2024; foundation stone Sept 2025.", "source": "PIB / News on Air; Renewable Watch", "proposed_year": 2015, "proposed_note": "CEA concurrence (28 Oct 2015); first allotted to a private developer", "proposed_caveat": false, "started_year": 2025, "started_note": "Foundation stone (Sept 2025); approved Nov 2024", "started_caveat": false, "finish_year": 2029, "finish_note": "Estimate: 50-month build period from approval", "finish_caveat": true}, {"project": "Kamala", "district": "Kamle, Kra Daadi, Kurung Kumey", "river": "Kamala (Subansiri basin)", "developer": "NHPC", "status": "Approved", "stage": 3, "capacity_mw": 1720, "operating_mw": 0, "dam_height_m": 216, "land_total_ha": 3858.89, "forest_ha": 3278.09, "submergence_ha": 2665, "trees": 2340213, "note": "CCEA approved Apr 2026; Stage-I forest clearance pending. About 29,932 people in 126 villages likely affected.", "source": "EAC minutes Jan 2026; EastMojo; Power Peak Digest", "proposed_year": 2023, "proposed_note": "Allotted to NHPC (Aug 2023); earlier planning date not found", "proposed_caveat": true, "started_year": null, "started_note": "Not started; approved Apr 2026", "started_caveat": false, "finish_year": 2034, "finish_note": "Estimate: 8-year build period from approval", "finish_caveat": true}, {"project": "Kalai-II", "district": "Anjaw", "river": "Lohit", "developer": "THDC", "status": "Approved", "stage": 3, "capacity_mw": 1200, "operating_mw": 0, "dam_height_m": 128.5, "land_total_ha": 869.35, "forest_ha": 869.35, "submergence_ha": 638, "trees": 33338, "note": "CCEA approved Apr 2026; FAC in-principle forest clearance May 2026. White-bellied heron habitat concerns.", "source": "THDC; NE Now; TEI Times", "proposed_year": 2015, "proposed_note": "CEA concurrence (27 Mar 2015)", "proposed_caveat": false, "started_year": null, "started_note": "Not started; approved Apr 2026", "started_caveat": false, "finish_year": 2032, "finish_note": "Estimate: 6.5-year build period from approval", "finish_caveat": true}, {"project": "Etalin", "district": "Dibang Valley", "river": "Dri & Talo", "developer": "SJVN", "status": "Clearances in progress", "stage": 4, "capacity_mw": 3097, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": 1175.03, "submergence_ha": 119.44, "trees": 278945, "note": "FAC in-principle forest approval 2025 after being sent back in 2023.", "source": "EastMojo, Jun 2025", "proposed_year": 2013, "proposed_note": "CEA concurrence (12 Jul 2013); earlier history not found", "proposed_caveat": true, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "2033-34 (CEA estimate, 2022)", "finish_caveat": true}, {"project": "Attunli", "district": "Dibang Valley", "river": "Talo", "developer": "SJVN", "status": "Clearances in progress", "stage": 4, "capacity_mw": 680, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": 261.53, "submergence_ha": null, "trees": null, "note": "Recommended for Stage-I forest clearance.", "source": "NE Now", "proposed_year": 2018, "proposed_note": "CEA concurrence (2 Jul 2018)", "proposed_caveat": false, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "2030-31 (CEA estimate, Dec 2023)", "finish_caveat": true}, {"project": "Tato-II", "district": "Shi Yomi", "river": "Siyom", "developer": "NEEPCO", "status": "Clearances in progress", "stage": 4, "capacity_mw": 700, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": 313.88, "submergence_ha": null, "trees": null, "note": "FAC in-principle approval for forest diversion.", "source": "Hindustan Times via Magzter", "proposed_year": null, "proposed_note": "First allotted to a private developer (date not found); re-allotted to NEEPCO Aug 2023", "proposed_caveat": true, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "Beyond 2031-32 (CEA estimate, Dec 2023)", "finish_caveat": true}, {"project": "Subansiri Upper (Menga)", "district": "Upper Subansiri", "river": "Subansiri", "developer": "NHPC", "status": "Clearances in progress", "stage": 4, "capacity_mw": 1605, "operating_mw": 0, "dam_height_m": null, "land_total_ha": 2733, "forest_ha": null, "submergence_ha": 2417.47, "trees": 136000, "note": "EAC recommended environmental clearance; public hearing Mar 2026; bandh against it Oct 2026. Tree figure is approximate (about 1.36 lakh).", "source": "IIPA report; Ensure IAS; ThePrint", "proposed_year": 2023, "proposed_note": "Allotted to NHPC (Aug 2023); earlier planning date not found", "proposed_caveat": true, "started_year": null, "started_note": "Not started; public hearing Mar 2026", "started_caveat": false, "finish_year": null, "finish_note": "No target published", "finish_caveat": true}, {"project": "Oju", "district": "Upper Subansiri", "river": "Subansiri", "developer": null, "status": "Clearances in progress", "stage": 4, "capacity_mw": 2220, "operating_mw": 0, "dam_height_m": 93, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "Run-of-river; environment ministry clearance reported.", "source": "Civils Daily; News Arena", "proposed_year": null, "proposed_note": "Proposal date not found", "proposed_caveat": true, "started_year": null, "started_note": "Not started; environmental clearance recommended Sept 2025", "started_caveat": false, "finish_year": null, "finish_note": "No target published; needs at least 5 years to build", "finish_caveat": true}, {"project": "Siang Upper Multipurpose", "district": "Siang, Upper Siang", "river": "Siang", "developer": "NHPC", "status": "Survey stage", "stage": 6, "capacity_mw": 11000, "operating_mw": 0, "dam_height_m": 300, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "Pre-feasibility survey under way amid protests. Reported dam height ~300 m, 9.2 BCM live storage; SIFF says 27 villages fully submerged. Capacity quoted 11,000–11,200 MW.", "source": "EastMojo; NE Now; Mongabay", "proposed_year": 2017, "proposed_note": "Proposed by NITI Aayog", "proposed_caveat": false, "started_year": null, "started_note": "Not started; pre-feasibility survey under way", "started_caveat": false, "finish_year": null, "finish_note": "No completion target published", "finish_caveat": true}, {"project": "Lower Siang", "district": "East Siang", "river": "Siang", "developer": null, "status": "Concurred, not started", "stage": 5, "capacity_mw": 2700, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "On CEA's list of concurred schemes (Dec 2023).", "source": "PIB Lok Sabha reply, Dec 2023; district: Global Energy Monitor", "proposed_year": 2010, "proposed_note": "CEA concurrence (16 Feb 2010); earlier history not found", "proposed_caveat": true, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "Beyond 2031-32 (CEA estimate, Dec 2023)", "finish_caveat": true}, {"project": "Demwe Lower", "district": "Lohit", "river": "Lohit", "developer": null, "status": "Concurred, not started", "stage": 5, "capacity_mw": 1750, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "On CEA's list of concurred schemes (Dec 2023).", "source": "PIB Lok Sabha reply, Dec 2023; district: India Today NE", "proposed_year": 2009, "proposed_note": "CEA concurrence (20 Nov 2009); earlier history not found", "proposed_caveat": true, "started_year": null, "started_note": "Not started; new agreement signed May 2026", "started_caveat": false, "finish_year": null, "finish_note": "2031-32 (CEA estimate, Dec 2023)", "finish_caveat": true}, {"project": "Naying", "district": "Shi Yomi", "river": null, "developer": "NEEPCO", "status": "Concurred, not started", "stage": 5, "capacity_mw": 1000, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "On CEA's list of concurred schemes (Dec 2023).", "source": "PIB Lok Sabha reply, Dec 2023; district: India Today NE", "proposed_year": 2013, "proposed_note": "CEA concurrence (2013); re-allotted to NEEPCO Aug 2023", "proposed_caveat": false, "started_year": null, "started_note": "Not started; construction targeted for 2028", "started_caveat": false, "finish_year": 2032, "finish_note": "Commissioning target", "finish_caveat": true}, {"project": "Tawang Stage-II", "district": "Tawang", "river": "Tawang", "developer": null, "status": "Concurred, not started", "stage": 5, "capacity_mw": 800, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "On CEA's list (Dec 2023).", "source": "PIB Lok Sabha reply, Dec 2023", "proposed_year": 2011, "proposed_note": "CEA concurrence (22 Sep 2011)", "proposed_caveat": false, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "Beyond 2031-32 (CEA estimate, Dec 2023)", "finish_caveat": true}, {"project": "Tawang Stage-I", "district": "Tawang", "river": "Tawang", "developer": null, "status": "Concurred, not started", "stage": 5, "capacity_mw": 600, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "On CEA's list (Dec 2023).", "source": "PIB Lok Sabha reply, Dec 2023", "proposed_year": 2011, "proposed_note": "CEA concurrence (10 Oct 2011)", "proposed_caveat": false, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "Beyond 2031-32 (CEA estimate, Dec 2023)", "finish_caveat": true}, {"project": "Hirong", "district": "Shi Yomi (formerly West Siang)", "river": null, "developer": null, "status": "Concurred, not started", "stage": 5, "capacity_mw": 500, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "On CEA's list (Dec 2023).", "source": "PIB Lok Sabha reply, Dec 2023; district: Mountain Echo; Global Energy Monitor", "proposed_year": null, "proposed_note": "First allotted to a private developer (date not found); re-allotted to NEEPCO Aug 2023", "proposed_caveat": true, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "Beyond 2031-32 (CEA estimate, Dec 2023)", "finish_caveat": true}, {"project": "Talong Londa", "district": "East Kameng", "river": null, "developer": null, "status": "Concurred, not started", "stage": 5, "capacity_mw": 225, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "On CEA's list (Dec 2023).", "source": "PIB Lok Sabha reply, Dec 2023; district: GMR Group", "proposed_year": 2013, "proposed_note": "CEA concurrence (16 Aug 2013)", "proposed_caveat": false, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "2031-32 (CEA estimate, Dec 2023)", "finish_caveat": true}, {"project": "Nafra", "district": "West Kameng", "river": null, "developer": null, "status": "Concurred, not started", "stage": 5, "capacity_mw": 120, "operating_mw": 0, "dam_height_m": null, "land_total_ha": null, "forest_ha": null, "submergence_ha": null, "trees": null, "note": "On CEA's list (Dec 2023).", "source": "PIB Lok Sabha reply, Dec 2023; district: Sentinel Assam", "proposed_year": 2021, "proposed_note": "Agreement with NEEPCO (Aug 2021); earlier history not found", "proposed_caveat": true, "started_year": null, "started_note": "Not started", "started_caveat": false, "finish_year": null, "finish_note": "2027-28 (CEA estimate, Dec 2023); likely outdated", "finish_caveat": true}], "incidents": [{"id": 1, "year": 2008, "when": "14 Jun 2008", "project": "Panyor Lower (Ranganadi)", "group": "Disaster", "type": "Flood from dam release", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Sudden release without warning breached Ranganadi embankment; North Lakhimpur (Assam) flooded. 22 deaths as reported by Assam Times.", "impact_note": "North Lakhimpur town and nearby areas flooded; embankment breached at 10 points and 7.8 km of it collapsed. No count of people affected found in sources.", "source": "Assam Tribune; Assam Times"}, {"id": 2, "year": 2015, "when": "2015 (date not reported)", "project": "Panyor Lower (Ranganadi)", "group": "Disaster", "type": "Flood from dam release", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Release from the dam flooded Aamtola and other areas of Lakhimpur. Exact date and casualties not reported in sources found.", "impact_note": "No figures found.", "source": "NE Now"}, {"id": 3, "year": 2017, "when": "9 Jul 2017", "project": "Panyor Lower (Ranganadi)", "group": "Disaster", "type": "Flood from dam release", "people_affected": 15000, "villages_affected": null, "houses_destroyed": 11, "in_relief_camps": 1000, "crop_ha": null, "river_disruption": null, "what_happened": "Release of about 1,412 cumecs flooded Lakhimpur villages; then-CM Sonowal told NEEPCO not to release water while downstream was flooded. 11 people died in the district flood.", "impact_note": "Lakhimpur district-wide totals for the flood (Scroll): 15,000+ affected, 11 dead, 1,000+ in relief camps, 11 houses washed away in Majgaon alone, 5,000+ animals died. Dam release was one cause alongside heavy rain and a weak embankment.", "source": "Scroll; Assam Times; Dialogue Earth"}, {"id": 4, "year": 2018, "when": "12 Mar 2018", "project": "Kameng", "group": "Site failure", "type": "Penstock leakage", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Penstock leaked at several places during first water filling, blamed on faulty welding; commissioning delayed.", "impact_note": null, "source": "Arunachal Times; CEA"}, {"id": 5, "year": 2020, "when": "27 May – 19 Jun 2020", "project": "Subansiri Lower", "group": "Disaster", "type": "Flood the dam failed to control", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Landslides from 27 May damaged diversion tunnel cladding; river breached the coffer dyke on 19 June and flowed over the dam.", "impact_note": null, "source": "SANDRP (citing NE Now)"}, {"id": 6, "year": 2020, "when": "Jul 2020 (3rd week)", "project": "Subansiri Lower", "group": "Disaster", "type": "Flood the dam failed to control", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Powerhouse guard wall collapsed in a flood spate; powerhouse flooded.", "impact_note": null, "source": "SANDRP (citing Time8)"}, {"id": 7, "year": 2021, "when": "26 Aug 2021", "project": "Subansiri Lower", "group": "Disaster", "type": "Flood the dam failed to control", "people_affected": 91436, "villages_affected": 97, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": 4084.2, "river_disruption": null, "what_happened": "Guard wall collapsed; floodwater overtopped the main dam for three days and entered the powerhouse.", "impact_note": "Floodwater over the dam for 3 days; 97 revenue villages in Lakhimpur flooded, 91,436 people and 4,084 ha of crops affected (Sentinel Assam). Heavy rain in the catchment was the main driver.", "source": "SANDRP; Sentinel Assam"}, {"id": 8, "year": 2022, "when": "1 Apr 2022", "project": "Subansiri Lower", "group": "Site failure", "type": "Wall collapse", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Powerhouse protection wall partially collapsed; CEA asked NHPC to reassess slope stability and worker safety.", "impact_note": null, "source": "Sentinel Assam; Arunachal Times"}, {"id": 9, "year": 2022, "when": "16 Sep 2022", "project": "Subansiri Lower", "group": "Site failure", "type": "Sinkhole", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Large sinkhole opened on the left bank, damaging diversion tunnel 2.", "impact_note": null, "source": "SANDRP (citing India Today NE, NE Now)"}, {"id": 10, "year": 2022, "when": "25 Sep 2022", "project": "Subansiri Lower", "group": "Site failure", "type": "Wall collapse / flood", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Temporary guard wall collapsed; floodwater entered the powerhouse; workers evacuated.", "impact_note": null, "source": "Arunachal Times; SANDRP"}, {"id": 11, "year": 2022, "when": "12 Oct 2022", "project": "Subansiri Lower", "group": "Site failure", "type": "Landslide", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Large part of the hill fell onto the river diversion course; work suspended.", "impact_note": null, "source": "SANDRP (citing NE Now)"}, {"id": 12, "year": 2023, "when": "3 Apr 2023", "project": "Subansiri Lower", "group": "Site failure", "type": "Landslide", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Landslide damaged part of the dam works; workers evacuated.", "impact_note": null, "source": "SANDRP (citing India Today NE)"}, {"id": 13, "year": 2023, "when": "27 Oct 2023", "project": "Subansiri Lower", "group": "Disaster", "type": "Landslide or failure at project", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": "Ran dry ~12 hours", "what_happened": "Landslide blocked the only working diversion tunnel; river downstream ran dry for about 12 hours. One worker killed inside a diversion tunnel (28 Oct). Centre treated it as a major dam failure under the Dam Safety Act.", "impact_note": "Subansiri ran dry downstream for about 12 hours; concerns over fish, dolphins and riverside Mising communities. No count of people affected.", "source": "Arunachal Times; SANDRP; NE Now"}, {"id": 14, "year": 2025, "when": "31 May 2025", "project": "Panyor Lower (Ranganadi)", "group": "Disaster", "type": "Flood from dam release", "people_affected": null, "villages_affected": 243, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Release from the dam plus heavy rain flooded 243 villages in Lakhimpur, Assam; embankment breached. 2 people died.", "impact_note": "243 villages flooded in Lakhimpur; thousands of families evacuated (no exact count reported); embankment breached at Aamtola.", "source": "Assam Tribune; Assam Times"}, {"id": 15, "year": 2025, "when": "11 Jun 2025", "project": "Subansiri Lower", "group": "Site failure", "type": "Wall collapse", "people_affected": null, "villages_affected": null, "houses_destroyed": null, "in_relief_camps": null, "crop_ha": null, "river_disruption": null, "what_happened": "Guard wall beneath Spillway Gate Block 6 washed away; NDSA ordered extra grouting, delaying commissioning.", "impact_note": null, "source": "Assam Tribune"}, {"id": 16, "year": 2026, "when": "24 Jun 2026", "project": "Panyor Lower (Ranganadi)", "group": "Disaster", "type": "Landslide or failure at project", "people_affected": 350, "villages_affected": null, "houses_destroyed": 30, "in_relief_camps": 60, "crop_ha": null, "river_disruption": null, "what_happened": "Flash flood and a retaining-wall collapse hit the NEEPCO colony; 18 quarters destroyed, generation shut. 1 person died and 4 went missing. NEEPCO says local rain, not dam operation, caused it.", "impact_note": "At NEEPCO colony, Keyi Panyor: 108 households (~350 people) affected, 30 houses destroyed, 54 damaged, ~60 in relief camp, 17 injured. NEEPCO says local rain caused it; SANDRP points to an under-construction retaining wall collapse.", "source": "SANDRP; Assam Tribune; Down To Earth"}], "official": [{"metric": "commissioned_projects", "value": 5, "note": "Dikshi, Kameng, Khangtang, Panyor Lower, Pare (state hydropower dept, Mar 2026)"}, {"metric": "upcoming_projects", "value": 33, "note": "Projects 'coming up' per state hydropower dept, Mar 2026"}, {"metric": "upcoming_mw", "value": 19165, "note": "Projected capacity of the 33 upcoming projects"}, {"metric": "identified_potential_mw", "value": 50064, "note": "CEA reassessment, schemes above 25 MW"}, {"metric": "small_hydro_mw", "value": 140.61, "note": "Installed small hydro (under 25 MW) capacity in Arunachal as on 31 Dec 2024, Ministry of Power, Rajya Sabha Starred Q. No. 5 (answered 3 Feb 2025), Annexure-II"}, {"metric": "forest_cover_sqkm", "value": 65881.57, "note": "Arunachal forest cover, India State of Forest Report 2023 (78.67% of geographical area)"}], "timeline": [{"project": "Panyor Lower (Ranganadi)", "status": "Operating", "start_year": 1988, "start_basis": "Construction began", "planned_finish_year": null, "finish_year": 2002, "finished": true, "original_cost_cr": null, "latest_cost_cr": 1455.45, "note": "Revised cost sanctioned in 2001; CERC noted the sanction papers add to Rs 1,555.45 crore. Original sanctioned cost not published.", "source": "CERC petition 87/2001; PIB 2002; Wikipedia", "counted_from": "Start of work"}, {"project": "Kameng", "status": "Operating", "start_year": 2004, "start_basis": "CCEA approval (Dec 2004)", "planned_finish_year": 2009, "finish_year": 2021, "finished": true, "original_cost_cr": 2497, "latest_cost_cr": 8450, "note": "Approved for completion in 5 years; last units Feb 2021. Penstock leaks in 2018 added delay.", "source": "Swarajya; CEA", "counted_from": "Approval"}, {"project": "Pare", "status": "Operating", "start_year": 2008, "start_basis": "CCEA approval (Dec 2008)", "planned_finish_year": 2012, "finish_year": 2018, "finished": true, "original_cost_cr": 573.99, "latest_cost_cr": 1656.74, "note": "Scheduled for Aug 2012, commissioned May 2018: 70 months late. Completion cost as allowed by CERC.", "source": "CERC order 149/GT/2018", "counted_from": "Approval"}, {"project": "Subansiri Lower", "status": "Partly operating", "start_year": 2005, "start_basis": "Construction began (Jan 2005)", "planned_finish_year": 2012, "finish_year": 2026, "finished": false, "original_cost_cr": 6285, "latest_cost_cr": 26000, "note": "Work stopped Dec 2011–Oct 2019 by protests. 5 of 8 units running; full completion targeted Dec 2026. Latest cost is NHPC's ~Rs 26,000 crore (Nov 2024).", "source": "Arunachal Times; India Today NE", "counted_from": "Start of work"}, {"project": "Dibang Multipurpose", "status": "Under construction", "start_year": 2019, "start_basis": "Government approval (Jul 2019); foundation stone 2008", "planned_finish_year": 2032, "finish_year": 2032, "finished": false, "original_cost_cr": 28080.35, "latest_cost_cr": null, "note": "Target Feb 2032. No revised cost published yet.", "source": "The Wire; Water Power Magazine", "counted_from": "Approval"}, {"project": "Heo", "status": "Under construction", "start_year": 2024, "start_basis": "CCEA approval (Nov 2024)", "planned_finish_year": 2029, "finish_year": 2029, "finished": false, "original_cost_cr": 1939, "latest_cost_cr": null, "note": "Approved with a 50-month completion period.", "source": "PIB / News on Air", "counted_from": "Approval"}, {"project": "Tato-I", "status": "Under construction", "start_year": 2024, "start_basis": "CCEA approval (Nov 2024)", "planned_finish_year": 2029, "finish_year": 2029, "finished": false, "original_cost_cr": 1750, "latest_cost_cr": null, "note": "Approved with a 50-month completion period.", "source": "PIB / News on Air", "counted_from": "Approval"}, {"project": "Kamala", "status": "Approved", "start_year": 2026, "start_basis": "CCEA approval (Apr 2026)", "planned_finish_year": 2034, "finish_year": 2034, "finished": false, "original_cost_cr": 26069.5, "latest_cost_cr": null, "note": "Approved with a 96-month (8-year) completion period.", "source": "Energetica India; Business Standard", "counted_from": "Approval"}, {"project": "Kalai-II", "status": "Approved", "start_year": 2026, "start_basis": "CCEA approval (Apr 2026)", "planned_finish_year": 2032, "finish_year": 2032, "finished": false, "original_cost_cr": 14105.83, "latest_cost_cr": null, "note": "Approved with a 6.5-year completion period.", "source": "Energetica India; Business Standard", "counted_from": "Approval"}]};
+window.dash = (() => {
+  const calcs = {}, draws = new Map(), cache = {};
+  const colors = ['#4f7bd9', '#d9773f', '#5bb08f', '#dea93a', '#d883ab', '#4e8a3e', '#7a5bd6', '#8c8c8c'];
+  function rows(id) {
+    if (id in window.DASH_DATA) return window.DASH_DATA[id];
+    if (id in calcs) {
+      if (!(id in cache)) { const c = calcs[id]; cache[id] = c.fn(...c.inputs.map(rows)); }
+      return cache[id];
+    }
+    return null;
+  }
+  function data(id) {
+    const r = rows(id);
+    if (r === null) return {status: 'missing', data: [], rows: [], columns: []};
+    return {status: 'ok', data: r, rows: r, columns: r.length ? Object.keys(r[0]) : [], refreshing: false, meta: []};
+  }
+  function run(name) {
+    const fn = draws.get(name);
+    if (!fn) return;
+    document.querySelectorAll(`[data-draw="${name}"]`).forEach((el) => { try { fn(el); } catch (e) { console.error(name, e); } });
+  }
+  function draw(name, fn) {
+    if (fn) { draws.set(name, fn); if (ready) run(name); } else run(name);
+  }
+  let ready = false;
+  const runAll = () => { for (const n of draws.keys()) run(n); };
+  document.addEventListener('DOMContentLoaded', () => { ready = true; runAll(); });
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(runAll, 150); });
+  return {data, draw, colors, calc: (id, o) => { calcs[id] = o; }, onData: () => {}, params: () => ({}), setParams: () => {}, resetParams: () => {}, refresh: () => {}, setLink: () => {}};
+})();
+</script>
+</head>
+<body>
+<div id="dash-root"><meta name="dash-one-writer">
+<style>
+  .ad { font-family: var(--font-anthropic-sans); display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+  .ad h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
+  .ad h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+  .ad .lede { color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 0; max-width: 60rem; }
+  .ad .takeaway { margin: var(--cds-gap-sm) 0 0; max-width: 60rem; font-size: var(--cds-font-size-body); }
+  .ad .takeaway b { font-weight: var(--cds-font-weight-medium); font-variant-numeric: tabular-nums; }
+  .ad .note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-sm); }
+  .ad .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+  .ad .tile, .ad .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+  .ad .tile .lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .ad .tile .big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; margin: var(--cds-gap-xs) 0; display: block; }
+  .ad .tile .sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .ad .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+  .ad .chart { position: relative; min-height: 220px; }
+  .ad .chart svg text { font-size: var(--cds-font-size-caption); fill: var(--color-fg-muted); }
+  .ad .chart svg text.val { fill: var(--color-fg); }
+  .ad .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-sm); }
+  .ad .legend i { display: inline-block; width: .6rem; height: .6rem; border-radius: 2px; margin-right: .3rem; vertical-align: middle; }
+  .ad .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 16rem; }
+  .ad .tip .h { color: var(--cds-text-secondary); }
+  .ad .tablebox { max-height: 34rem; overflow: auto; }
+  .ad table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .ad th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .ad td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .ad td.num, .ad th.num { text-align: right; white-space: nowrap; }
+  .ad td.wide { min-width: 16rem; }
+  .ad .search { width: 100%; max-width: 20rem; padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); font: inherit; margin-bottom: var(--cds-gap-sm); }
+  .ad .caveats { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .ad .caveats li { margin-bottom: var(--cds-gap-xs); }
+  .ad [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .ad .srcgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--cds-gap-lg); }
+  .ad h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+  .ad .srclist { font-size: var(--cds-font-size-caption); margin: 0; padding-left: 1.1rem; }
+  .ad .srclist li { margin-bottom: var(--cds-gap-xs); }
+  .ad .srclist a { color: var(--color-fg); text-decoration-color: var(--color-border-line); text-underline-offset: 2px; }
+  .ad .srclist a:hover { text-decoration-color: currentColor; }
+  .ad .callout { font-size: var(--cds-font-size-caption); color: var(--color-fg); margin: 0 0 var(--cds-gap-md); padding: var(--cds-pad-sm) var(--cds-pad-md); border-left: 3px solid var(--color-warn); background: color-mix(in srgb, var(--color-warn) 8%, transparent); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; }
+  .ad td.date { min-width: 9rem; }
+  .ad .d-main { font-variant-numeric: tabular-nums; }
+  .ad .d-sub { color: var(--color-fg-muted); font-size: 12px; line-height: 1.35; margin-top: 2px; }
+  .ad .d-sub.d-cav { color: var(--color-warn); }
+  .ad .pcontrols { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--cds-gap-sm) var(--cds-gap-md); margin-bottom: var(--cds-gap-xs); }
+  .ad .pcontrols .search { margin-bottom: 0; flex: 1 1 12rem; }
+  .ad .pctl { display: flex; flex-direction: column; gap: 2px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .ad .pctl select { font: inherit; color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); max-width: 14rem; }
+  .ad .pbtn { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
+  .ad .pbtn:hover { border-color: var(--color-fg-muted); }
+  .ad .pcount { margin-top: var(--cds-gap-xs); }
+  .ad .na { display: inline-block; padding: 0 .35rem; border-radius: var(--cds-radius); background: color-mix(in srgb, var(--color-warn) 14%, transparent); color: var(--color-warn); white-space: nowrap; }
+  .ad td.bad { color: var(--color-bad); }
+  @media (max-width: 640px) { .ad .hide-narrow { display: none; } }
+</style>
+
+<div class="ad">
+  <header id="top">
+    <h1>Arunachal Dam Watch</h1>
+    <p class="lede">What exists, what is coming, how much land and forest it takes, and what has gone wrong. Compiled from government records, clearance papers and news reports up to 1 Nov 2026.</p>
+    <p class="takeaway">About <b data-draw="tOp" data-source="totals" data-field="operating_mw">—</b> MW of large hydro runs today, plus <b data-draw="tSmall" data-source="official" data-where="metric=small_hydro_mw" data-field="value">—</b> MW of small hydro, and <b data-draw="tUp" data-source="official" data-where="metric=upcoming_projects" data-field="value">—</b> more projects are planned.</p>
+  </header>
+
+  <section class="tiles" id="headline">
+    <div class="tile"><div class="lab">Large hydro (over 25 MW)</div><b class="big" data-draw="opMw" data-source="totals" data-field="operating_mw">—</b><div class="sub">MW running now; Subansiri Lower counts only its 5 finished units of 8</div></div>
+    <div class="tile"><div class="lab">Projects existing</div><b class="big" data-draw="existing" data-source="totals" data-field="projects_existing">—</b><div class="sub">large hydro (over 25 MW) operating or partly operating: Kameng, Panyor Lower, Pare and Subansiri Lower</div></div>
+    <div class="tile"><div class="lab">Small hydro (under 25 MW)</div><b class="big" data-draw="smallHydro" data-source="official" data-where="metric=small_hydro_mw" data-field="value">—</b><div class="sub">MW installed, per Ministry of Power (Dec 2024). There's no official list or count of these plants, so how many exist is not known. Not included in the other figures.</div></div>
+    <div class="tile"><div class="lab">Projects coming up</div><b class="big" data-draw="upcoming" data-source="official" data-where="metric=upcoming_projects" data-field="value">—</b><div class="sub"><span data-draw="upcomingMw" data-source="official" data-where="metric=upcoming_mw" data-field="value">—</span> MW planned, per state govt; <span data-draw="listedUp" data-source="totals" data-field="projects_listed_upcoming">—</span> have public records below</div></div>
+    <div class="tile"><div class="lab">Forest land taken</div><b class="big" data-draw="forestTaken" data-source="totals" data-field="forest_taken_ha">—</b><div class="sub">hectares in Arunachal, projects built or under construction; Kameng's figure is a 2003 estimate</div></div>
+    <div class="tile"><div class="lab">Forest land sought</div><b class="big" data-draw="forestSought" data-source="totals" data-field="forest_sought_ha">—</b><div class="sub">hectares, projects approved or in clearances</div></div>
+    <div class="tile"><div class="lab">Trees cleared for felling</div><b class="big" data-draw="treesFelled" data-source="totals" data-field="trees_felled">—</b><div class="sub">permitted for projects built or underway; only Dibang has a published count</div></div>
+    <div class="tile"><div class="lab">Trees to be felled</div><b class="big" data-draw="treesToFell" data-source="totals" data-field="trees_to_fell">—</b><div class="sub">in projects awaiting clearance or construction</div></div>
+    <div class="tile"><div class="lab">People affected by incidents</div><b class="big" data-draw="affected" data-source="totals" data-field="people_affected">—</b><div class="sub"><span data-draw="villages" data-source="totals" data-field="villages_affected">—</span> villages flooded; dam releases, failed flood control and site disasters only</div></div>
+    <div class="tile"><div class="lab">Disasters linked to dams</div><b class="big" data-draw="disasters" data-source="totals" data-field="disasters">—</b><div class="sub">plus <span data-draw="siteFailures" data-source="totals" data-field="site_failures">—</span> site failures (warning signs)</div></div>
+  </section>
+
+  <section class="grid">
+    <div class="card" id="capacity">
+      <h2>Capacity by project</h2>
+      <p class="note">Megawatts, every project found, coloured by stage.</p>
+      <div class="legend">
+        <span><i data-draw="sw0"></i>Operating</span>
+        <span><i data-draw="sw1"></i>Partly operating</span>
+        <span><i data-draw="sw2"></i>Under construction</span>
+        <span><i data-draw="sw3"></i>Approved</span>
+        <span><i data-draw="sw4"></i>Clearances in progress</span>
+        <span><i data-draw="sw5"></i>Concurred, not started</span>
+        <span><i data-draw="sw6"></i>Survey stage</span>
+      </div>
+      <div class="chart" data-draw="capChart" data-source="projects"></div>
+    </div>
+    <div class="card" id="land">
+      <h2>Forest land by project</h2>
+      <p class="note">Hectares of forest diverted or sought, for every project in the capacity chart. Projects with no published figure are listed at the bottom as data not available.</p>
+      <div class="legend">
+        <span><i data-draw="sw0"></i>Operating</span>
+        <span><i data-draw="sw1"></i>Partly operating</span>
+        <span><i data-draw="sw2"></i>Under construction</span>
+        <span><i data-draw="sw3"></i>Approved</span>
+        <span><i data-draw="sw4"></i>Clearances in progress</span>
+        <span><i data-draw="sw5"></i>Concurred, not started</span>
+        <span><i data-draw="sw6"></i>Survey stage</span>
+      </div>
+      <div class="chart" data-draw="forestChart" data-source="projects"></div>
+    </div>
+  </section>
+
+  <section class="card" id="time-cost">
+    <h2>How long each dam took, and what it cost</h2>
+    <p class="note">Bars run from approval or start of work to completion (solid) or target date (faded). The tick marks the originally planned finish. Costs in Rs crore.</p>
+    <div class="legend">
+      <span><i data-draw="swDone"></i>Built</span>
+      <span><i data-draw="swPlan"></i>Still to finish (target)</span>
+      <span><i data-draw="swTick"></i>Originally planned finish</span>
+    </div>
+    <div class="chart" data-draw="timeChart" data-source="timeline_calc"></div>
+    <div class="tablebox" style="margin-top: var(--cds-gap-md)">
+      <table data-source="timeline_calc" data-row-key="project">
+        <thead><tr>
+          <th data-field="project">Project</th>
+          <th data-field="status">Stage</th>
+          <th data-field="start_year" class="num">Start</th>
+          <th data-field="counted_from">Counted from</th>
+          <th data-field="planned_finish_year" class="num">Planned finish</th>
+          <th data-field="finish_year" class="num">Finished / target</th>
+          <th data-field="years" class="num">Years taken</th>
+          <th data-field="delay_years" class="num">Years late</th>
+          <th data-field="original_cost_cr" class="num">Original cost (Rs cr)</th>
+          <th data-field="latest_cost_cr" class="num">Final / latest cost (Rs cr)</th>
+          <th data-field="overrun_pct" class="num">Cost overrun</th>
+          <th data-field="note" class="hide-narrow">Notes</th>
+          <th data-field="source" class="hide-narrow">Source</th>
+        </tr></thead>
+        <tbody data-draw="timeTable"></tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top: var(--cds-gap-sm)"><span class="na">Data not available</span> means no reliable public figure was found. "Years taken" for unfinished projects counts years so far, to 2026. Panyor Lower and Subansiri Lower are counted from the start of work, the rest from approval, so their years are not strictly comparable. Costs are in the rupees of their own year, not adjusted for inflation.</p>
+  </section>
+
+  <section class="card" id="projects">
+    <h2>All projects</h2>
+    <p class="note"><span class="na">Data not available</span> marks figures not found in a reliable source. Tree counts are official figures from clearance papers: "cleared for felling" for projects built or under construction, "to be felled" for those still seeking approval. They are permitted or estimated counts, not trees confirmed cut. "Proposed" is the earliest documented step found (often CEA approval of the project report, so the idea may be older); "Started" is the start of work or government approval; dates and notes in <span style="color: var(--color-warn)">amber</span> are estimates or have gaps. Use the filters and sort controls below, or click a column heading to sort.</p>
+    <div class="pcontrols">
+      <label class="pctl"><span>Stage</span><select data-draw="fStage" data-source="projects" data-filter="status" aria-label="Filter by stage"></select></label>
+      <label class="pctl"><span>District</span><select data-draw="fDistrict" data-source="projects" data-filter="district" aria-label="Filter by district"></select></label>
+      <label class="pctl"><span>Developer</span><select data-draw="fDev" data-source="projects" data-filter="developer" aria-label="Filter by developer"></select></label>
+      <label class="pctl"><span>Sort by</span><select data-sort-select="proj" aria-label="Sort by">
+        <option value="capacity_mw">Capacity (MW)</option>
+        <option value="dam_height_m">Dam height</option>
+        <option value="land_total_ha">Total land</option>
+        <option value="forest_ha">Forest land</option>
+        <option value="submergence_ha">Submerged area</option>
+        <option value="trees">Trees</option>
+        <option value="proposed_year">Year proposed</option>
+        <option value="started_year">Year started</option>
+        <option value="finish_year">Finish / target year</option>
+        <option value="stage">Stage</option>
+        <option value="project">Project name</option>
+        <option value="district">District</option>
+      </select></label>
+      <button type="button" class="pbtn" data-sort-dir="proj" aria-label="Change sort direction"><span class="dir-desc">Descending ↓</span><span class="dir-asc" hidden>Ascending ↑</span></button>
+      <button type="button" class="pbtn" data-reset="proj">Reset</button>
+    </div>
+    <p class="note pcount">Showing <b data-draw="projCount" data-source="projects">—</b> of <span data-draw="projTotal" data-source="projects">—</span> projects. Projects with no figure for the sorted column always go to the bottom.</p>
+    <div class="tablebox">
+      <table data-source="projects" data-row-key="project">
+        <thead><tr>
+          <th data-field="project" data-sort="proj">Project</th>
+          <th data-field="district" data-sort="proj">District</th>
+          <th data-field="status" data-sort="proj">Stage</th>
+          <th data-field="river" data-sort="proj">River</th>
+          <th data-field="developer" data-sort="proj">Developer</th>
+          <th data-field="capacity_mw" class="num" data-sort="proj">MW</th>
+          <th data-field="dam_height_m" class="num" data-sort="proj">Dam height (m)</th>
+          <th data-field="land_total_ha" class="num" data-sort="proj">Total land (ha)</th>
+          <th data-field="forest_ha" class="num" data-sort="proj">Forest (ha)</th>
+          <th data-field="submergence_ha" class="num" data-sort="proj">Submerged (ha)</th>
+          <th data-field="trees" class="num" data-sort="proj">Trees cleared / to be felled</th>
+          <th data-field="proposed_year" data-sort="proj">Proposed</th>
+          <th data-field="started_year" data-sort="proj">Started</th>
+          <th data-field="finish_year" data-sort="proj">Finished / target</th>
+          <th data-field="note">Notes</th>
+          <th data-field="source">Source</th>
+        </tr></thead>
+        <tbody data-draw="projTable"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" id="incidents-year">
+    <h2>Disasters and site failures by year</h2>
+    <p class="note">Disasters are events that harmed people, land or the river beyond the project site. Site failures stayed within the site but show unstable ground or weak construction. Worker accidents are not included.</p>
+    <div class="legend">
+      <span><i data-draw="swY_release"></i>Flood from dam release</span>
+      <span><i data-draw="swY_failed_control"></i>Flood the dam failed to control</span>
+      <span><i data-draw="swY_project_disaster"></i>Landslide or failure at project</span>
+      <span><i data-draw="swY_site_failure"></i>Site failure (warning sign)</span>
+    </div>
+    <p class="callout">For many incidents there is no official count of people affected, houses lost, livestock killed or crops damaged, and for some even deaths are uncertain. Project developers rarely publish incident reports, and district flood figures often don't separate a dam release from rain. The real scale of many incidents is likely larger than shown here, so treat these numbers as a minimum.</p>
+    <div class="chart" data-draw="yearChart" data-source="by_year"></div>
+  </section>
+
+  <section class="card" id="incidents">
+    <h2>Disasters linked to dams</h2>
+    <p class="note">Floods caused or worsened by dam releases, floods a dam failed to hold back, and landslides or failures at projects that hit people or the river. Loss of life is noted in each description. Use the filters and sort controls, or click a column heading to sort. <span class="na">Not reported</span> marks a figure no one published. Subansiri Lower sits on the Assam border, and Panyor Lower floods hit Lakhimpur in Assam.</p>
+    <div class="pcontrols">
+      <label class="pctl"><span>Project</span><select data-draw="fIncProject" data-source="incidents" data-ifilter="project" aria-label="Filter by project"></select></label>
+      <label class="pctl"><span>Type</span><select data-draw="fIncType" data-source="incidents" data-ifilter="type" aria-label="Filter by type"></select></label>
+      <label class="pctl"><span>Sort by</span><select data-sort-select="inc" aria-label="Sort by">
+        <option value="id">Date</option>
+        <option value="people_affected">People affected</option>
+        <option value="villages_affected">Villages flooded</option>
+        <option value="houses_destroyed">Houses destroyed</option>
+        <option value="in_relief_camps">People in relief camps</option>
+        <option value="crop_ha">Crops hit</option>
+        <option value="project">Project name</option>
+        <option value="type">Type</option>
+      </select></label>
+      <button type="button" class="pbtn" data-sort-dir="inc" aria-label="Change sort direction"><span class="dir-desc">Descending ↓</span><span class="dir-asc" hidden>Ascending ↑</span></button>
+      <button type="button" class="pbtn" data-reset="inc">Reset</button>
+    </div>
+    <p class="note pcount">Showing <b data-draw="incCount" data-source="incidents">—</b> of <span data-draw="incTotal" data-source="incidents">—</span> disasters. Disasters with no figure for the sorted column always go to the bottom.</p>
+    <div class="tablebox">
+      <table data-source="incidents" data-row-key="id">
+        <thead><tr>
+          <th data-field="when" data-sort="inc">When</th>
+          <th data-field="project" data-sort="inc">Project</th>
+          <th data-field="type" data-sort="inc">Type</th>
+          <th data-field="people_affected" data-sort="inc" class="num">People affected</th>
+          <th data-field="villages_affected" data-sort="inc" class="num">Villages flooded</th>
+          <th data-field="houses_destroyed" data-sort="inc" class="num">Houses destroyed</th>
+          <th data-field="in_relief_camps" data-sort="inc" class="num">In relief camps</th>
+          <th data-field="crop_ha" data-sort="inc" class="num">Crops hit (ha)</th>
+          <th data-field="river_disruption">River disruption</th>
+          <th data-field="what_happened">What happened</th>
+          <th data-field="impact_note">Impact details</th>
+          <th data-field="source">Source</th>
+        </tr></thead>
+        <tbody data-draw="incTable"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" id="site-failures">
+    <h2>Site failures: warning signs</h2>
+    <p class="note">Landslides, wall collapses and leaks at project sites that didn't harm anyone outside, but point to unstable ground or weak construction.</p>
+    <div class="tablebox">
+      <table data-source="incidents" data-row-key="id">
+        <thead><tr>
+          <th data-field="when">When</th>
+          <th data-field="project">Project</th>
+          <th data-field="type">Type</th>
+          <th data-field="what_happened">What happened</th>
+          <th data-field="source" class="hide-narrow">Source</th>
+        </tr></thead>
+        <tbody data-draw="siteTable"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" id="caveats">
+    <h2>What this does and doesn't cover</h2>
+    <ul class="caveats">
+      <li>The land total is a floor, not a full count. No official source adds up land under all existing dams; operating projects like Panyor Lower and Pare have no published land figures I could find.</li>
+      <li>Project counts, charts and tables cover large hydro only (over 25 MW), the line the Central Electricity Authority uses. Small hydro is shown as one figure: the Ministry of Power's installed capacity as of 31 Dec 2024. No official list or count of the small plants was found, so the number of plants, their land use and any incidents at them are not covered. Dikshi (24 MW) and Khangtang (7 MW), which the state lists as commissioned, are among them.</li>
+      <li>The state's own list of commissioned projects (5, Mar 2026) differs from the "Projects existing" count because it includes those two small plants and leaves out Subansiri Lower, which sits on the Assam border.</li>
+      <li>Flood counts for 2017 and 2021 are district-wide, so they include damage from rain as well as from the dam. They are kept because a dam that releases or fails to hold back water can make a flood worse.</li>
+      <li>"Forest land taken" counts only Arunachal's share; Subansiri Lower diverted another 816 ha in Assam.</li>
+      <li>The state counts 33 projects coming up; the table lists only those with named public records.</li>
+      <li>Worker accidents at construction sites are left out: this dashboard tracks harm to people, land and rivers beyond the projects.</li>
+      <li>The disaster and site-failure lists rely partly on SANDRP, an advocacy group that tracks dam accidents; each entry points back to the news report it cites. Loss of life, where mentioned, is as reported by local media, not an official toll.</li>
+      <li>Dam heights for Dibang (278 m, cut from 288 m) and Siang Upper (~300 m) are as reported; Siang Upper is still at survey stage.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="sources">
+    <h2>Sources</h2>
+    <p class="note">Every report and record the figures on this page come from.</p>
+    <div class="srcgrid">
+      <div>
+        <h3>Government and official records</h3>
+        <ul class="srclist">
+          <li><a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2023/dec/doc2023128282801.pdf" target="_blank" rel="noopener">PIB – Lok Sabha reply on NE hydro projects, Dec 2023</a></li>
+          <li><a href="https://archive.pib.gov.in/release02/lyr2002/rmar2002/28032002/r2803200211.html" target="_blank" rel="noopener">PIB – Ranganadi project commissioned, 2002</a></li>
+          <li><a href="https://www.newsonair.gov.in/ccea-approves-%e2%82%b91939-crore-investment-for-heo-hydro-electric-project-in-arunachal-pradesh" target="_blank" rel="noopener">News on Air – CCEA approves Heo and Tato-I, Nov 2024</a></li>
+          <li><a href="https://cea.nic.in/wp-content/uploads/hydro/2020/06/status_hep-04.pdf" target="_blank" rel="noopener">CEA – Status of under-execution hydro projects (Kameng)</a></li>
+          <li><a href="https://cea.nic.in/api/dashboardReports/view-pdf/en/22771a34-ebf1-499a-b476-701f7756cc27" target="_blank" rel="noopener">CEA – Schemes concurred, status of clearances</a></li>
+          <li><a href="https://environmentclearance.nic.in/writereaddata/Form-1A/Minutes/1102202664192525MoM_47th_EAC_RVHEP_28-01-26.pdf" target="_blank" rel="noopener">MoEFCC – 47th EAC minutes, Kamala project, Jan 2026</a></li>
+          <li><a href="https://forestsclearance.nic.in/writereaddata/AdditionalInformation/AddInfoSought/0_0_5116121912201Etalin.pdf" target="_blank" rel="noopener">MoEFCC – Etalin forest diversion proposal</a></li>
+          <li><a href="https://www.nhpcindia.com/assests/pzi_public/gallery/17751334400.pdf" target="_blank" rel="noopener">NHPC – Dibang six-monthly environment report</a></li>
+          <li><a href="https://thdc.co.in/en/node/6963" target="_blank" rel="noopener">THDC – Kalai-II project details</a></li>
+          <li><a href="https://iipa.org.in/upload/project_report/pr2.pdf" target="_blank" rel="noopener">IIPA – Subansiri Upper social impact report</a></li>
+          <li><a href="https://www.energetica-india.net/news/ccea-approves-inr-40175-crore-investment-for-2920-mw-hydro-projects-in-arunachal-pradesh" target="_blank" rel="noopener">Energetica India – CCEA approves Kamala and Kalai-II, Apr 2026</a></li>
+          <li><a href="https://www.powermin.gov.in/static/uploads/2025/08/5804f7f17e764f9ba1951183379b8e31.pdf" target="_blank" rel="noopener">Ministry of Power – Rajya Sabha reply: state-wise small hydro capacity, 31 Dec 2024</a></li>
+          <li><a href="https://www.cbip.org/7-8_April_22_Rishikesh/Data/Session%202/TS2-3.pdf" target="_blank" rel="noopener">CEA/CBIP (2022) – NE hydro status, CEA concurrence dates</a></li>
+          <li><a href="https://www.business-standard.com/india-news/arunachal-inks-moa-with-3-central-govt-psus-allots-12-hydropower-projects-123081300138_1.html" target="_blank" rel="noopener">Business Standard – 12 projects re-allotted to PSUs, Aug 2023</a></li>
+          <li><a href="https://www.civilsdaily.com/news/naying-hydroelectric-project/" target="_blank" rel="noopener">Civils Daily – Naying concurrence and targets</a></li>
+          <li><a href="https://eastmojo.com/arunachal-pradesh/2021/08/15/arunachal-govt-signs-mou-for-hydroelectric-power-projects/" target="_blank" rel="noopener">EastMojo – Nafra agreement with NEEPCO, Aug 2021</a></li>
+          <li><a href="https://www.renewableenergyworld.com/energy-business/energy-finance/india-utility-seeks-design-review-of-110-mw-pare-construction/" target="_blank" rel="noopener">Renewable Energy World – Pare agreement, 2006</a></li>
+          <li><a href="https://sandrp.in/2014/01/31/six-years-after-pm-laying-foundation-stone-no-clearance-no-work-for-3000-mw-dibang-dam/" target="_blank" rel="noopener">SANDRP – Dibang foundation stone, 2008</a></li>
+          <li><a href="https://newsarenaindia.com/tag/nhpc" target="_blank" rel="noopener">News Arena – Dibang construction begins, Sept 2025</a></li>
+          <li><a href="https://renewablewatch.in/2025/09/25/pm-modi-lays-foundation-stone-for-hydropower-projects-in-arunachal-pradesh/" target="_blank" rel="noopener">Renewable Watch – Heo and Tato-I foundation stones, Sept 2025</a></li>
+          <li><a href="https://scroll.in/article/1085505/why-indias-plans-to-counter-chinas-mega-dam-in-tibet-may-falter" target="_blank" rel="noopener">Scroll – Siang Upper proposed by NITI Aayog, 2017</a></li>
+          <li><a href="https://powerpeakdigest.com/oju-hydro-project-in-arunachal-pradesh-secures-ec-recommendation/" target="_blank" rel="noopener">Power Peak Digest – Oju clearance and build time</a></li>
+          <li><a href="https://cercind.gov.in/2020/orders/149-GT-2018.pdf" target="_blank" rel="noopener">CERC – Pare tariff order: approval, delay and completion cost</a></li>
+          <li><a href="https://cercind.gov.in/200502/pet8701.pdf" target="_blank" rel="noopener">CERC – Ranganadi revised cost</a></li>
+          <li><a href="https://swarajyamag.com/reports/explained-what-kameng-project-signifies-for-hydroelectric-power-in-india" target="_blank" rel="noopener">Swarajya – Kameng approval, cost overrun and commissioning</a></li>
+          <li><a href="https://www.indiatodayne.in/assam/story/nhpcs-subansiri-hydropower-project-begins-partial-commercial-operations-after-13-year-delay-1321577-2025-12-24" target="_blank" rel="noopener">India Today NE – Subansiri Lower 13-year delay</a></li>
+          <li><a href="https://arunachaltimes.in/index.php/2024/11/26/3-units-of-2000-mw-subansiri-project-to-start-power-generation/" target="_blank" rel="noopener">Arunachal Times – Subansiri Lower cost rises to Rs 26,000 crore</a></li>
+          <li><a href="https://www.business-standard.com/india-news/cabinet-approves-rs-40000-crore-hydropower-projects-arunachal-pradesh-126040800970_1.html" target="_blank" rel="noopener">Business Standard – Kamala and Kalai-II costs</a></li>
+          <li><a href="https://www.waterpowermagazine.com/news/nhpc-building-eight-hydropower-projects-with-8514mw-capacity-confirms-government/" target="_blank" rel="noopener">Water Power Magazine – Dibang completion target</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Projects, land and forest</h3>
+        <ul class="srclist">
+          <li><a href="https://arunachaltimes.in/article/33-hydropower-projects-coming-up-in-state" target="_blank" rel="noopener">Arunachal Times – 33 hydropower projects coming up, Mar 2026</a></li>
+          <li><a href="https://indianpsu.com/?p=41698" target="_blank" rel="noopener">Indian PSU – Fifth Subansiri Lower unit commissioned</a></li>
+          <li><a href="https://nenow.in/north-east-news/arunachal-pradesh/arunachal-nhpc-hits-750-mw-milestone-at-subansiri-lower-as-unit-1-goes-live.html" target="_blank" rel="noopener">NE Now – Subansiri Lower forest and reservoir figures</a></li>
+          <li><a href="https://nenow.in/environment/arunachal-environmental-impacts-management-in-subansiri-lower-hydroelectric-project.html" target="_blank" rel="noopener">NE Now – Subansiri Lower submergence area</a></li>
+          <li><a href="https://science.thewire.in/?p=382127" target="_blank" rel="noopener">The Wire – Dibang land, submergence and trees</a></li>
+          <li><a href="https://arunachaltimes.in/?p=183556" target="_blank" rel="noopener">Arunachal Times – Dibang dam height reduced</a></li>
+          <li><a href="https://eastmojo.com/arunachal-pradesh/2026/02/13/can-arunachal-afford-to-lose-23-lakh-trees/" target="_blank" rel="noopener">EastMojo – Kamala: 23 lakh trees</a></li>
+          <li><a href="https://powerpeakdigest.com/eac-clears-1720-mw-kamala-hydropower-project-over-23-lakh-trees-to-be-felled/" target="_blank" rel="noopener">Power Peak Digest – Kamala people affected</a></li>
+          <li><a href="https://nenow.in/north-east-news/arunachal-hydropower-projects-may-require-felling-of-over-80000-trees-fac-documents-show.html" target="_blank" rel="noopener">NE Now – Kalai-II and Attunli forest diversion</a></li>
+          <li><a href="https://teitimes.com/post/clearance-given-for-1200-mw-kalai-ii-hydropower-project-in-arunachal-pradesh" target="_blank" rel="noopener">TEI Times – Kalai-II forest clearance</a></li>
+          <li><a href="https://eastmojo.com/news/2025/06/11/can-india-afford-to-lose-2-7-lakh-trees-for-a-hydel-project-in-arunachal/" target="_blank" rel="noopener">EastMojo – Etalin forest approval</a></li>
+          <li><a href="https://www.magzter.com/en/stories/newspaper/Hindustan-Times-Noida/FOREST-NOD-TO-HYDRO-PROJECTS-IN-ARUNACHAL" target="_blank" rel="noopener">Hindustan Times – Forest nod to Tato-II</a></li>
+          <li><a href="https://www.ensureias.com/blog/current-affairs/upper-subansiri-hydroelectric-project" target="_blank" rel="noopener">Ensure IAS – Subansiri Upper forest and trees</a></li>
+          <li><a href="https://www.civilsdaily.com/news/commissioning-of-oju-hydel-project/" target="_blank" rel="noopener">Civils Daily – Oju project</a></li>
+          <li><a href="https://eastmojo.com/news/aipp-eastmojo-fellowship-2024/2024/12/12/why-arunachals-indigenous-people-refuse-to-give-up-fight-against-siang-dam/" target="_blank" rel="noopener">EastMojo – Siang Upper dam height</a></li>
+          <li><a href="https://india.mongabay.com/2025/04/caught-between-a-dam-and-a-hard-place/" target="_blank" rel="noopener">Mongabay India – Siang Upper villages at risk</a></li>
+          <li><a href="https://arunachaltimes.in/?p=21927" target="_blank" rel="noopener">Arunachal Times – Pare dam height</a></li>
+          <li><a href="https://www.gem.wiki/Lower_Siang_hydroelectric_plant" target="_blank" rel="noopener">Global Energy Monitor – Lower Siang location</a></li>
+          <li><a href="https://www.indiatodayne.in/arunachal-pradesh/story/arunachal-signs-moa-for-1750-mw-demwe-lower-hydroelectric-project-in-lohit-district-1398728-2026-05-27" target="_blank" rel="noopener">India Today NE – Demwe Lower in Lohit district</a></li>
+          <li><a href="https://www.indiatodayne.in/amp/arunachal-pradesh/story/public-hearing-for-1000-mw-naying-hydro-project-in-arunachal-to-be-held-on-nov-12-1288287-2025-10-09" target="_blank" rel="noopener">India Today NE – Naying in Shi Yomi district</a></li>
+          <li><a href="https://mountainecho.in/five-hydropower-projects-in-shi-yomi-district/" target="_blank" rel="noopener">Mountain Echo – Hirong among Shi Yomi projects</a></li>
+          <li><a href="https://www.gmrgroup.in/talong-power/" target="_blank" rel="noopener">GMR Group – Talong Londa in East Kameng</a></li>
+          <li><a href="https://sentinelassam.com/north-east-india-news/arunachal-news/arunachal-pradesh-neepco-ink-pact-for-two-power-producing-projects-550683" target="_blank" rel="noopener">Sentinel Assam – Nafra in West Kameng</a></li>
+          <li><a href="https://nev.write2kill.in/ecologist-2003/commissioned-and-proposed-projects" target="_blank" rel="noopener">The Ecologist Asia (2003) – Kameng land requirement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Disasters, failures and impact</h3>
+        <ul class="srclist">
+          <li><a href="https://assamtimes.org/article/ranganadi-flood-of-may-31-2025-who-is-responsible-23448" target="_blank" rel="noopener">Assam Times – Ranganadi floods 2008, 2017, 2025</a></li>
+          <li><a href="https://assamtribune.com/dam-water-released-into-ranganadi-floods-villages" target="_blank" rel="noopener">Assam Tribune – Ranganadi dam release floods villages</a></li>
+          <li><a href="https://nenow.in/?p=446723" target="_blank" rel="noopener">NE Now – Ranganadi floods since 2008</a></li>
+          <li><a href="https://scroll.in/article/844297/assam-floods-how-an-embankment-in-lakhimpur-failed-leaving-villages-devastated-and-people-dead" target="_blank" rel="noopener">Scroll – Lakhimpur flood, Jul 2017</a></li>
+          <li><a href="https://dialogue.earth/en/water/acid-from-rathole-mine-bursts-pipe-kills-four/" target="_blank" rel="noopener">Dialogue Earth – NEEPCO dam safety record</a></li>
+          <li><a href="https://arunachaltimes.in/?p=27551" target="_blank" rel="noopener">Arunachal Times – Kameng penstock leaks, 2018</a></li>
+          <li><a href="https://sandrp.in/2022/11/08/repeated-disasters-at-subansiri-hydro-project-in-2022/" target="_blank" rel="noopener">SANDRP – Repeated disasters at Subansiri, 2020–2022</a></li>
+          <li><a href="https://sentinelassam.com/north-east-india-news/assam-news/subansiri-flood-inundates-97-villages-in-lakhimpur-district-552417" target="_blank" rel="noopener">Sentinel Assam – Subansiri flood hits 97 villages, Aug 2021</a></li>
+          <li><a href="https://www.sentinelassam.com/amp/story/topheadlines/central-electricity-authority-cea-apprehensive-about-subansiri-projects-guard-walls-590938" target="_blank" rel="noopener">Sentinel Assam – CEA concerns over Subansiri guard walls</a></li>
+          <li><a href="https://sandrp.in/2023/04/08/april-2023-another-landslide-at-lower-subansiri-hep/" target="_blank" rel="noopener">SANDRP – Subansiri landslide, Apr 2023</a></li>
+          <li><a href="https://arunachaltimes.in/?p=227192" target="_blank" rel="noopener">Arunachal Times – Subansiri landslide blocks river, Oct 2023</a></li>
+          <li><a href="https://sandrp.in/2023/10/28/massive-landslide-again-damages-lower-subansiri-hydro-project-in-oct-2023/" target="_blank" rel="noopener">SANDRP – Subansiri runs dry, Oct 2023</a></li>
+          <li><a href="https://www.indiatodayne.in/assam/story/assam-massive-flooding-submerges-over-230-villages-after-neepco-releases-dam-water-1-dead-in-lakhimpur-1222061-2025-05-31" target="_blank" rel="noopener">India Today NE – 230+ villages flooded, May 2025</a></li>
+          <li><a href="https://assamtribune.com/assam/subansiri-dam-guard-wall-collapse-sparks-alarms-days-before-project-commissioning-1580659" target="_blank" rel="noopener">Assam Tribune – Subansiri guard wall collapse, Jun 2025</a></li>
+          <li><a href="https://sandrp.in/2026/06/25/june-2026-flash-flood-disaster-at-neepcos-hep-site-in-arunachal-pradesh/" target="_blank" rel="noopener">SANDRP – Panyor colony flash flood, Jun 2026</a></li>
+          <li><a href="https://assamtribune.com/north-east/neepco-rules-out-dam-role-in-arunachal-floods-as-search-for-4-missing-continues-1613556" target="_blank" rel="noopener">Assam Tribune – Panyor flood houses and missing, Jun 2026</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  dash.calc('totals', {
+    inputs: ['projects', 'incidents'],
+    title: 'Headline totals',
+    description: 'Running MW; count of existing projects; forest hectares and tree counts split into built/under construction (taken, felled) and approved/proposed (sought, to be felled); counts of disasters linked to dams and of site failures; people affected, villages flooded and houses destroyed where reported, for disasters only; count of non-operating projects listed.',
+    fn: (projects, incidents) => [{
+      operating_mw: d3.sum(projects, (p) => Number(p.operating_mw) || 0),
+      projects_existing: projects.filter((p) => Number(p.stage) <= 1).length,
+      forest_taken_ha: Math.round(d3.sum(projects.filter((p) => Number(p.stage) <= 2), (p) => Number(p.forest_ha) || 0)),
+      forest_sought_ha: Math.round(d3.sum(projects.filter((p) => Number(p.stage) >= 3), (p) => Number(p.forest_ha) || 0)),
+      trees_felled: d3.sum(projects.filter((p) => Number(p.stage) <= 2), (p) => Number(p.trees) || 0),
+      trees_to_fell: d3.sum(projects.filter((p) => Number(p.stage) >= 3), (p) => Number(p.trees) || 0),
+      disasters: incidents.filter((r) => r.group === 'Disaster').length,
+      site_failures: incidents.filter((r) => r.group === 'Site failure').length,
+      people_affected: d3.sum(incidents.filter((r) => r.group === 'Disaster'), (r) => Number(r.people_affected) || 0),
+      villages_affected: d3.sum(incidents.filter((r) => r.group === 'Disaster'), (r) => Number(r.villages_affected) || 0),
+      houses_destroyed: d3.sum(incidents.filter((r) => r.group === 'Disaster'), (r) => Number(r.houses_destroyed) || 0),
+      projects_listed_upcoming: projects.filter((p) => Number(p.stage) >= 2).length,
+    }],
+  });
+  dash.calc('by_year', {
+    inputs: ['incidents'],
+    title: 'Disasters and site failures per year',
+    description: 'Count per year of each type: floods from dam releases, floods the dam failed to control, landslides or failures at a project that hit people or the river, and site failures. Every year from first to last, zeros included.',
+    fn: (incidents) => {
+      const key = (r) => (r.group === 'Site failure' ? 'site_failure' : r.type === 'Flood from dam release' ? 'release' : r.type === 'Flood the dam failed to control' ? 'failed_control' : 'project_disaster');
+      const ys = incidents.map((r) => Number(r.year));
+      return d3.range(d3.min(ys), d3.max(ys) + 1).map((year) => {
+        const v = incidents.filter((r) => Number(r.year) === year);
+        const o = {year, release: 0, failed_control: 0, project_disaster: 0, site_failure: 0};
+        v.forEach((r) => { o[key(r)] += 1; });
+        o.total = v.length;
+        return o;
+      });
+    },
+  });
+  dash.calc('timeline_calc', {
+    inputs: ['timeline'],
+    title: 'Build time and cost overrun',
+    description: 'Years from start to finish (or to 2026 if unfinished), years late against the planned finish, and percentage cost overrun from original to latest cost.',
+    fn: (timeline) => timeline.map((r) => {
+      const s = r.start_year === null ? null : Number(r.start_year);
+      const f = r.finish_year === null ? null : Number(r.finish_year);
+      const p = r.planned_finish_year === null ? null : Number(r.planned_finish_year);
+      const o = r.original_cost_cr === null ? null : Number(r.original_cost_cr);
+      const l = r.latest_cost_cr === null ? null : Number(r.latest_cost_cr);
+      const done = r.finished === true || r.finished === 'true';
+      return {
+        ...r,
+        years: s === null ? null : (done ? (f === null ? null : f - s) : 2026 - s),
+        delay_years: p === null || f === null ? null : (done || f > p ? f - p : null),
+        overrun_pct: o === null || l === null ? null : Math.round((l / o - 1) * 100),
+      };
+    }),
+  });
+</script>
+
+<script>
+  const STAGES = ['Operating', 'Partly operating', 'Under construction', 'Approved', 'Clearances in progress', 'Concurred, not started', 'Survey stage'];
+  const stageColor = (s) => dash.colors[Math.max(0, STAGES.indexOf(s)) % dash.colors.length];
+  const fmt = d3.format(',');
+  const naTag = (t) => { const s = document.createElement('span'); s.className = 'na'; s.textContent = t; return s; };
+  const compact = new Intl.NumberFormat('en', {notation: 'compact', maximumFractionDigits: 1});
+  const cell = (v) => (v === null || v === undefined || v === '' ? '' : String(v));
+  const numCell = (v) => (v === null || v === undefined || v === '' ? '' : fmt(Number(v)));
+
+  STAGES.forEach((s, i) => dash.draw('sw' + i, (el) => { el.textContent = ''; el.style.background = stageColor(s); }));
+
+  const tile = (name, src, field, where, f) => dash.draw(name, (el) => {
+    const d = dash.data(src);
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    const row = where ? d.data.find((r) => r.metric === where) : d.data[0];
+    el.textContent = row ? f(Number(row[field])) : '—';
+  });
+  tile('opMw', 'totals', 'operating_mw', null, fmt);
+  tile('existing', 'totals', 'projects_existing', null, fmt);
+  tile('smallHydro', 'official', 'value', 'small_hydro_mw', d3.format(',.2f'));
+  tile('tSmall', 'official', 'value', 'small_hydro_mw', d3.format(',.2f'));
+  tile('listedUp', 'totals', 'projects_listed_upcoming', null, fmt);
+  tile('tOp', 'totals', 'operating_mw', null, fmt);
+  tile('tUp', 'official', 'value', 'upcoming_projects', fmt);
+  tile('forestTaken', 'totals', 'forest_taken_ha', null, fmt);
+  tile('forestSought', 'totals', 'forest_sought_ha', null, fmt);
+  tile('treesFelled', 'totals', 'trees_felled', null, (n) => compact.format(n));
+  tile('treesToFell', 'totals', 'trees_to_fell', null, (n) => compact.format(n));
+  tile('disasters', 'totals', 'disasters', null, fmt);
+  tile('siteFailures', 'totals', 'site_failures', null, fmt);
+  tile('affected', 'totals', 'people_affected', null, (n) => compact.format(n));
+  tile('villages', 'totals', 'villages_affected', null, fmt);
+  tile('upcoming', 'official', 'value', 'upcoming_projects', fmt);
+  tile('upcomingMw', 'official', 'value', 'upcoming_mw', fmt);
+
+  function failed(el) {
+    el.replaceChildren();
+    const p = document.createElement('div');
+    p.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:.4rem;min-height:220px;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)';
+    const dot = document.createElement('span');
+    dot.style.cssText = 'width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad)';
+    p.append(dot, document.createTextNode('Failed to load'));
+    el.append(p);
+  }
+
+  function hbar(el, rows, valueKey, colorFn, unit) {
+    el.replaceChildren();
+    const W = Math.max(280, el.clientWidth);
+    const bh = 18, top = 4;
+    const svg = d3.select(el).append('svg').attr('width', '100%');
+    const meas = svg.append('g');
+    let lw = 0;
+    rows.forEach((r) => { const t = meas.append('text').text(r.project); lw = Math.max(lw, t.node().getComputedTextLength()); });
+    const vt = meas.append('text').text(fmt(d3.max(rows, (r) => r[valueKey])));
+    const vw = vt.node().getComputedTextLength();
+    meas.remove();
+    const above = lw + 10 > W * 0.45;
+    const lab = above ? 16 : 0, gap = above ? 8 : 6;
+    const H = top + rows.length * (bh + gap + lab) + 4;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+    const left = above ? 0 : lw + 10, right = vw + 10;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r[valueKey]) || 1], [left, W - right]);
+    const tip = d3.select(el).append('div').attr('class', 'tip').style('opacity', 0);
+    const g = svg.selectAll('g.row').data(rows).join('g').attr('class', 'row').attr('transform', (d, i) => `translate(0,${top + i * (bh + gap + lab) + lab})`);
+    if (above) g.append('text').attr('x', 0).attr('y', -4).text((d) => d.project);
+    else g.append('text').attr('x', left - 8).attr('y', bh / 2).attr('dy', '.35em').attr('text-anchor', 'end').text((d) => d.project);
+    g.append('rect').attr('x', left).attr('height', bh).attr('rx', 3).attr('width', (d) => Math.max(1, x(d[valueKey]) - left)).attr('fill', colorFn);
+    g.append('text').attr('class', 'val').attr('x', (d) => x(d[valueKey]) + 4).attr('y', bh / 2).attr('dy', '.35em').text((d) => fmt(d[valueKey]));
+    g.on('pointermove', (ev, d) => {
+      const [mx, my] = d3.pointer(ev, el);
+      tip.style('opacity', 1).html('');
+      tip.append('div').attr('class', 'h').text(d.project);
+      tip.append('div').text(`${fmt(d[valueKey])} ${unit} · ${d.status}`);
+      const tw = tip.node().offsetWidth;
+      tip.style('left', Math.min(mx + 12, el.clientWidth - tw - 4) + 'px').style('top', (my + 12) + 'px');
+    }).on('pointerleave', () => tip.style('opacity', 0));
+  }
+
+  dash.draw('capChart', (el) => {
+    const d = dash.data('projects');
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') { el.replaceChildren(); return; }
+    const rows = d.data.map((r) => ({...r, capacity_mw: Number(r.capacity_mw)})).sort((a, b) => b.capacity_mw - a.capacity_mw);
+    hbar(el, rows, 'capacity_mw', (r) => stageColor(r.status), 'MW');
+  });
+
+  dash.draw('forestChart', (el) => {
+    const d = dash.data('projects');
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') { el.replaceChildren(); return; }
+    el.replaceChildren();
+    const has = (r) => r.forest_ha !== null && r.forest_ha !== '' && r.forest_ha !== undefined;
+    const known = d.data.filter(has).map((r) => ({...r, v: Number(r.forest_ha)})).sort((a, b) => b.v - a.v);
+    const missing = d.data.filter((r) => !has(r)).slice().sort((a, b) => Number(b.capacity_mw) - Number(a.capacity_mw));
+    const NA = 'Data not available';
+    const W = Math.max(280, el.clientWidth), bh = 18, gap = 6, top = 4, headH = 34;
+    const svg = d3.select(el).append('svg').attr('width', '100%');
+    const meas = svg.append('g');
+    let lw = 0;
+    d.data.forEach((r) => { lw = Math.max(lw, meas.append('text').text(r.project).node().getComputedTextLength()); });
+    const vw = Math.max(meas.append('text').text(fmt(d3.max(known, (r) => r.v) || 0)).node().getComputedTextLength(), meas.append('text').text(NA).node().getComputedTextLength());
+    meas.remove();
+    const above = lw + 10 > W * 0.45;
+    const lab = above ? 16 : 0, g2 = above ? 8 : gap, rowH = bh + g2 + lab;
+    const H = top + known.length * rowH + headH + missing.length * rowH + 4;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+    const left = above ? 0 : lw + 10, right = vw + 10;
+    const x = d3.scaleLinear([0, d3.max(known, (r) => r.v) || 1], [left, W - right]);
+    const tip = d3.select(el).append('div').attr('class', 'tip').style('opacity', 0);
+    const addLabel = (g) => {
+      if (above) g.append('text').attr('x', 0).attr('y', -4).text((r) => r.project);
+      else g.append('text').attr('x', left - 8).attr('y', bh / 2).attr('dy', '.35em').attr('text-anchor', 'end').text((r) => r.project);
+    };
+    const gk = svg.append('g').selectAll('g').data(known).join('g').attr('transform', (r, i) => `translate(0,${top + i * rowH + lab})`);
+    addLabel(gk);
+    gk.append('rect').attr('x', left).attr('height', bh).attr('rx', 3).attr('width', (r) => Math.max(1, x(r.v) - left)).attr('fill', (r) => stageColor(r.status));
+    gk.append('text').attr('class', 'val').attr('x', (r) => x(r.v) + 4).attr('y', bh / 2).attr('dy', '.35em').text((r) => fmt(r.v));
+    const y0 = top + known.length * rowH + 8;
+    svg.append('line').attr('x1', 0).attr('x2', W).attr('y1', y0).attr('y2', y0).attr('stroke', 'var(--color-border-line)');
+    svg.append('text').attr('x', 0).attr('y', y0 + 18).style('fill', 'var(--color-warn)').text(`${NA} (${missing.length} projects)`);
+    const gm = svg.append('g').selectAll('g').data(missing).join('g').attr('transform', (r, i) => `translate(0,${y0 + headH - 8 + i * rowH + lab})`);
+    addLabel(gm);
+    gm.append('rect').attr('x', left).attr('y', 4).attr('height', bh - 8).attr('width', 10).attr('rx', 2).attr('fill', (r) => stageColor(r.status)).attr('fill-opacity', 0.45);
+    gm.append('text').attr('x', left + 16).attr('y', bh / 2).attr('dy', '.35em').style('fill', 'var(--color-warn)').text(NA);
+    svg.selectAll('g > g').on('pointermove', (ev, r) => {
+      const [mx, my] = d3.pointer(ev, el);
+      tip.style('opacity', 1).html('');
+      tip.append('div').attr('class', 'h').text(r.project);
+      tip.append('div').text(has(r) ? `${fmt(Number(r.forest_ha))} ha forest · ${r.status}` : `${NA} · ${r.status}`);
+      const tw = tip.node().offsetWidth;
+      tip.style('left', Math.min(mx + 12, el.clientWidth - tw - 4) + 'px').style('top', (my + 12) + 'px');
+    }).on('pointerleave', () => tip.style('opacity', 0));
+  });
+
+  const YEAR_KEYS = ['release', 'failed_control', 'project_disaster', 'site_failure'];
+  const YEAR_LABELS = {release: 'Flood from dam release', failed_control: 'Flood the dam failed to control', project_disaster: 'Landslide or failure at project', site_failure: 'Site failure (warning sign)'};
+  const yearColor = (k) => (k === 'site_failure' ? 'var(--cds-chart-muted)' : dash.colors[YEAR_KEYS.indexOf(k)]);
+  YEAR_KEYS.forEach((k) => dash.draw('swY_' + k, (el) => { el.textContent = ''; el.style.background = yearColor(k); }));
+
+  dash.draw('yearChart', (el) => {
+    const d = dash.data('by_year');
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') { el.replaceChildren(); return; }
+    el.replaceChildren();
+    const rows = d.data;
+    const W = Math.max(280, el.clientWidth), H = 220, m = {t: 16, r: 8, b: 24, l: 28};
+    const x = d3.scaleBand(rows.map((r) => String(r.year)), [m.l, W - m.r]).padding(0.25);
+    const y = d3.scaleLinear([0, d3.max(rows, (r) => r.total) || 1], [H - m.b, m.t]).nice();
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    svg.append('g').selectAll('line').data(y.ticks(4)).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(y.ticks(4).filter(Number.isInteger)).join('text').attr('x', m.l - 6).attr('y', y).attr('dy', '.35em').attr('text-anchor', 'end').text(d3.format('d'));
+    const step = Math.max(1, Math.ceil(rows.length / Math.max(2, Math.floor((W - m.l - m.r) / 44))));
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSizeOuter(0).tickValues(x.domain().filter((v, i) => i % step === 0))).attr('font-size', null).attr('font-family', null).call((g) => g.select('.domain').attr('stroke', 'var(--cds-chart-axis)')).call((g) => g.selectAll('line').remove());
+    const bw = Math.min(32, x.bandwidth());
+    const tip = d3.select(el).append('div').attr('class', 'tip').style('opacity', 0);
+    const series = d3.stack().keys(YEAR_KEYS)(rows);
+    svg.append('g').selectAll('g').data(series).join('g').attr('fill', (sr) => yearColor(sr.key))
+      .selectAll('rect').data((sr) => sr.map((p) => Object.assign(p, {key: sr.key}))).join('rect')
+      .attr('x', (p) => x(String(p.data.year)) + (x.bandwidth() - bw) / 2).attr('width', bw)
+      .attr('y', (p) => y(p[1])).attr('height', (p) => Math.max(0, y(p[0]) - y(p[1])))
+      .attr('stroke', 'var(--color-panel)').attr('stroke-width', (p) => (p[1] > p[0] ? 1 : 0))
+      .on('pointermove', (ev, p) => {
+        const r = p.data;
+        const [mx, my] = d3.pointer(ev, el);
+        tip.style('opacity', 1).html('');
+        tip.append('div').attr('class', 'h').text(String(r.year));
+        YEAR_KEYS.filter((k) => r[k] > 0).forEach((k) => tip.append('div').text(`${r[k]} · ${YEAR_LABELS[k]}`));
+        if (!r.total) tip.append('div').text('None recorded');
+        const tw = tip.node().offsetWidth;
+        tip.style('left', Math.min(mx + 12, el.clientWidth - tw - 4) + 'px').style('top', (my + 12) + 'px');
+      }).on('pointerleave', () => tip.style('opacity', 0));
+    svg.append('g').selectAll('text').data(rows.filter((r) => r.total > 0)).join('text').attr('class', 'val')
+      .attr('x', (r) => x(String(r.year)) + x.bandwidth() / 2).attr('y', (r) => y(r.total) - 4).attr('text-anchor', 'middle').text((r) => r.total);
+  });
+
+
+  dash.draw('swDone', (el) => { el.textContent = ''; el.style.background = dash.colors[0]; });
+  dash.draw('swPlan', (el) => { el.textContent = ''; el.style.background = dash.colors[0]; el.style.opacity = '.35'; });
+  dash.draw('swTick', (el) => { el.textContent = ''; el.style.background = 'var(--cds-chart-status-critical)'; el.style.width = '3px'; });
+
+  dash.draw('timeChart', (el) => {
+    const d = dash.data('timeline_calc');
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') { el.replaceChildren(); return; }
+    el.replaceChildren();
+    const rows = d.data.filter((r) => r.start_year !== null).slice().sort((a, b) => Number(a.start_year) - Number(b.start_year));
+    const W = Math.max(280, el.clientWidth), bh = 14, gap = 12, lab = 16, top = 4, axisH = 22;
+    const H = top + rows.length * (bh + gap + lab) + axisH;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const minY = d3.min(rows, (r) => Number(r.start_year)), maxY = d3.max(rows, (r) => Number(r.finish_year));
+    const x = d3.scaleLinear([minY, maxY + 1], [20, W - 20]);
+    const yAxis = top + rows.length * (bh + gap + lab);
+    const ticks = x.ticks(Math.max(3, Math.floor(W / 90))).filter((t) => Number.isInteger(t));
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', x).attr('x2', x).attr('y1', 0).attr('y2', yAxis).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('x', x).attr('y', yAxis + 14).attr('text-anchor', 'middle').text(d3.format('d'));
+    const tip = d3.select(el).append('div').attr('class', 'tip').style('opacity', 0);
+    const g = svg.selectAll('g.row').data(rows).join('g').attr('transform', (r, i) => `translate(0,${top + i * (bh + gap + lab) + lab})`);
+    g.append('text').attr('y', -4)
+      .text((r) => `${r.project} · ${r.years} yrs${r.finished ? '' : ' so far'}`)
+      .attr('x', function (r) { const w = this.getComputedTextLength(); return Math.max(0, Math.min(x(Number(r.start_year)), W - w - 2)); });
+    g.append('rect').attr('x', (r) => x(Number(r.start_year))).attr('height', bh).attr('rx', 3)
+      .attr('width', (r) => Math.max(3, x(Number(r.finish_year) + 1) - x(Number(r.start_year))))
+      .attr('fill', dash.colors[0]).attr('fill-opacity', (r) => (r.finished ? 1 : 0.35));
+    g.filter((r) => r.planned_finish_year !== null && Number(r.planned_finish_year) !== Number(r.finish_year))
+      .append('rect').attr('x', (r) => x(Number(r.planned_finish_year) + 1) - 1.5).attr('y', -3).attr('width', 3).attr('height', bh + 6).attr('fill', 'var(--cds-chart-status-critical)');
+    g.on('pointermove', (ev, r) => {
+      const [mx, my] = d3.pointer(ev, el);
+      tip.style('opacity', 1).html('');
+      tip.append('div').attr('class', 'h').text(r.project);
+      tip.append('div').text(`${r.start_basis}: ${r.start_year} → ${r.finished ? 'done' : 'target'} ${r.finish_year}`);
+      if (r.planned_finish_year !== null) tip.append('div').text(`Planned finish: ${r.planned_finish_year}`);
+      const tw = tip.node().offsetWidth;
+      tip.style('left', Math.min(mx + 12, el.clientWidth - tw - 4) + 'px').style('top', (my + 12) + 'px');
+    }).on('pointerleave', () => tip.style('opacity', 0));
+  });
+
+  dash.draw('timeTable', (tb) => {
+    const d = dash.data('timeline_calc');
+    tb.replaceChildren();
+    if (d.status !== 'ok') return;
+    const na = () => naTag('Data not available');
+    const money = (v) => d3.format(',.0f')(Number(v));
+    const cols = [['project', null], ['status', null], ['start_year', 'num'], ['counted_from', null], ['planned_finish_year', 'num'], ['finish_year', 'num'], ['years', 'num'], ['delay_years', 'num'], ['original_cost_cr', 'num'], ['latest_cost_cr', 'num'], ['overrun_pct', 'num'], ['note', 'hide-narrow wide'], ['source', 'hide-narrow']];
+    d.data.forEach((r) => {
+      const tr = document.createElement('tr');
+      cols.forEach(([k, cls]) => {
+        const td = document.createElement('td');
+        if (cls) td.className = cls;
+        const v = r[k];
+        if (v === null || v === undefined || v === '') {
+          if (k === 'delay_years' && r.planned_finish_year !== null && !r.finished) td.textContent = 'not yet due';
+          else if (k === 'latest_cost_cr' && r.original_cost_cr !== null && !r.finished) td.textContent = 'no revision published';
+          else if (k === 'overrun_pct' && r.original_cost_cr !== null && !r.finished) td.textContent = '';
+          else td.append(na());
+        } else if (k === 'original_cost_cr' || k === 'latest_cost_cr') td.textContent = money(v);
+        else if (k === 'overrun_pct') { td.textContent = `+${v}%`; if (v > 0) td.classList.add('bad'); }
+        else if (k === 'years') td.textContent = r.finished ? String(v) : (v === 0 ? 'just approved' : `${v} so far`);
+        else if (k === 'delay_years') { td.textContent = v > 0 ? `${v}` : 'on time'; if (v > 0) td.classList.add('bad'); }
+        else td.textContent = String(v);
+        tr.append(td);
+      });
+      tb.append(tr);
+    });
+  });
+
+  const sortState = {proj: {key: 'capacity_mw', dir: -1}};
+  const filters = {status: '', district: '', developer: ''};
+  const query = {proj: '', inc: ''};
+  const NUMS = new Set(['stage', 'proposed_year', 'started_year', 'finish_year', 'capacity_mw', 'dam_height_m', 'land_total_ha', 'forest_ha', 'submergence_ha', 'trees']);
+
+  const districtsOf = (r) => (r.district ? r.district.split(/,\s*|\s*\/\s*/).map((x) => x.replace(/\s*\((Arunachal|formerly [^)]+)\)/, '').trim()).filter(Boolean) : []);
+  const isBlank = (v) => v === null || v === undefined || v === '';
+  function projRows(all) {
+    const s = sortState.proj, q = query.proj.toLowerCase();
+    const kept = all.filter((r) => (!q || Object.values(r).join(' ').toLowerCase().includes(q))
+      && (!filters.status || r.status === filters.status)
+      && (!filters.district || districtsOf(r).includes(filters.district))
+      && (!filters.developer || (filters.developer === '__none' ? isBlank(r.developer) : r.developer === filters.developer)));
+    return kept.slice().sort((a, b) => {
+      const av = a[s.key], bv = b[s.key];
+      if (isBlank(av) && isBlank(bv)) return 0;
+      if (isBlank(av)) return 1;
+      if (isBlank(bv)) return -1;
+      if (NUMS.has(s.key)) return (Number(av) - Number(bv)) * s.dir;
+      return String(av).localeCompare(String(bv)) * s.dir;
+    });
+  }
+  function fillSelect(sel, allLabel, values) {
+    const cur = filters[sel.dataset.filter] || '';
+    sel.replaceChildren(new Option(allLabel, ''), ...values.map(([v, t]) => new Option(t, v)));
+    sel.value = values.some(([v]) => v === cur) ? cur : '';
+    sel.onchange = () => { filters[sel.dataset.filter] = sel.value; redrawProj(); };
+  }
+  dash.draw('fStage', (sel) => {
+    const d = dash.data('projects');
+    const present = d.status === 'ok' ? new Set(d.data.map((r) => r.status)) : new Set();
+    fillSelect(sel, 'All stages', STAGES.filter((x) => present.has(x)).map((x) => [x, x]));
+  });
+  dash.draw('fDistrict', (sel) => {
+    const d = dash.data('projects');
+    const names = d.status === 'ok' ? [...new Set(d.data.flatMap(districtsOf))].sort() : [];
+    fillSelect(sel, 'All districts', names.map((x) => [x, x]));
+  });
+  dash.draw('fDev', (sel) => {
+    const d = dash.data('projects');
+    const devs = d.status === 'ok' ? [...new Set(d.data.filter((r) => !isBlank(r.developer)).map((r) => r.developer))].sort() : [];
+    const opts = devs.map((x) => [x, x]);
+    if (d.status === 'ok' && d.data.some((r) => isBlank(r.developer))) opts.push(['__none', 'Not known']);
+    fillSelect(sel, 'All developers', opts);
+  });
+  dash.draw('projCount', (el) => { const d = dash.data('projects'); el.textContent = d.status === 'ok' ? String(projRows(d.data).length) : '—'; });
+  dash.draw('projTotal', (el) => { const d = dash.data('projects'); el.textContent = d.status === 'ok' ? String(d.data.length) : '—'; });
+  function syncSortControls() {
+    const s = sortState.proj;
+    document.querySelectorAll('select[data-sort-select="proj"]').forEach((sel) => { sel.value = s.key; });
+    document.querySelectorAll('button[data-sort-dir="proj"]').forEach((b) => {
+      b.querySelectorAll('.dir-desc').forEach((x) => { x.hidden = s.dir > 0; });
+      b.querySelectorAll('.dir-asc').forEach((x) => { x.hidden = s.dir < 0; });
+    });
+    document.querySelectorAll('th[data-sort="proj"]').forEach((h) => h.setAttribute('aria-sort', h.dataset.field === s.key ? (s.dir > 0 ? 'ascending' : 'descending') : 'none'));
+  }
+  function redrawProj() { syncSortControls(); dash.draw('projTable'); dash.draw('projCount'); }
+
+  function dateCell(td, r, key) {
+    const year = r[key + '_year'], note = r[key + '_note'] || '', caveat = r[key + '_caveat'] === true || r[key + '_caveat'] === 'true';
+    let main, sub = note;
+    if (year !== null && year !== undefined && year !== '') main = document.createTextNode(String(year));
+    else if (/not found|No target|No completion/.test(note)) main = naTag('Data not available');
+    else {
+      const m = note.match(/^([^();]+?)\s*(?:\((.+?)\)|;\s*)(.*)$/);
+      main = document.createTextNode(m ? m[1] : note);
+      sub = m ? [m[2], (m[3] || '').replace(/^[;\s]+/, '')].filter(Boolean).join('; ') : '';
+    }
+    const top = document.createElement('div'); top.className = 'd-main'; top.append(main); td.append(top);
+    if (sub) { const s = document.createElement('div'); s.className = 'd-sub' + (caveat ? ' d-cav' : ''); s.textContent = sub; td.append(s); }
+  }
+
+  dash.draw('projTable', (tb) => {
+    const d = dash.data('projects');
+    tb.replaceChildren();
+    if (d.status !== 'ok') return;
+    const rows = projRows(d.data);
+    const cols = [['project', cell], ['district', cell], ['status', cell], ['river', cell], ['developer', cell], ['capacity_mw', numCell, 'num'], ['dam_height_m', cell, 'num'], ['land_total_ha', cell, 'num'], ['forest_ha', cell, 'num'], ['submergence_ha', cell, 'num'], ['trees', numCell, 'num'], ['proposed_year', null, 'date'], ['started_year', null, 'date'], ['finish_year', null, 'date'], ['note', cell, 'wide'], ['source', cell]];
+    rows.forEach((r) => {
+      const tr = document.createElement('tr');
+      cols.forEach(([k, f, cls]) => {
+        const td = document.createElement('td'); if (cls) td.className = cls;
+        const v = r[k];
+        if (cls === 'date') { dateCell(td, r, k.replace('_year', '')); tr.append(td); return; }
+        if ((v === null || v === undefined || v === '') && k !== 'note' && k !== 'source') td.append(naTag('Data not available'));
+        else if (k === 'trees') td.textContent = `${Number(r.stage) <= 2 ? 'Cleared for felling' : 'To be felled'}: ${f(v)}`;
+        else td.textContent = f(v);
+        tr.append(td);
+      });
+      tb.append(tr);
+    });
+  });
+
+  const incSort = {key: 'id', dir: -1};
+  const incFilters = {project: '', type: ''};
+  const INC_NUMS = new Set(['id', 'people_affected', 'villages_affected', 'houses_destroyed', 'in_relief_camps', 'crop_ha']);
+  function incRows(all) {
+    const kept = all.filter((r) => r.group === 'Disaster' && (!incFilters.project || r.project === incFilters.project) && (!incFilters.type || r.type === incFilters.type));
+    const s = incSort;
+    return kept.slice().sort((a, b) => {
+      const av = a[s.key], bv = b[s.key];
+      if (isBlank(av) && isBlank(bv)) return 0;
+      if (isBlank(av)) return 1;
+      if (isBlank(bv)) return -1;
+      if (INC_NUMS.has(s.key)) return (Number(av) - Number(bv)) * s.dir;
+      return String(av).localeCompare(String(bv)) * s.dir;
+    });
+  }
+  function fillIncSelect(sel, allLabel, values) {
+    const k = sel.dataset.ifilter, cur = incFilters[k] || '';
+    sel.replaceChildren(new Option(allLabel, ''), ...values.map((v) => new Option(v, v)));
+    sel.value = values.includes(cur) ? cur : '';
+    sel.onchange = () => { incFilters[k] = sel.value; redrawInc(); };
+  }
+  dash.draw('fIncProject', (sel) => { const d = dash.data('incidents'); fillIncSelect(sel, 'All projects', d.status === 'ok' ? [...new Set(d.data.filter((r) => r.group === 'Disaster').map((r) => r.project))].sort() : []); });
+  dash.draw('fIncType', (sel) => { const d = dash.data('incidents'); fillIncSelect(sel, 'All types', d.status === 'ok' ? [...new Set(d.data.filter((r) => r.group === 'Disaster').map((r) => r.type))].sort() : []); });
+  dash.draw('incCount', (el) => { const d = dash.data('incidents'); el.textContent = d.status === 'ok' ? String(incRows(d.data).length) : '—'; });
+  dash.draw('incTotal', (el) => { const d = dash.data('incidents'); el.textContent = d.status === 'ok' ? String(d.data.filter((r) => r.group === 'Disaster').length) : '—'; });
+  function syncIncControls() {
+    document.querySelectorAll('select[data-sort-select="inc"]').forEach((sel) => { sel.value = incSort.key; });
+    document.querySelectorAll('button[data-sort-dir="inc"]').forEach((b) => {
+      b.querySelectorAll('.dir-desc').forEach((x) => { x.hidden = incSort.dir > 0; });
+      b.querySelectorAll('.dir-asc').forEach((x) => { x.hidden = incSort.dir < 0; });
+    });
+    document.querySelectorAll('th[data-sort="inc"]').forEach((h) => { const f = h.dataset.field === 'when' ? 'id' : h.dataset.field; h.setAttribute('aria-sort', f === incSort.key ? (incSort.dir > 0 ? 'ascending' : 'descending') : 'none'); });
+  }
+  function redrawInc() { syncIncControls(); dash.draw('incTable'); dash.draw('incCount'); }
+
+  dash.draw('incTable', (tb) => {
+    const d = dash.data('incidents');
+    tb.replaceChildren();
+    if (d.status !== 'ok') return;
+    const q = query.inc.toLowerCase();
+    const rows = incRows(d.data);
+    const cols = [['when', cell, null, true], ['project', cell], ['type', cell], ['people_affected', numCell, 'num', true], ['villages_affected', cell, 'num', true], ['houses_destroyed', cell, 'num', true], ['in_relief_camps', numCell, 'num', true], ['crop_ha', numCell, 'num', true], ['river_disruption', cell], ['what_happened', cell, 'wide'], ['impact_note', cell, 'wide'], ['source', cell]];
+    const NA_COLS = new Set(['people_affected', 'villages_affected']);
+    rows.forEach((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = String(r.id);
+      cols.forEach(([k, f, cls]) => {
+        const td = document.createElement('td'); if (cls) td.className = cls;
+        const v = r[k];
+        if ((v === null || v === undefined || v === '') && NA_COLS.has(k)) td.append(naTag('Not reported'));
+        else td.textContent = f(v);
+        tr.append(td);
+      });
+      tb.append(tr);
+    });
+  });
+
+  dash.draw('siteTable', (tb) => {
+    const d = dash.data('incidents');
+    tb.replaceChildren();
+    if (d.status !== 'ok') return;
+    d.data.filter((r) => r.group === 'Site failure').slice().sort((a, b) => Number(b.id) - Number(a.id)).forEach((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = String(r.id);
+      [['when'], ['project'], ['type'], ['what_happened', 'wide'], ['source', 'hide-narrow']].forEach(([k, cls]) => {
+        const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = cell(r[k]); tr.append(td);
+      });
+      tb.append(tr);
+    });
+  });
+
+  document.querySelectorAll('th[data-sort="proj"]').forEach((th) => {
+    th.style.cursor = 'pointer';
+    th.addEventListener('click', () => {
+      const k = th.dataset.field, s = sortState.proj;
+      s.dir = s.key === k ? -s.dir : (NUMS.has(k) ? -1 : 1);
+      s.key = k;
+      redrawProj();
+    });
+  });
+  document.querySelectorAll('select[data-sort-select="proj"]').forEach((sel) => {
+    sel.addEventListener('change', () => {
+      const s = sortState.proj;
+      s.key = sel.value;
+      s.dir = NUMS.has(s.key) && s.key !== 'stage' ? -1 : 1;
+      redrawProj();
+    });
+  });
+  document.querySelectorAll('button[data-sort-dir="proj"]').forEach((b) => b.addEventListener('click', () => { sortState.proj.dir *= -1; redrawProj(); }));
+  document.querySelectorAll('button[data-reset="proj"]').forEach((b) => b.addEventListener('click', () => {
+    Object.keys(filters).forEach((k) => { filters[k] = ''; });
+    query.proj = '';
+    document.querySelectorAll('input[data-search="proj"]').forEach((i) => { i.value = ''; });
+    sortState.proj.key = 'capacity_mw'; sortState.proj.dir = -1;
+    ['fStage', 'fDistrict', 'fDev'].forEach((n) => dash.draw(n));
+    redrawProj();
+  }));
+  syncSortControls();
+  document.querySelectorAll('th[data-sort="inc"]').forEach((th) => {
+    th.style.cursor = 'pointer';
+    th.addEventListener('click', () => {
+      const k = th.dataset.field === 'when' ? 'id' : th.dataset.field;
+      incSort.dir = incSort.key === k ? -incSort.dir : (INC_NUMS.has(k) ? -1 : 1);
+      incSort.key = k;
+      redrawInc();
+    });
+  });
+  document.querySelectorAll('select[data-sort-select="inc"]').forEach((sel) => sel.addEventListener('change', () => { incSort.key = sel.value; incSort.dir = INC_NUMS.has(sel.value) ? -1 : 1; redrawInc(); }));
+  document.querySelectorAll('button[data-sort-dir="inc"]').forEach((b) => b.addEventListener('click', () => { incSort.dir *= -1; redrawInc(); }));
+  document.querySelectorAll('button[data-reset="inc"]').forEach((b) => b.addEventListener('click', () => {
+    incFilters.project = ''; incFilters.type = ''; incSort.key = 'id'; incSort.dir = -1;
+    ['fIncProject', 'fIncType'].forEach((n) => dash.draw(n));
+    redrawInc();
+  }));
+  syncIncControls();
+  document.querySelectorAll('input[data-search]').forEach((inp) => {
+    inp.addEventListener('input', () => {
+      query[inp.dataset.search] = inp.value;
+      if (inp.dataset.search === 'proj') redrawProj(); else dash.draw('incTable');
+    });
+  });
+</script>
+
+<p class="footer">Data compiled from public records, clearance papers and news reports up to 1 Nov 2026. Figures are a minimum where reporting is incomplete; see sources above.</p>
+</div>
+</body>
+</html>
