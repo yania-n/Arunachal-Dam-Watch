@@ -19,7 +19,7 @@ The data lives in four spreadsheets in the `data/` folder. The page reads them w
 | `data/build_time_and_cost.csv`         | Start and finish years, original and latest cost                                                                       |
 | `data/official_figures.csv`            | Official state totals (projects coming up, small hydro capacity, and so on)                                            |
 
-`arunachal-dam-watch-data.xlsx` is a backup copy of the same data, with a summary tab and a glossary of every field. To view the dashboard on your own computer, see [PREVIEW_LOCALLY.md](PREVIEW_LOCALLY.md).
+`arunachal-dam-watch-data.xlsx` is a backup copy of the same data, with a summary tab and a glossary of every field.
 
 ## Summary of the dashboard
 
