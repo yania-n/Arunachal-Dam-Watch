@@ -77,3 +77,35 @@ Every finished project took much longer and cost much more than planned:
 **Focus for the people of Arunachal:** ask for this data, take part in the public hearings held before projects are cleared, and push for warning systems and fair compensation where they live near a project or downstream of one.
 
 *A note on the evidence:* these conclusions come only from the sourced data in the dashboard. The dashboard doesn't track the benefits (power supply, revenue, jobs), so this isn't a full cost-benefit judgment.
+
+## Second dashboard: official data only (`index_v2.html`)
+
+`index_v2.html` is a separate, plainer page built only from the two official portals. The original `index.html` and the files in `data/` are untouched.
+
+The page is written for readers who do not know the data. The first tab, **The story**, walks through seven short chapters (the plan, the forest, the decisions, the biggest requests, the rivers, whether the two sites agree, and what the data cannot tell you). The other tabs hold the detail: **Forest requests**, **The dams**, **Where the two sites disagree** and **How we did this** (method, glossary, open questions). In the page, the four forest groups are called Fully approved (= Cleared), Approved in principle, Waiting for a decision (= In progress) and Turned down (= Rejected).
+
+**The rule:** all power capacity figures come from DHPD (`DHPD/all_projects.xlsx`). All forest clearance figures come from Parivesh (`parivesh/hydel_only_merged_final.xlsx`). The two are shown side by side and never merged or averaged. Capacity is never read from Parivesh project names.
+
+### Build script
+
+`python build_official_data.py` (needs `pandas` and `openpyxl`) reads the two Excel files and rewrites `data/official/`:
+
+| File | Contents |
+| --- | --- |
+| `dhpd_projects.csv` | 113 DHPD projects with status (rebuilt from the original downloads in `DHPD/data&exploration/`), capacity, developer, district, basin |
+| `parivesh_proposals.csv` | 36 proposals, numeric areas, normalised status and status group, refiling role |
+| `match_table.csv` | DHPD project to Parivesh proposals, with `exact` / `normalised` / `manual` match method |
+| `inconsistencies.csv` | Every difference found, groups A to F |
+| `corrections_log.csv` | The only changes made, plus Yammeng and Halaipani marked "not changed" |
+| `summary.json` | Headline numbers read by the page |
+
+The script prints a reconciliation table (CSV totals against the source Excel sums). The page reads the CSVs with `fetch`, so serve it over http, not from a local file. For local viewing run `python -m http.server 8000 --bind 127.0.0.1` in the repo and open `http://localhost:8000/index_v2.html` (do not open `http://[::]:8000`).
+
+### Definitions
+
+- **Cleared** = Approved + Closed: final forest approval granted. It does not mean trees were felled.
+- **Approved in principle** = In-principle (Stage-I granted, final approval awaited).
+- **In progress** = DFO, Nodal Officer, Pending With-SG.
+- **Rejected** = Rejected, Returned, Withdrawn.
+- **Refilings:** proposals are grouped by project. A later full proposal supersedes an earlier one, so the project's area is counted once. Ancillary proposals (quarry-patch changes) add their own area. Raw proposal totals are shown too.
+- **Corrections:** only the spelling "Nyikong" and New Melling's capacity (DHPD's 96 MW). DHPD's district and basin are shown unchanged, including for Yammeng and Halaipani, whose discrepancies are listed with the project owner's notes.
