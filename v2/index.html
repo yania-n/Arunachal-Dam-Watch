@@ -198,7 +198,7 @@
     <h2 id="ch2h"></h2>
     <p class="big">Dams flood land and need roads, tunnels and workers' camps. To use forest land for that, a company has to ask the government for permission. This is called a <span class="tip" tabindex="0" data-tip="Official permission from the government to use forest land for something other than forest, such as a dam.">forest clearance</span>. The requests are filed on a website called <span class="p">Parivesh</span>.</p>
     <div class="figs" id="figs2"></div>
-    <p class="note">Forest area is counted in <span class="tip" tabindex="0" data-tip="A hectare (ha) is 10,000 square metres, about 1.4 football pitches.">hectares (ha)</span>. A football pitch is about 0.7 ha, so the pitch comparison is only a rough guide. Each project is counted once, even if it applied more than once.</p>
+    <p class="note">Forest area is counted in <span class="tip" tabindex="0" data-tip="A hectare (ha) is 10,000 square metres, about 1.4 football pitches.">hectares (ha)</span>. A football pitch is about 0.7 ha, so the pitch comparison is only a rough guide. Each project is counted once, even if it applied more than once.<span id="exp-note"></span></p>
   </section>
 
   <section class="chapter" id="ch3">
@@ -487,6 +487,8 @@
     const PV = S.parivesh, tot = PV.project_total_ha;
     const both = mt.filter(m => m.side === "both"), dOnly = mt.filter(m => m.side === "dhpd_only"), pOnly = mt.filter(m => m.side === "parivesh_only");
     const pFlag = pOnly.filter(m => m.expected_absence !== "True"), pExp = pOnly.filter(m => m.expected_absence === "True");
+    const expNames = pExp.map(m => m.parivesh_project), expHa = pv.filter(p => p.counted && expNames.indexOf(p.project) >= 0).reduce((t, p) => t + (p.area || 0), 0);
+    if (pExp.length) $("exp-note").textContent = " Includes " + nf(expHa, 1) + " ha for " + (pExp.length === 1 ? "one project" : pExp.length + " projects") + " that " + (pExp.length === 1 ? "was" : "were") + " rejected and " + (pExp.length === 1 ? "is" : "are") + " not on DHPD.";
     const dById = {}; dh.forEach(d => dById[d.dhpd_id] = d);
     const mByD = {}, dByP = {}; both.forEach(m => { mByD[m.dhpd_id] = m; dByP[m.parivesh_project] = dById[m.dhpd_id]; });
 
