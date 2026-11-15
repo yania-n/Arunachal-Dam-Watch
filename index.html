@@ -89,6 +89,8 @@ window.dash = (() => {
   .ad { font-family: var(--font-anthropic-sans); display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
   .ad h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
   .ad h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+  .ad .v2-link { margin: 0; padding: var(--cds-gap-xs) 0; font-size: 0.9em; color: var(--color-fg-muted); border-bottom: 1px solid var(--color-border, currentColor); }
+  .ad .v2-link a { color: inherit; font-weight: 600; text-decoration: underline; }
   .ad .lede { color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 0; max-width: 60rem; }
   .ad .takeaway { margin: var(--cds-gap-sm) 0 0; max-width: 60rem; font-size: var(--cds-font-size-body); }
   .ad .takeaway b { font-weight: var(--cds-font-weight-medium); font-variant-numeric: tabular-nums; }
@@ -140,6 +142,7 @@ window.dash = (() => {
 </style>
 
 <div class="ad">
+  <p class="v2-link">New: <a href="v2/">Arunachal Dam Watch II</a> shows official data only (DHPD and Parivesh) &rarr;</p>
   <header id="top">
     <h1>Arunachal Dam Watch</h1>
     <p class="lede">What exists, what is coming, how much land and forest it takes, and what has gone wrong. Compiled from government records, clearance papers and news reports up to 1 Nov 2026.</p>

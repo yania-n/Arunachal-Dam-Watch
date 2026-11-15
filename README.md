@@ -2,7 +2,16 @@
 
 A single-page dashboard of hydropower projects in Arunachal Pradesh: how much power they make, how much forest they take, how late and over budget they run, and the disasters linked to them.
 
-The site is at [https://yania-n.github.io/Arunachal-Dam-Watch/](https://yania-n.github.io/Arunachal-Dam-Watch/).
+This repo holds two separate dashboards, both live on GitHub Pages:
+
+| Dashboard | Link | Data |
+| --- | --- | --- |
+| **Arunachal Dam Watch** (`index.html`) | [yania-n.github.io/Arunachal-Dam-Watch/](https://yania-n.github.io/Arunachal-Dam-Watch/) | Compiled from government records and news reports |
+| **Arunachal Dam Watch II** (`v2/index.html`) | [yania-n.github.io/Arunachal-Dam-Watch/v2/](https://yania-n.github.io/Arunachal-Dam-Watch/v2/) | Official portal data only: DHPD and Parivesh |
+
+The two are kept apart on purpose: the first mixes government records with news reports, the second uses only the two official portals. Each links to the other. The old address `index_v2.html` redirects to `v2/`.
+
+The rest of this file up to "Conclusions" describes the first dashboard. The second is described in its own section near the end.
 
 *NOTE: Impact figures cover only what was reported, so treat them as a minimum.*
 
@@ -80,7 +89,7 @@ Every finished project took much longer and cost much more than planned:
 
 ## Second dashboard: official data only (`v2/index.html`)
 
-`v2/index.html` is a separate, plainer page built only from the two official portals. The original `index.html` and the files in `data/` are untouched.
+Live at [yania-n.github.io/Arunachal-Dam-Watch/v2/](https://yania-n.github.io/Arunachal-Dam-Watch/v2/). `v2/index.html` is a separate, plainer page built only from the two official portals. The original `index.html` and the files in `data/` are untouched.
 
 The page is written for readers who do not know the data. The first tab, **The story**, walks through seven short chapters (the plan, the forest, the decisions, the biggest requests, the rivers, whether the two sites agree, and what the data cannot tell you). The other tabs hold the detail: **Forest requests**, **The dams**, **Where the two sites disagree** and **How we did this** (method, glossary, open questions). In the page, the four forest groups are called Fully approved (= Cleared), Approved in principle, Waiting for a decision (= In progress) and Turned down (= Rejected).
 
@@ -100,6 +109,15 @@ The page is written for readers who do not know the data. The first tab, **The s
 | `summary.json` | Headline numbers read by the page |
 
 The script prints a reconciliation table (CSV totals against the source Excel sums). The page reads the CSVs with `fetch`, so serve it over http, not from a local file. For local viewing run `python -m http.server 8000 --bind 127.0.0.1` in the repo and open `http://localhost:8000/v2/` (do not open `http://[::]:8000`).
+
+### Folders for the second dashboard
+
+| Folder | Contents |
+| --- | --- |
+| `DHPD/` | Hydropower project data from the DHPD portal ([dhpdap.online](https://dhpdap.online/)); `all_projects.xlsx` is the main file |
+| `parivesh/` | Forest clearance proposals from the Parivesh portal ([forestsclearance.nic.in](https://forestsclearance.nic.in/FCDashboard/FCPublicDashboard.aspx)); `hydel_only_merged_final.xlsx` is the main file |
+| `data/official/` | CSV and JSON files written by the build script and read by the page |
+| `v2/` | The page itself (`v2/index.html`) |
 
 ### Definitions
 
