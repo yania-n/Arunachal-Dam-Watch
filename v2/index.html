@@ -134,6 +134,15 @@
   ul.plain{padding-left:1.2em;max-width:42em} ul.plain li{margin:5px 0}
   dl.gl{max-width:42em;margin:0} dl.gl dt{font-weight:650;margin-top:12px} dl.gl dd{margin:2px 0 0;color:var(--mute)}
   footer{border-top:1px solid var(--fg);margin-top:56px;padding-top:12px;font-size:13.5px;color:var(--mute)}
+  .fb-h{font-size:18px;margin:6px 0 0;color:var(--fg)}
+  #fb{max-width:36em;margin-top:12px;display:flex;flex-direction:column;gap:6px;position:relative}
+  #fb label{font-size:14.5px;color:var(--fg);margin-top:6px}
+  #fb textarea,#fb input[type=email]{font:inherit;font-size:15px;padding:7px 9px;border:1px solid var(--fg);background:var(--bg);color:var(--fg);border-radius:0;width:100%;box-sizing:border-box}
+  #fb textarea{resize:vertical}
+  .fb-row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:8px}
+  #fb-btn{font:inherit;font-size:15px;font-weight:600;padding:7px 16px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);cursor:pointer;border-radius:0}
+  #fb-btn:disabled{opacity:.5;cursor:default}
+  #fb-status{font-size:14.5px;color:var(--fg)}
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -322,11 +331,39 @@
 </div>
 
 <footer>
-  Build: <code>build_official_data.py</code> reads <code>DHPD/all_projects.xlsx</code> and <code>parivesh/hydel_only_merged_final.xlsx</code> and writes <a href="../data/official/">data/official/</a>. This page reads those files when it opens.
+  <h2 class="fb-h">Send feedback</h2>
+  <p class="note">Found a mistake, or something hard to follow? Tell us. Your message goes straight to the person who runs this page.</p>
+  <form id="fb" novalidate>
+    <label for="fb-msg">Your feedback</label>
+    <textarea id="fb-msg" name="message" rows="5" maxlength="3000" required></textarea>
+    <label for="fb-email">Your email <span class="mute">(optional, only if you want a reply)</span></label>
+    <input type="email" id="fb-email" name="email" autocomplete="email">
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+    <div class="fb-row"><button type="submit" id="fb-btn">Send feedback</button><span id="fb-status" role="status" aria-live="polite"></span></div>
+  </form>
 </footer>
 </main>
 </div>
 <div id="tip" role="tooltip"></div>
+<script>
+(function () {
+  const f = document.getElementById("fb"), st = document.getElementById("fb-status"), btn = document.getElementById("fb-btn");
+  if (!f) return;
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const msg = f.message.value.trim();
+    if (!msg) { st.textContent = "Please write a message first."; f.message.focus(); return; }
+    btn.disabled = true; st.textContent = "Sending…";
+    fetch("https://formsubmit.co/ajax/connect-yania@pm.me", {
+      method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ message: msg, email: f.email.value.trim(), _honey: f._honey.value, _subject: "Arunachal Dam Watch II feedback", _template: "table", _captcha: "false", page: location.href })
+    }).then(r => r.json().then(j => { if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || "failed"); }))
+      .then(() => { st.textContent = "Thank you. Your feedback was sent."; f.reset(); })
+      .catch(() => { st.textContent = "Sorry, it could not be sent. Please try again later."; })
+      .then(() => { btn.disabled = false; });
+  });
+})();
+</script>
 <script>
 (function () {
   "use strict";
