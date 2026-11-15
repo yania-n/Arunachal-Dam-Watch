@@ -9,7 +9,7 @@ This repo holds two separate dashboards, both live on GitHub Pages:
 | **Arunachal Dam Watch** (`index.html`)       | [yania-n.github.io/Arunachal-Dam-Watch/](https://yania-n.github.io/Arunachal-Dam-Watch/)       | Compiled from government records and news reports |
 | **Arunachal Dam Watch II** (`v2/index.html`) | [yania-n.github.io/Arunachal-Dam-Watch/v2/](https://yania-n.github.io/Arunachal-Dam-Watch/v2/) | Official portal data only: DHPD and Parivesh      |
 
-The two are kept apart on purpose: the first mixes government records with news reports, the second uses only the two official portals. Each links to the other. The old address `index_v2.html` redirects to `v2/`.
+The two are kept apart on purpose: the first mixes government records with news reports, the second uses only the two official portals. Each links to the other.
 
 The rest of this file up to "Conclusions" describes the first dashboard. The second is described in its own section near the end.
 
