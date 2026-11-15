@@ -30,7 +30,6 @@
   header.top{padding:52px 0 8px}
   h1{font-size:clamp(30px,5.4vw,46px);line-height:1.12;font-weight:650;letter-spacing:-.015em;margin:0 0 16px;max-width:17em}
   .lede{font-size:19px;max-width:36em;margin:0 0 20px}
-  .tagline{font-size:clamp(20px,3vw,26px);line-height:1.3;font-weight:500;max-width:24em;margin:0 0 16px;color:var(--fg)}
 
   /* tabs */
   nav.tabs{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--fg);margin-top:26px;display:flex;overflow-x:auto;gap:0;-webkit-overflow-scrolling:touch}
@@ -48,7 +47,7 @@
   h3{font-size:17px;font-weight:650;margin:30px 0 6px}
   p{margin:0 0 14px;max-width:38em}
   p.big{font-size:19px}
-  .mute{color:var(--mute)} .small{font-size:14px}
+  .mute{color:var(--mute)}
   .note{font-size:14px;color:var(--mute);margin:8px 0 0;max-width:46em}
   .tip{cursor:help;text-decoration:underline dotted var(--grey);text-decoration-thickness:1px;text-underline-offset:4px}
   #tip{position:absolute;z-index:30;max-width:290px;padding:8px 11px;background:var(--fg);color:var(--bg);font-size:13.5px;line-height:1.4;border-radius:2px;pointer-events:none;display:none}
@@ -294,8 +293,8 @@
       <label>Progress <select id="f-status"><option value="">All</option><option>Completed</option><option>Under construction</option><option>Under implementation</option></select></label>
       <label>River basin <select id="f-basin"><option value="">All</option></select></label>
       <label>District <select id="f-dist"><option value="">All</option></select></label>
-      <div class="ms" id="f-dev-ms"><details><summary><span class="mslab">Developer</span> <span id="f-dev-n" class="ms-n">All</span></summary>
-        <div class="ms-box"><button type="button" id="f-dev-clear">Clear selection</button><div id="f-dev-list"></div></div></details></div>
+      <div class="ms" id="f-dev-ms"><details><summary><span class="mslab">Developer</span> <span class="ms-n">All</span></summary>
+        <div class="ms-box"><button type="button" class="ms-clear">Clear selection</button><div class="ms-list"></div></div></details></div>
       <label>Forest record <select id="f-cov"><option value="">All</option><option value="yes">Has a Parivesh record</option><option value="no">No Parivesh record</option></select></label>
     </div>
     <p class="note" id="dam-n"></p>
@@ -385,6 +384,19 @@
   const nf = (x, d = 0) => (x === null || x === undefined || x === "" || isNaN(+x)) ? "not available" : (+x).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: d });
   const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
   const el = (tag, attrs, html) => { const e = document.createElement(tag); if (attrs) Object.keys(attrs).forEach(k => e.setAttribute(k, attrs[k])); if (html !== undefined) e.innerHTML = html; return e; };
+  /* filter helpers: option counts, a filled <select>, and a multi-select checklist */
+  const countBy = (rows, k) => { const c = {}; rows.forEach(r => c[r[k]] = (c[r[k]] || 0) + 1); return Object.keys(c).sort((a, b) => c[b] - c[a] || (a < b ? -1 : 1)).map(v => [v, c[v]]); };
+  const fillSelect = (id, rows, k) => countBy(rows, k).forEach(([v, n]) => $(id).appendChild(el("option", { value: v }, esc(v) + " (" + n + ")")));
+  function multiSelect(root, rows, k, onChange) {
+    const list = root.querySelector(".ms-list"), label = root.querySelector(".ms-n"), boxes = () => Array.prototype.slice.call(list.querySelectorAll("input"));
+    countBy(rows, k).forEach(([v, n]) => { const l = el("label"); l.appendChild(el("input", { type: "checkbox", value: v })); l.appendChild(el("span", {}, esc(v) + " (" + n + ")")); list.appendChild(l); });
+    const picked = () => boxes().filter(b => b.checked).map(b => b.value), update = () => { const n = picked().length; label.textContent = n ? n + " selected" : "All"; onChange(); };
+    list.addEventListener("change", update);
+    root.querySelector(".ms-clear").addEventListener("click", () => { boxes().forEach(b => b.checked = false); update(); });
+    return picked;
+  }
+  document.addEventListener("click", e => document.querySelectorAll(".ms details[open]").forEach(d => { if (!d.parentNode.contains(e.target)) d.open = false; }));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") document.querySelectorAll(".ms details[open]").forEach(d => d.open = false); });
   const D = '<span class="d">DHPD</span>', P = '<span class="p">Parivesh</span>';
 
   /* ---------- vocabulary ---------- */
@@ -613,18 +625,10 @@
     stackRows($("mwbasin"), Object.values(bm).sort((a, b) => b.tot - a.tot).map(b => ({ label: esc(b.label), sub: b.n + " dams", total: b.tot, valueText: nf(b.tot) + " MW",
       segs: SN.map(s => ({ v: b.by[s] || 0, c: SC[s], t: `${SL[s]}: ${nf(b.by[s] || 0, 1)} MW` })), aria: `${b.label}: ${nf(b.tot)} megawatts` })));
     $("lg7").innerHTML = legend(SN.map(s => ({ c: SC[s], t: SL[s] })));
-    const damRows = dh.map(d => { const b = bestOfD(d); return { project: d.project, mw: d.mw, status: d.dhpd_status, bkey: d.basin, basin: d.basin + (d.basin_source === "portal" ? "" : " †"), district: d.district, dev: d.developer_agency, cov: b ? GN[b] : "No record", has: !!b }; });
-    Object.values(bm).sort((a, b) => b.n - a.n || (a.label < b.label ? -1 : 1)).forEach(b => $("f-basin").appendChild(el("option", { value: b.label }, b.label + " (" + b.n + ")")));
-    { const dc = {}, vc = {}; damRows.forEach(r => { dc[r.district] = (dc[r.district] || 0) + 1; vc[r.dev] = (vc[r.dev] || 0) + 1; });
-      const srt = c => Object.keys(c).sort((a, b) => c[b] - c[a] || (a < b ? -1 : 1));
-      srt(dc).forEach(v => $("f-dist").appendChild(el("option", { value: v }, v + " (" + dc[v] + ")")));
-      srt(vc).forEach(v => { const l = el("label"), cb = el("input", { type: "checkbox", value: v }); l.appendChild(cb); l.appendChild(el("span", {}, esc(v) + " (" + vc[v] + ")")); $("f-dev-list").appendChild(l); }); }
-    function devSel() { return Array.prototype.slice.call($("f-dev-list").querySelectorAll("input:checked")).map(i => i.value); }
-    function devLabel() { const n = devSel().length; $("f-dev-n").textContent = n ? n + " selected" : "All"; }
-    $("f-dev-list").addEventListener("change", () => { devLabel(); drawDams(); });
-    $("f-dev-clear").addEventListener("click", () => { $("f-dev-list").querySelectorAll("input").forEach(i => i.checked = false); devLabel(); drawDams(); });
-    document.addEventListener("click", e => { const d = $("f-dev-ms").querySelector("details"); if (d.open && !$("f-dev-ms").contains(e.target)) d.open = false; });
-    document.addEventListener("keydown", e => { if (e.key === "Escape") $("f-dev-ms").querySelector("details").open = false; });
+    const damRow = d => ({ project: d.project, mw: d.mw, status: d.dhpd_status, bkey: d.basin, basin: d.basin + (d.basin_source === "portal" ? "" : " †"), district: d.district, dev: d.developer_agency });
+    const damRows = dh.map(d => { const b = bestOfD(d), r = damRow(d); r.cov = b ? GN[b] : "No record"; r.has = !!b; return r; });
+    fillSelect("f-basin", damRows, "bkey"); fillSelect("f-dist", damRows, "district");
+    const devSel = multiSelect($("f-dev-ms"), damRows, "dev", () => drawDams());
     function drawDams() {
       const q = $("q").value.trim().toLowerCase(), s = $("f-status").value, c = $("f-cov").value, bs = $("f-basin").value, ds = $("f-dist").value, dv = devSel();
       const rows = damRows.filter(r => (!s || r.status === s) && (!bs || r.bkey === bs) && (!ds || r.district === ds) && (!dv.length || dv.indexOf(r.dev) >= 0) && (!c || (c === "yes") === r.has) && (!q || (r.project + " " + r.dev).toLowerCase().indexOf(q) >= 0));
@@ -639,21 +643,9 @@
 
     /* --- tab 4 --- */
     $("only-note").innerHTML = `A dam counts as missing only after matching by name (see <a href="../data/official/match_table.csv">match_table.csv</a>). <b class="num">${both.length}</b> dams were matched, including ${S.coverage.manual_matches} by hand.`;
-    $("t1-count").innerHTML = "";
-    const t1rows = dOnly.map(m => { const d = dById[m.dhpd_id]; return { project: d.project, mw: d.mw, district: d.district, basin: d.basin + (d.basin_source === "portal" ? "" : " †"), bkey: d.basin, dev: d.developer_agency, status: d.dhpd_status }; });
-    [["t1-basin", "bkey"], ["t1-dist", "district"]].forEach(([id, k]) => {
-      const c = {}; t1rows.forEach(r => c[r[k]] = (c[r[k]] || 0) + 1);
-      Object.keys(c).sort((a, b) => c[b] - c[a] || (a < b ? -1 : 1)).forEach(v => $(id).appendChild(el("option", { value: v }, v + " (" + c[v] + ")")));
-    });
-    const t1ms = $("t1-dev-ms"), t1list = t1ms.querySelector(".ms-list"), t1n = t1ms.querySelector(".ms-n");
-    { const c = {}; t1rows.forEach(r => c[r.dev] = (c[r.dev] || 0) + 1);
-      Object.keys(c).sort((a, b) => c[b] - c[a] || (a < b ? -1 : 1)).forEach(v => { const l = el("label"); l.appendChild(el("input", { type: "checkbox", value: v })); l.appendChild(el("span", {}, esc(v) + " (" + c[v] + ")")); t1list.appendChild(l); }); }
-    const t1dev = () => Array.prototype.slice.call(t1list.querySelectorAll("input:checked")).map(i => i.value);
-    const t1lab = () => { const n = t1dev().length; t1n.textContent = n ? n + " selected" : "All"; };
-    t1list.addEventListener("change", () => { t1lab(); drawT1(); });
-    t1ms.querySelector(".ms-clear").addEventListener("click", () => { t1list.querySelectorAll("input").forEach(i => i.checked = false); t1lab(); drawT1(); });
-    document.addEventListener("click", e => { const d = t1ms.querySelector("details"); if (d.open && !t1ms.contains(e.target)) d.open = false; });
-    document.addEventListener("keydown", e => { if (e.key === "Escape") t1ms.querySelector("details").open = false; });
+    const t1rows = dOnly.map(m => damRow(dById[m.dhpd_id]));
+    fillSelect("t1-basin", t1rows, "bkey"); fillSelect("t1-dist", t1rows, "district");
+    const t1dev = multiSelect($("t1-dev-ms"), t1rows, "dev", () => drawT1());
     function drawT1() {
       const f = $("t1-filter").value, fb = $("t1-basin").value, fd = $("t1-dist").value, fv = t1dev();
       const rows = t1rows.filter(r => (!f || r.status === f) && (!fb || r.bkey === fb) && (!fd || r.district === fd) && (!fv.length || fv.indexOf(r.dev) >= 0));
