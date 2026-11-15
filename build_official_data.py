@@ -35,6 +35,9 @@ PARIVESH_PULL = "2026-11-07"    # parivesh/data&exploration notebook: "as on 7th
 # ---------------------------------------------------------------- corrections
 SPELLING = {"Nyikgong": "Nyikong"}          # correction 1 (Parivesh spelling -> "Nyikong")
 # correction 2 (New Melling capacity) needs no code: DHPD's 96 MW is simply the value used.
+# correction 3: district of Attunli, Etalin, Anonpani is Dibang Valley (project owner); DHPD says Lower Dibang Valley.
+DISTRICT_FIX = {"Attunli": "Dibang Valley", "Etalin": "Dibang Valley", "Anonpani": "Dibang Valley"}
+DISTRICT_ORIG = {}
 
 # ---------------------------------------------------------------- manual matches
 # Every manual match is listed in match_table.csv. Key = Parivesh display name, value = DHPD name.
@@ -208,6 +211,11 @@ def dev_differs(a, b):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     dh = build_dhpd()
+    for _n, _d in DISTRICT_FIX.items():
+        _m = dh.project_name == _n
+        assert _m.sum() == 1, _n
+        DISTRICT_ORIG[_n] = dh.loc[_m, "district"].iloc[0]
+        dh.loc[_m, "district"] = _d
     pv = build_parivesh()
 
     # ---------------------------------------------------------- matching
@@ -268,6 +276,12 @@ def main():
              value_shown="Lower Siang (DHPD)", reason="Not changed, see inconsistencies. Project owner's note: Upper Siang district / Siang basin is correct."),
         dict(project="Halaipani", field="district", dhpd_value="Lohit", parivesh_value="Anjaw",
              value_shown="Lohit (DHPD)", reason="Not changed, see inconsistencies. Project owner's note: Anjaw district / Lohit basin is correct."),
+        dict(project="Attunli", field="district", dhpd_value="Lower Dibang Valley", parivesh_value="Dibang Valley",
+             value_shown="Dibang Valley (corrected)", reason="Project owner's correction: Dibang Valley is right. Change made on this page; DHPD says Lower Dibang Valley. Still listed under district mismatches."),
+        dict(project="Etalin", field="district", dhpd_value="Lower Dibang Valley", parivesh_value="Dibang Valley",
+             value_shown="Dibang Valley (corrected)", reason="Project owner's correction: Dibang Valley is right. Change made on this page; DHPD says Lower Dibang Valley. Still listed under district mismatches."),
+        dict(project="Anonpani", field="district", dhpd_value="Lower Dibang Valley", parivesh_value="Dibang Valley",
+             value_shown="Dibang Valley (corrected)", reason="Project owner's correction: Dibang Valley is right. Change made on this page; DHPD says Lower Dibang Valley. Still listed under district mismatches."),
     ])
 
     # ---------------------------------------------------------- inconsistencies
@@ -298,7 +312,8 @@ def main():
 
     # --- B attribute mismatches (matched projects only)
     OWNER = {"Yammeng": "Project owner's note: Upper Siang district / Siang basin is correct. DHPD value NOT changed.",
-             "Halaipani": "Project owner's note: Anjaw district / Lohit basin is correct. DHPD value NOT changed."}
+             "Halaipani": "Project owner's note: Anjaw district / Lohit basin is correct. DHPD value NOT changed.",
+}
     for _, m in both.iterrows():
         d = dmap.loc[m.dhpd_id]
         g = pv[pv.project == m.parivesh_project]
@@ -324,8 +339,6 @@ def main():
                 note = OWNER.get(d.project_name, "")
                 if naming:
                     note = "Naming: Kra Daadi and Kurung Kumey appear to be the same area under different district names; DHPD value shown."
-                elif not note and key(pd_) == key("Dibang Valley"):
-                    note = "'Dibang Valley' and 'Lower Dibang Valley' are different district names; the data does not say which is meant."
                 add("B", "District, Parivesh District field" + (" (naming)" if naming else ""), d.project_name,
                     f"{d.district} (basin {d.basin})", pd_, shown, note or "DHPD value shown unchanged.", d.dhpd_status)
         else:
@@ -335,7 +348,11 @@ def main():
                 if key(d.district) not in [key(n) for n in names]:
                     add("B", "District named in proposal text (Parivesh District field is empty)", d.project_name,
                         f"{d.district} (basin {d.basin})", f"{txt[0]} (from proposal text)", shown,
-                        "Parivesh District field is empty for this proposal; district read from the proposal title text. DHPD value shown unchanged.", d.dhpd_status)
+                        "Parivesh District field is empty for this proposal; district read from the proposal title text. " + (OWNER.get(d.project_name) or "DHPD value shown unchanged."), d.dhpd_status)
+        if d.project_name in DISTRICT_FIX:
+            add("B", "District (corrected on this page)", d.project_name, f"{DISTRICT_ORIG[d.project_name]} (DHPD, original)",
+                (pdist[0] if pdist else (g.district_in_proposal_text.dropna().iloc[0] + ' (from proposal text)')), f"{d.district} (corrected)",
+                "Project owner's correction: Dibang Valley is right, so this page shows Dibang Valley. DHPD says Lower Dibang Valley.", d.dhpd_status)
         # developer
         pa = g.sort_values("ua_submission_iso").iloc[-1].user_agency
         if dev_differs(d.developer_agency, pa):

@@ -126,4 +126,4 @@ The script prints a reconciliation table (CSV totals against the source Excel su
 - **In progress** = DFO, Nodal Officer, Pending With-SG.
 - **Rejected** = Rejected, Returned, Withdrawn.
 - **Refilings:** proposals are grouped by project. A later full proposal supersedes an earlier one, so the project's area is counted once. Ancillary proposals (quarry-patch changes) add their own area. Raw proposal totals are shown too.
-- **Corrections:** only the spelling "Nyikong" and New Melling's capacity (DHPD's 96 MW). DHPD's district and basin are shown unchanged, including for Yammeng and Halaipani, whose discrepancies are listed with the project owner's notes.
+- **Corrections:** only the spelling "Nyikong", New Melling's capacity (DHPD's 96 MW), and the district of Attunli, Etalin and Anonpani (shown as Dibang Valley, as the project owner says; DHPD says Lower Dibang Valley and the mismatch is still listed). DHPD's district and basin are otherwise shown unchanged, including for Yammeng and Halaipani, whose discrepancies are listed with the project owner's notes.

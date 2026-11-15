@@ -257,7 +257,7 @@
     <h3 class="tip" tabindex="0" data-tip="Forest area asked for, grouped by DHPD district and coloured by decision.">By district</h3>
     <div id="district2"></div>
     <div class="legend" id="lg6"></div>
-    <p class="note">Basins and districts are the DHPD values for each matched project. Yammeng and Halaipani are placed where DHPD places them, even though Parivesh gives a different district (see the "Where the two sites disagree" tab).</p>
+    <p class="note">Basins and districts are the DHPD values for each matched project. Yammeng and Halaipani are placed where DHPD places them, even though Parivesh gives a different district (see the "Where the two sites disagree" tab). Attunli, Etalin and Anonpani are shown in Dibang Valley, the district the project owner gives, although DHPD says Lower Dibang Valley (also listed on that tab).</p>
 
     <h3 class="tip" tabindex="0" data-tip="Every dam project with a forest request, with its area in each decision group. Click a heading to sort.">Every project with a forest request</h3>
     <div class="tblwrap" id="t-proj"></div>
@@ -604,7 +604,7 @@
       const body = el("div", { class: "grpbody" });
       body.appendChild(el("ul", { class: "subs" }, d3rollup(rows).map(x => `<li>${esc(x[0])}: <b class="num">${x[1]}</b></li>`).join("")));
       if (k === "A") body.appendChild(el("p", { class: "note" }, "Our Parivesh file covers requests filed before 28 June 2022, so a DHPD dam missing here may simply have applied later. Missing from one website does not tell us which website is incomplete."));
-      if (k === "B") body.appendChild(el("p", { class: "note" }, "Yammeng and Halaipani: DHPD’s district is shown unchanged. The project owner’s notes are in the note column. Parivesh has no basin field, so basins cannot be compared. A developer difference is often just a project company versus its parent; the data does not say."));
+      if (k === "B") body.appendChild(el("p", { class: "note" }, "Yammeng and Halaipani: DHPD’s district is shown unchanged. Attunli, Etalin and Anonpani: shown as Dibang Valley (corrected), with DHPD’s original value in the table. The project owner’s notes are in the note column. Parivesh has no basin field, so basins cannot be compared. A developer difference is often just a project company versus its parent; the data does not say."));
       if (k === "C") body.appendChild(el("p", { class: "note" }, "“Closed” on Parivesh means approved and finished, so it is not a conflict."));
       const td = el("div", { class: "tblwrap" }); body.appendChild(td); d.appendChild(body); incHost.appendChild(d);
       table(td, [{ k: "subgroup", h: "Type" }, { k: "project", h: "Project" }, { k: "dhpd_value", h: "DHPD value" }, { k: "parivesh_value", h: "Parivesh value" }, { k: "value_shown", h: "Value shown here" }, { k: "note", h: "Note" }], rows, { sortKey: null });
@@ -644,11 +644,11 @@
       `<li>Dams were matched by name: ${both.filter(m => m.match_method === "exact").length} exact, ${norm.length} after ignoring spaces or punctuation, ${manual.length} by hand. Nothing is forced; unclear cases stay unmatched.</li>` +
       `<li><b>Not a difference:</b> a project that is only on Parivesh and whose every request was turned down (rejected, returned or withdrawn)${pExp.length ? ", " + pExp.map(m => esc(m.parivesh_project)).join(", ") + "," : ""} is not flagged. A project that was refused permission would not be expected on the DHPD list.</li>` +
       manual.concat(norm).map(m => `<li><b>${esc(m.match_method)}:</b> DHPD <i>${esc(m.dhpd_project)}</i> and Parivesh <i>${esc(m.parivesh_project)}</i>. ${esc(m.notes)}</li>`).join("") + `</ul>` +
-      `<h3>Changes we made</h3><p>Only two: the spelling <i>Nyikong</i> (Parivesh says Nyikgong), and the New Melling capacity, where DHPD’s 96 MW is used (the Parivesh name says 90 MW). Everything else is shown as each source has it, including DHPD’s district and basin for Yammeng and Halaipani.</p>` +
+      `<h3>Changes we made</h3><p>Only three: the spelling <i>Nyikong</i> (Parivesh says Nyikgong); the New Melling capacity, where DHPD’s 96 MW is used (the Parivesh name says 90 MW); and the district of Attunli, Etalin and Anonpani, shown as Dibang Valley as the project owner says (DHPD says Lower Dibang Valley, and the difference is still listed under district mismatches). Everything else is shown as each source has it, including DHPD’s district and basin for Yammeng and Halaipani.</p>` +
       `<h3>Questions still open</h3><ul class="plain">` +
       `<li><b>Kangtangshiri:</b> the earlier request is in principle, and the later one (same 18.56 ha) is waiting. We count the later one, so its area is under “waiting”. Counted the other way, in principle would be ${nf(G("in_principle").ha + 18.56, 3)} ha and waiting ${nf(G("in_progress").ha - 18.56, 3)} ha.</li>` +
       `<li><b>Ressing:</b> a withdrawn 2019 request (0.916 ha) and an approved 2020 request (2.33 ha) have different areas. We count the later one only. Counted separately it would be 3.246 ha.</li>` +
-      `<li><b>Attunli, Etalin, Anonpani:</b> Parivesh says “Dibang Valley” and DHPD says “Lower Dibang Valley”. The data does not say whether these are the same place.</li></ul>` +
+      `</ul>` +
       `<p class="note">Data files: <a href="../data/official/dhpd_projects.csv">dhpd_projects.csv</a>, <a href="../data/official/parivesh_proposals.csv">parivesh_proposals.csv</a>, <a href="../data/official/match_table.csv">match_table.csv</a>, <a href="../data/official/inconsistencies.csv">inconsistencies.csv</a>, <a href="../data/official/corrections_log.csv">corrections_log.csv</a>, <a href="../data/official/summary.json">summary.json</a>.</p>`;
 
     $("app").hidden = false; wireTips(document); setupTabs();
