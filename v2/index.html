@@ -307,7 +307,10 @@
     <p class="note" id="only-note"></p>
     <h3 class="tip" tabindex="0" data-tip="Dams listed on DHPD that have no forest request on Parivesh under the matched names.">On DHPD, but not on Parivesh</h3>
     <p class="note" id="t1-count"></p>
-    <div class="controls"><label>Progress <select id="t1-filter"><option value="">All</option><option>Completed</option><option>Under construction</option><option>Under implementation</option></select></label></div>
+    <div class="controls"><label>Progress <select id="t1-filter"><option value="">All</option><option>Completed</option><option>Under construction</option><option>Under implementation</option></select></label>
+      <label>River basin <select id="t1-basin"><option value="">All</option></select></label>
+      <label>District <select id="t1-dist"><option value="">All</option></select></label>
+      <label>Developer <select id="t1-dev"><option value="">All</option></select></label></div>
     <div class="tblwrap" id="t1"></div>
     <p class="note">&dagger; Basin worked out from the district, not given by DHPD. Missing from one website does not tell us which website is incomplete.</p>
     <h3 class="tip" tabindex="0" data-tip="Projects with a forest request on Parivesh that are not on the DHPD list.">On Parivesh, but not on DHPD</h3>
@@ -617,13 +620,18 @@
     /* --- tab 4 --- */
     $("only-note").innerHTML = `A dam counts as missing only after matching by name (see <a href="../data/official/match_table.csv">match_table.csv</a>). <b class="num">${both.length}</b> dams were matched, including ${S.coverage.manual_matches} by hand.`;
     $("t1-count").innerHTML = "";
-    const t1rows = dOnly.map(m => { const d = dById[m.dhpd_id]; return { project: d.project, mw: d.mw, district: d.district, basin: d.basin + (d.basin_source === "portal" ? "" : " †"), dev: d.developer_agency, status: d.dhpd_status }; });
+    const t1rows = dOnly.map(m => { const d = dById[m.dhpd_id]; return { project: d.project, mw: d.mw, district: d.district, basin: d.basin + (d.basin_source === "portal" ? "" : " †"), bkey: d.basin, dev: d.developer_agency, status: d.dhpd_status }; });
+    [["t1-basin", "bkey"], ["t1-dist", "district"], ["t1-dev", "dev"]].forEach(([id, k]) => {
+      const c = {}; t1rows.forEach(r => c[r[k]] = (c[r[k]] || 0) + 1);
+      Object.keys(c).sort((a, b) => c[b] - c[a] || (a < b ? -1 : 1)).forEach(v => $(id).appendChild(el("option", { value: v }, v + " (" + c[v] + ")")));
+    });
     function drawT1() {
-      const f = $("t1-filter").value, rows = t1rows.filter(r => !f || r.status === f);
+      const f = $("t1-filter").value, fb = $("t1-basin").value, fd = $("t1-dist").value, fv = $("t1-dev").value;
+      const rows = t1rows.filter(r => (!f || r.status === f) && (!fb || r.bkey === fb) && (!fd || r.district === fd) && (!fv || r.dev === fv));
       $("t1-count").innerHTML = `<b class="num">${rows.length}</b> dams, ${nf(rows.reduce((t, r) => t + r.mw, 0), 1)} MW (${D}), with no ${P} record.`;
       table($("t1"), [{ k: "project", h: "Dam" }, { k: "mw", h: "Capacity (MW, DHPD)", n: 1, f: r => nf(r.mw, 1) }, { k: "district", h: "District (DHPD)" }, { k: "basin", h: "Basin (DHPD)" }, { k: "dev", h: "Developer (DHPD)" }, { k: "status", h: "Progress (DHPD)", f: r => esc(SL[r.status]) }], rows, { sortKey: "mw", sortDir: "desc" });
     }
-    $("t1-filter").addEventListener("change", drawT1); drawT1();
+    ["t1-filter", "t1-basin", "t1-dist", "t1-dev"].forEach(i => $(i).addEventListener("change", drawT1)); drawT1();
     $("t2-count").innerHTML = `<b class="num">${pFlag.length}</b> projects with a live forest request on ${P} (approved in principle or still waiting) and no entry on ${D}.` + (pExp.length ? ` <span class="mute">Not listed: ${pExp.map(m => esc(m.parivesh_project)).join(", ")}. Every request for ${pExp.length === 1 ? "it was" : "them was"} turned down, so ${pExp.length === 1 ? "it is" : "they are"} not expected on DHPD.</span>` : "");
     const t2rows = []; pFlag.forEach(m => (pm.get(m.parivesh_project) || { rows: [] }).rows.forEach(p => t2rows.push({ project: p.project, no: p.proposal_no, ha: p.area, grp: GN[p.status_group] + " (" + p.status + ")", ua: p.user_agency, dist: p.district || (p.district_in_proposal_text ? p.district_in_proposal_text + " (from proposal text)" : "not available") })));
     table($("t2"), [{ k: "project", h: "Project" }, { k: "no", h: "Proposal no." }, { k: "ha", h: "Forest asked (ha, Parivesh)", n: 1, f: r => nf(r.ha, 3) }, { k: "grp", h: "Decision (Parivesh)" }, { k: "ua", h: "Applicant (Parivesh)" }, { k: "dist", h: "District (Parivesh)" }], t2rows, { sortKey: "ha", sortDir: "desc" });
