@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the data behind index_v2.html (official data only: DHPD + Parivesh).
+"""Build the data behind v2/index.html (official data only: DHPD + Parivesh).
 
 Run from the repo root:  python build_official_data.py
 

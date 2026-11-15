@@ -78,9 +78,9 @@ Every finished project took much longer and cost much more than planned:
 
 *A note on the evidence:* these conclusions come only from the sourced data in the dashboard. The dashboard doesn't track the benefits (power supply, revenue, jobs), so this isn't a full cost-benefit judgment.
 
-## Second dashboard: official data only (`index_v2.html`)
+## Second dashboard: official data only (`v2/index.html`)
 
-`index_v2.html` is a separate, plainer page built only from the two official portals. The original `index.html` and the files in `data/` are untouched.
+`v2/index.html` is a separate, plainer page built only from the two official portals. The original `index.html` and the files in `data/` are untouched.
 
 The page is written for readers who do not know the data. The first tab, **The story**, walks through seven short chapters (the plan, the forest, the decisions, the biggest requests, the rivers, whether the two sites agree, and what the data cannot tell you). The other tabs hold the detail: **Forest requests**, **The dams**, **Where the two sites disagree** and **How we did this** (method, glossary, open questions). In the page, the four forest groups are called Fully approved (= Cleared), Approved in principle, Waiting for a decision (= In progress) and Turned down (= Rejected).
 
@@ -99,7 +99,7 @@ The page is written for readers who do not know the data. The first tab, **The s
 | `corrections_log.csv` | The only changes made, plus Yammeng and Halaipani marked "not changed" |
 | `summary.json` | Headline numbers read by the page |
 
-The script prints a reconciliation table (CSV totals against the source Excel sums). The page reads the CSVs with `fetch`, so serve it over http, not from a local file. For local viewing run `python -m http.server 8000 --bind 127.0.0.1` in the repo and open `http://localhost:8000/index_v2.html` (do not open `http://[::]:8000`).
+The script prints a reconciliation table (CSV totals against the source Excel sums). The page reads the CSVs with `fetch`, so serve it over http, not from a local file. For local viewing run `python -m http.server 8000 --bind 127.0.0.1` in the repo and open `http://localhost:8000/v2/` (do not open `http://[::]:8000`).
 
 ### Definitions
 
