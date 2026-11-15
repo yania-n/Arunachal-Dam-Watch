@@ -1,0 +1,336 @@
+{
+  "dhpd_pull": "2026-11-14",
+  "parivesh_pull": "2026-11-07",
+  "dhpd": {
+    "projects": 113,
+    "capacity_mw": 43094.3,
+    "by_status": {
+      "Completed": {
+        "projects": 5,
+        "capacity_mw": 1146.0
+      },
+      "Under construction": {
+        "projects": 8,
+        "capacity_mw": 6175.5
+      },
+      "Under implementation": {
+        "projects": 100,
+        "capacity_mw": 35772.8
+      }
+    }
+  },
+  "parivesh": {
+    "proposals": 36,
+    "distinct_projects": 31,
+    "raw_total_ha": 14285.271,
+    "project_total_ha": 14226.095,
+    "raw_by_group": {
+      "cleared": {
+        "ha": 6598.37,
+        "proposals": 8
+      },
+      "in_principle": {
+        "ha": 223.995,
+        "proposals": 8
+      },
+      "in_progress": {
+        "ha": 5257.33,
+        "proposals": 12
+      },
+      "rejected": {
+        "ha": 2205.576,
+        "proposals": 8
+      }
+    },
+    "project_by_group": {
+      "cleared": {
+        "ha": 6598.37,
+        "proposals_counted": 8
+      },
+      "in_principle": {
+        "ha": 205.435,
+        "proposals_counted": 7
+      },
+      "in_progress": {
+        "ha": 5257.33,
+        "proposals_counted": 12
+      },
+      "rejected": {
+        "ha": 2164.96,
+        "proposals_counted": 6
+      }
+    },
+    "superseded": [
+      {
+        "proposal_no": "FP/AR/HYD/4233/2012",
+        "project": "Tagurshit",
+        "area_ha": 39.7,
+        "superseded_by": "FP/AR/HYD/16697/2015"
+      },
+      {
+        "proposal_no": "FP/AR/HYD/4133/2012",
+        "project": "Kangtangshiri",
+        "area_ha": 18.56,
+        "superseded_by": "FP/AR/HYD/7682/2012"
+      },
+      {
+        "proposal_no": "FP/AR/HYD/43514/2019",
+        "project": "Ressing",
+        "area_ha": 0.916,
+        "superseded_by": "FP/AR/HYD/48835/2020"
+      }
+    ]
+  },
+  "coverage": {
+    "matched": 28,
+    "dhpd_only": 85,
+    "parivesh_only": 3,
+    "parivesh_only_flagged": 2,
+    "parivesh_only_expected": 1,
+    "manual_matches": 2
+  },
+  "area_by_basin": [
+    {
+      "label": "Siang",
+      "projects": [
+        "Heo",
+        "Hirong",
+        "Kangtangshiri",
+        "Kaying",
+        "Lower Siang",
+        "Naying",
+        "Nyikong",
+        "Pauk",
+        "Simang-II",
+        "Siyom",
+        "Tato-I",
+        "Yammeng"
+      ],
+      "applied_ha": 8878.9,
+      "cleared": 6562.36,
+      "in_principle": 140.78,
+      "in_progress": 1526.46,
+      "rejected": 649.3
+    },
+    {
+      "label": "Dikrong",
+      "projects": [
+        "Kamala",
+        "Keyi",
+        "Papum",
+        "Pareng",
+        "Ressing"
+      ],
+      "applied_ha": 3317.21,
+      "cleared": 31.26,
+      "in_principle": 0.0,
+      "in_progress": 3285.95,
+      "rejected": 0.0
+    },
+    {
+      "label": "Dibang",
+      "projects": [
+        "Anonpani",
+        "Attunli",
+        "Etalin"
+      ],
+      "applied_ha": 1456.95,
+      "cleared": 0.0,
+      "in_principle": 0.0,
+      "in_progress": 261.53,
+      "rejected": 1195.42
+    },
+    {
+      "label": "Kameng",
+      "projects": [
+        "Dengzi",
+        "Khuitam",
+        "Talong Londa"
+      ],
+      "applied_ha": 312.455,
+      "cleared": 0.0,
+      "in_principle": 31.915,
+      "in_progress": 0.0,
+      "rejected": 280.54
+    },
+    {
+      "label": "Tawang",
+      "projects": [
+        "Mago Chu",
+        "New Melling",
+        "Nyukcharong Chu",
+        "Rho"
+      ],
+      "applied_ha": 157.53,
+      "cleared": 0.0,
+      "in_principle": 0.0,
+      "in_progress": 157.53,
+      "rejected": 0.0
+    },
+    {
+      "label": "Not in DHPD",
+      "projects": [
+        "Phudung",
+        "Simang-I",
+        "Tagurshit"
+      ],
+      "applied_ha": 98.3,
+      "cleared": 0.0,
+      "in_principle": 32.74,
+      "in_progress": 25.86,
+      "rejected": 39.7
+    },
+    {
+      "label": "Lohit",
+      "projects": [
+        "Halaipani"
+      ],
+      "applied_ha": 4.75,
+      "cleared": 4.75,
+      "in_principle": 0.0,
+      "in_progress": 0.0,
+      "rejected": 0.0
+    }
+  ],
+  "area_by_district": [
+    {
+      "label": "Lower Siang",
+      "projects": [
+        "Lower Siang",
+        "Yammeng"
+      ],
+      "applied_ha": 6024.61,
+      "cleared": 6014.18,
+      "in_principle": 10.43,
+      "in_progress": 0.0,
+      "rejected": 0.0
+    },
+    {
+      "label": "Kurung Kumey",
+      "projects": [
+        "Kamala"
+      ],
+      "applied_ha": 3279.0,
+      "cleared": 0.0,
+      "in_principle": 0.0,
+      "in_progress": 3279.0,
+      "rejected": 0.0
+    },
+    {
+      "label": "West Siang",
+      "projects": [
+        "Heo",
+        "Hirong",
+        "Kaying",
+        "Naying",
+        "Nyikong",
+        "Simang-II",
+        "Siyom",
+        "Tato-I"
+      ],
+      "applied_ha": 2744.03,
+      "cleared": 548.18,
+      "in_principle": 38.65,
+      "in_progress": 1507.9,
+      "rejected": 649.3
+    },
+    {
+      "label": "Lower Dibang Valley",
+      "projects": [
+        "Anonpani",
+        "Attunli",
+        "Etalin"
+      ],
+      "applied_ha": 1456.95,
+      "cleared": 0.0,
+      "in_principle": 0.0,
+      "in_progress": 261.53,
+      "rejected": 1195.42
+    },
+    {
+      "label": "East Kameng",
+      "projects": [
+        "Dengzi",
+        "Khuitam",
+        "Talong Londa"
+      ],
+      "applied_ha": 312.455,
+      "cleared": 0.0,
+      "in_principle": 31.915,
+      "in_progress": 0.0,
+      "rejected": 280.54
+    },
+    {
+      "label": "Tawang",
+      "projects": [
+        "Mago Chu",
+        "New Melling",
+        "Nyukcharong Chu",
+        "Rho"
+      ],
+      "applied_ha": 157.53,
+      "cleared": 0.0,
+      "in_principle": 0.0,
+      "in_progress": 157.53,
+      "rejected": 0.0
+    },
+    {
+      "label": "Upper Siang",
+      "projects": [
+        "Kangtangshiri",
+        "Pauk"
+      ],
+      "applied_ha": 110.26,
+      "cleared": 0.0,
+      "in_principle": 91.7,
+      "in_progress": 18.56,
+      "rejected": 0.0
+    },
+    {
+      "label": "Not in DHPD",
+      "projects": [
+        "Phudung",
+        "Simang-I",
+        "Tagurshit"
+      ],
+      "applied_ha": 98.3,
+      "cleared": 0.0,
+      "in_principle": 32.74,
+      "in_progress": 25.86,
+      "rejected": 39.7
+    },
+    {
+      "label": "Papum Pare",
+      "projects": [
+        "Keyi",
+        "Papum",
+        "Pareng",
+        "Ressing"
+      ],
+      "applied_ha": 38.21,
+      "cleared": 31.26,
+      "in_principle": 0.0,
+      "in_progress": 6.95,
+      "rejected": 0.0
+    },
+    {
+      "label": "Lohit",
+      "projects": [
+        "Halaipani"
+      ],
+      "applied_ha": 4.75,
+      "cleared": 4.75,
+      "in_principle": 0.0,
+      "in_progress": 0.0,
+      "rejected": 0.0
+    }
+  ],
+  "inconsistency_counts": {
+    "A": 87,
+    "B": 44,
+    "C": 5,
+    "D": 19,
+    "E": 119,
+    "F": 2
+  }
+}

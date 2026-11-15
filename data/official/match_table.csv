@@ -1,0 +1,117 @@
+dhpd_id,dhpd_project,dhpd_status,parivesh_project,n_proposals,proposal_nos,match_method,side,notes,expected_absence
+D069,Talong Londa,Under implementation,Talong Londa,1,FP/AR/HYD/12946/2010,exact,both,,False
+D007,Siang Lower,Under implementation,Lower Siang,1,FP/AR/HYD/9115/2010,manual,both,"Name differs in word order (Parivesh 'Lower Siang' / DHPD 'Siang Lower'). Same capacity 2,700 MW; Jaypee Arunachal Power / Jaiprakash Associates. Please confirm.",False
+D009,Naying,Under implementation,Naying,1,FP/AR/HYD/4283/2011,exact,both,,False
+,,,Tagurshit,2,FP/AR/HYD/4233/2012; FP/AR/HYD/16697/2015,unmatched,parivesh_only,"No DHPD project with this name; not forced. Every request for this project was turned down (rejected, returned or withdrawn), so its absence from DHPD is expected and is not treated as a difference.",True
+D025,Kaying,Under implementation,Kaying,1,FP/AR/HYD/6743/2013,exact,both,,False
+D066,Anonpani,Under implementation,Anonpani,1,FP/AR/HYD/6712/2013,exact,both,,False
+D010,Hirong,Under implementation,Hirong,1,FP/AR/HYD/8826/2014,exact,both,,False
+D054,Etalin,Under implementation,Etalin,1,FP/AR/HYD/7696/2014,exact,both,,False
+D017,Kangtangshiri,Under implementation,Kangtangshiri,2,FP/AR/HYD/4133/2012; FP/AR/HYD/7682/2012,exact,both,,False
+D011,Pauk,Under implementation,Pauk,1,FP/AR/HYD/6417/2012,exact,both,,False
+,,,Simang-I,1,FP/AR/HYD/3582/2011,unmatched,parivesh_only,No DHPD project with this name; not forced.,False
+D021,Simang-II,Under implementation,Simang-II,1,FP/AR/HYD/3591/2011,exact,both,,False
+D074,Khuitam,Under implementation,Khuitam,1,FP/AR/HYD/178835/2010,exact,both,,False
+D110,Tato-I,Under construction,Tato-I,2,FP/AR/HYD/3580/2012; FP/AR/HYD/26244/2017,exact,both,,False
+D109,Heo,Under construction,Heo,2,FP/AR/HYD/3548/2012; FP/AR/HYD/26673/2017,exact,both,,False
+D111,Keyi,Under construction,Keyi,1,FP/AR/HYD/17105/2014,exact,both,,False
+D112,Pareng,Under construction,Pareng,1,FP/AR/HYD/12888/2014,exact,both,,False
+D008,Siyom,Under implementation,Siyom,1,FP/AR/HYD/4341/2010,exact,both,,False
+,,,Phudung,1,FP/AR/HYD/17933/2012,unmatched,parivesh_only,No DHPD project with this name; not forced.,False
+D023,Yammeng,Under implementation,Yammeng,1,FP/AR/HYD/33232/2018,exact,both,,False
+D026,Nyikong,Under implementation,Nyikong,1,FP/AR/HYD/26729/2017,manual,both,Parivesh spells it 'Nyikgong'; the page uses 'Nyikong' (corrections log). Please confirm.,False
+D094,Rho,Under implementation,Rho,1,FP/AR/HYD/24848/2017,exact,both,,False
+D093,Nyukcharongchu,Under implementation,Nyukcharong Chu,1,FP/AR/HYD/24836/2017,normalised,both,Matched after ignoring spaces/punctuation.,False
+D092,New Melling,Under implementation,New Melling,1,FP/AR/HYD/24816/2017,exact,both,,False
+D103,Papum,Under implementation,Papum,1,FP/AR/HYD/41630/2019,exact,both,,False
+D113,Ressing,Under construction,Ressing,2,FP/AR/HYD/43514/2019; FP/AR/HYD/48835/2020,exact,both,,False
+D030,Kamala,Under implementation,Kamala,1,FP/AR/HYD/143872/2021,exact,both,,False
+D086,Dengzi,Under implementation,Dengzi,1,FP/AR/HYD/153202/2022,exact,both,,False
+D052,Halaipani,Under implementation,Halaipani,1,FP/AR/HYD/156579/2022,exact,both,,False
+D055,Attunli,Under implementation,Attunli,1,FP/AR/HYD/16208/2015,exact,both,,False
+D091,Mago Chu,Under implementation,Mago Chu,1,FP/AR/HYD/17213/2015,exact,both,,False
+D001,Kameng,Completed,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D002,Panyor Lower (Ranganadi Stage-I ),Completed,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D003,Pare,Completed,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D004,Dikshi,Completed,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D005,Khangtang,Completed,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D006,Siang Upper St-II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D012,Yamne Stage-I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D013,Yamne Stage-II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D014,Sippi,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D015,Pango,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D016,Jidu,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D018,Ropum,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D019,Lower Yamne Stage - I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D020,Rego,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D022,Palsi,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D024,Pitgong St-I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D027,Pitgong St-II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D028,Subansiri Upper,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D029,Oju - I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D031,Naba,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D032,Niare,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D033,Dengser,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D034,Kurung,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D035,Panyi,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D036,Sichi,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D037,Palin HEP,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D038,Pein,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D039,Siken,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D040,Pei HEP,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D041,Phurchi,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D042,Demwe Lower,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D043,Kalai-I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D044,Kalai-II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D045,Hutong- II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D046,Demwe Upper,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D047,Anjaw HEP,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D048,Raigam,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D049,Tidding-I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D050,Tidding-II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D051,Kamlang,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D053,Tenga Pani,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D056,Emini,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D057,Amulin,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D058,Mihumdon,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D059,Emra-II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D060,Emra-I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D061,Sissiri,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D062,Ithun - I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D063,Ithun - II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D064,Ashupani,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D065,Ithipani,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D067,Kameng Dam,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D068,Dinchang,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D070,Dibbin,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D071,Nafra,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D072,Utung,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D073,Pachuk- I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D075,Marjingla,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D076,Pachuk- II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D077,Para,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D078,Papu Valley,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D079,Marjingla Lower,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D080,Phanchung,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D081,Pachuk-II Lower,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D082,Lachung,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D083,Rebby,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D084,Pakke Bung -III,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D085,Sepla,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D087,Pakke Bung -IV,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D088,"Debra (1.5 MW), Dipre (6.2 MW), Ditchi (2.5 MW), Dibri (3.2 MW) HEPs",Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D089,Tawang- II,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D090,Tawang- I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D095,Jaswantgarh Stage-I,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D096,Panyor,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D097,Turu,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D098,Dardu,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D099,Par,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D100,Adum Panyor,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D101,Panyor Lepa Middle,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D102,Papumpam,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D104,Pith,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D105,Rima,Under implementation,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D106,Dibang Multipurpose,Under construction,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D107,Subansiri Lower,Under construction,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
+D108,Tato-II,Under construction,,0,,unmatched,dhpd_only,No Parivesh proposal with this name; not forced.,False
