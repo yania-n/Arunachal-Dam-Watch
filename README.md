@@ -4,10 +4,10 @@ A single-page dashboard of hydropower projects in Arunachal Pradesh: how much po
 
 This repo holds two separate dashboards, both live on GitHub Pages:
 
-| Dashboard | Link | Data |
-| --- | --- | --- |
-| **Arunachal Dam Watch** (`index.html`) | [yania-n.github.io/Arunachal-Dam-Watch/](https://yania-n.github.io/Arunachal-Dam-Watch/) | Compiled from government records and news reports |
-| **Arunachal Dam Watch II** (`v2/index.html`) | [yania-n.github.io/Arunachal-Dam-Watch/v2/](https://yania-n.github.io/Arunachal-Dam-Watch/v2/) | Official portal data only: DHPD and Parivesh |
+| Dashboard                                            | Link                                                                                        | Data                                              |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **Arunachal Dam Watch** (`index.html`)       | [yania-n.github.io/Arunachal-Dam-Watch/](https://yania-n.github.io/Arunachal-Dam-Watch/)       | Compiled from government records and news reports |
+| **Arunachal Dam Watch II** (`v2/index.html`) | [yania-n.github.io/Arunachal-Dam-Watch/v2/](https://yania-n.github.io/Arunachal-Dam-Watch/v2/) | Official portal data only: DHPD and Parivesh      |
 
 The two are kept apart on purpose: the first mixes government records with news reports, the second uses only the two official portals. Each links to the other. The old address `index_v2.html` redirects to `v2/`.
 
@@ -15,7 +15,7 @@ The rest of this file up to "Conclusions" describes the first dashboard. The sec
 
 *NOTE: Impact figures cover only what was reported, so treat them as a minimum.*
 
-## Where the data comes from
+## First Dashboard: Where the data comes from
 
 The data is compiled from government records (CEA, PIB, CERC, NHPC, MoEFCC clearance papers) and news reports up to 3 November 2026. Every figure links back to its source in the Sources section at the bottom of the dashboard.
 
@@ -30,7 +30,7 @@ The data lives in four spreadsheets in the `data/` folder. The page reads them w
 
 `arunachal-dam-watch-data.xlsx` is a backup copy of the same data, with a summary tab and a glossary of every field.
 
-## Summary of the dashboard
+## Summary: (`index.html`)
 
 ### What exists today
 
@@ -62,7 +62,7 @@ Every finished project took much longer and cost much more than planned:
   - **Kameng:** 1 event (a site failure)
   - **Pare:** none recorded
 
-## Conclusions
+## Conclusions: From first dashboard
 
 **Quality and state of the projects:** the record is poor. None of the large projects finished on time or on budget. The biggest project, Subansiri Lower, had repeated wall collapses, landslides, a sinkhole and floods during construction. In 2023 the government treated one of these as a major dam failure under the Dam Safety Act. The projects do work once built, but building them in Arunachal's steep, landslide-prone hills has been much harder than the plans assumed.
 
@@ -99,25 +99,25 @@ The page is written for readers who do not know the data. The first tab, **The s
 
 `python build_official_data.py` (needs `pandas` and `openpyxl`) reads the two Excel files and rewrites `data/official/`:
 
-| File | Contents |
-| --- | --- |
-| `dhpd_projects.csv` | 113 DHPD projects with status (rebuilt from the original downloads in `DHPD/data&exploration/`), capacity, developer, district, basin |
-| `parivesh_proposals.csv` | 36 proposals, numeric areas, normalised status and status group, refiling role |
-| `match_table.csv` | DHPD project to Parivesh proposals, with `exact` / `normalised` / `manual` match method |
-| `inconsistencies.csv` | Every difference found, groups A to F |
-| `corrections_log.csv` | The only changes made, plus Yammeng and Halaipani marked "not changed" |
-| `summary.json` | Headline numbers read by the page |
+| File                       | Contents                                                                                                                                |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `dhpd_projects.csv`      | 113 DHPD projects with status (rebuilt from the original downloads in `DHPD/data&exploration/`), capacity, developer, district, basin |
+| `parivesh_proposals.csv` | 36 proposals, numeric areas, normalised status and status group, refiling role                                                          |
+| `match_table.csv`        | DHPD project to Parivesh proposals, with `exact` / `normalised` / `manual` match method                                           |
+| `inconsistencies.csv`    | Every difference found, groups A to F                                                                                                   |
+| `corrections_log.csv`    | The only changes made, plus Yammeng and Halaipani marked "not changed"                                                                  |
+| `summary.json`           | Headline numbers read by the page                                                                                                       |
 
 The script prints a reconciliation table (CSV totals against the source Excel sums). The page reads the CSVs with `fetch`, so serve it over http, not from a local file. For local viewing run `python -m http.server 8000 --bind 127.0.0.1` in the repo and open `http://localhost:8000/v2/` (do not open `http://[::]:8000`).
 
 ### Folders for the second dashboard
 
-| Folder | Contents |
-| --- | --- |
-| `DHPD/` | Hydropower project data from the DHPD portal ([dhpdap.online](https://dhpdap.online/)); `all_projects.xlsx` is the main file |
-| `parivesh/` | Forest clearance proposals from the Parivesh portal ([forestsclearance.nic.in](https://forestsclearance.nic.in/FCDashboard/FCPublicDashboard.aspx)); `hydel_only_merged_final.xlsx` is the main file |
-| `data/official/` | CSV and JSON files written by the build script and read by the page |
-| `v2/` | The page itself (`v2/index.html`) |
+| Folder             | Contents                                                                                                                                                                                            |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DHPD/`          | Hydropower project data from the DHPD portal ([dhpdap.online](https://dhpdap.online/)); `all_projects.xlsx` is the main file                                                                         |
+| `parivesh/`      | Forest clearance proposals from the Parivesh portal ([forestsclearance.nic.in](https://forestsclearance.nic.in/FCDashboard/FCPublicDashboard.aspx)); `hydel_only_merged_final.xlsx` is the main file |
+| `data/official/` | CSV and JSON files written by the build script and read by the page                                                                                                                                 |
+| `v2/`            | The page itself (`v2/index.html`)                                                                                                                                                                 |
 
 ### Definitions
 
