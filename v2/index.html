@@ -48,7 +48,7 @@
   h3{font-size:17px;font-weight:650;margin:30px 0 6px}
   p{margin:0 0 14px;max-width:38em}
   p.big{font-size:19px}
-  .mute{color:var(--mute)}
+  .mute{color:var(--mute)} .small{font-size:14px}
   .note{font-size:14px;color:var(--mute);margin:8px 0 0;max-width:46em}
   .tip{cursor:help;text-decoration:underline dotted var(--grey);text-decoration-thickness:1px;text-underline-offset:4px}
   #tip{position:absolute;z-index:30;max-width:290px;padding:8px 11px;background:var(--fg);color:var(--bg);font-size:13.5px;line-height:1.4;border-radius:2px;pointer-events:none;display:none}
@@ -180,6 +180,7 @@
   <button role="tab" id="t-story"    aria-controls="p-story"    aria-selected="true">The story</button>
   <button role="tab" id="t-forest"   aria-controls="p-forest"   aria-selected="false">Forest requests</button>
   <button role="tab" id="t-dams"     aria-controls="p-dams"     aria-selected="false">The dams</button>
+  <button role="tab" id="t-size"     aria-controls="p-size"     aria-selected="false">Large and small dams</button>
   <button role="tab" id="t-disagree" aria-controls="p-disagree" aria-selected="false">Where the two sites disagree</button>
   <button role="tab" id="t-method"   aria-controls="p-method"   aria-selected="false">How we did this</button>
 </nav>
@@ -307,6 +308,32 @@
     <p class="note" id="dam-n"></p>
     <div class="tblwrap" id="t-dams-tbl"></div>
     <p class="note">&dagger; DHPD does not give a basin for these dams. The basin was worked out from the district by a rule.</p>
+  </section>
+</div>
+
+<!-- ================= TAB: LARGE AND SMALL ================= -->
+<div class="panel" id="p-size" role="tabpanel" aria-labelledby="t-size" hidden>
+  <section class="chapter">
+    <div class="kicker"><span class="d">DHPD</span> size · <span class="p">Parivesh</span> forest</div>
+    <h2>Large dams and small dams</h2>
+    <p class="big" id="sz-intro"></p>
+
+    <h3 class="tip" tabindex="0" data-tip="How many dams on DHPD are large (over 25 MW) and how many are small (25 MW or less), with their combined power.">1. How many large and small dams</h3>
+    <div class="figs" id="sz-figs1"></div>
+    <p class="note" id="sz-note1"></p>
+
+    <h3 class="tip" tabindex="0" data-tip="For each size, how many dams have at least one forest request on Parivesh.">2. Dams that have asked for forest clearance</h3>
+    <div class="figs" id="sz-figs2"></div>
+    <div id="sz-bars2"></div>
+    <div class="legend" id="sz-lg2"></div>
+    <div class="callout" id="sz-flag" hidden></div>
+    <p class="note" id="sz-note2"></p>
+
+    <h3 class="tip" tabindex="0" data-tip="Forest area asked for by large and small dams, coloured by the decision on each request.">3. Forest area asked for</h3>
+    <div class="figs" id="sz-figs3"></div>
+    <div id="sz-bars3"></div>
+    <div class="legend" id="sz-lg3"></div>
+    <p class="note" id="sz-note3"></p>
   </section>
 </div>
 
@@ -670,6 +697,41 @@
     }
     ["q", "f-status", "f-basin", "f-dist", "f-cov"].forEach(i => $(i).addEventListener(i === "q" ? "input" : "change", drawDams)); drawDams();
 
+    /* --- tab: large and small dams (size from DHPD capacity only) --- */
+    {
+      const LIM = 25, kind = mw => mw === null || mw === undefined ? "unk" : mw > LIM ? "large" : "small";
+      const KN = { large: "Large dams", small: "Small dams", unk: "Size unknown" };
+      const KC = { large: ["#1f5f8b", "#1f5f8b"], small: ["#7aa5c4", "#1f5f8b"], unk: ["#e6e6e1", "#6b6b66"] };
+      const K = ["large", "small"], A = ["large", "small", "unk"];
+      const nd = {}, mwSum = {}, np = {}, ha = {}, byG = {};
+      A.forEach(k => { nd[k] = 0; mwSum[k] = 0; np[k] = 0; ha[k] = 0; byG[k] = {}; GROUPS.forEach(g => byG[k][g] = 0); });
+      dh.forEach(d => { const k = kind(d.mw); nd[k]++; mwSum[k] += d.mw; });
+      projects.forEach(p => { const k = kind(p.mw); np[k]++; ha[k] += p.area; GROUPS.forEach(g => byG[k][g] += p.by[g]); });
+      const haAll = ha.large + ha.small + ha.unk, npAll = np.large + np.small + np.unk;
+      $("sz-intro").innerHTML = `A dam is <b>large</b> if its power capacity is over ${LIM} MW and <b>small</b> if it is ${LIM} MW or less. Capacity comes from ${D}. ${nd.large} of the ${dh.length} dams on the list are large, and they hold ${pct(mwSum.large, mwSum.large + mwSum.small)}% of the power.`;
+      $("sz-figs1").innerHTML = fig(nd.large, `large dams, over ${LIM} MW<br>${nf(mwSum.large)} MW in total (${D})`, "dd") + fig(nd.small, `small dams, ${LIM} MW or less<br>${nf(mwSum.small, 1)} MW in total (${D})`, "dd") + fig(dh.length, `dams on the ${D} list<br>${nf(mwSum.large + mwSum.small)} MW in total`, "dd");
+      const at = dh.filter(d => d.mw === LIM).map(d => esc(d.project)), grp = dh.filter(d => d.project.indexOf(",") >= 0);
+      $("sz-note1").innerHTML = (at.length ? `Exactly ${LIM} MW counts as small (${at.join(", ")}). ` : "") + (grp.length ? `${D} lists ${grp.length === 1 ? "one row that holds" : grp.length + " rows that hold"} several small dams together (${grp.map(d => esc(d.project.split(" (")[0]) + " and others").join("; ")}); each row is counted once here.` : "");
+      $("sz-figs2").innerHTML = fig(np.large, `large dams with a forest request<br>of ${nd.large} large dams (${pct(np.large, nd.large)}%)`, "pp") + fig(np.small, `small dams with a forest request<br>of ${nd.small} small dams (${pct(np.small, nd.small)}%)`, "pp") + fig(npAll, `dam projects with a forest request in total${np.unk ? `<br>${np.unk} of them are not on ${D}, so their size is unknown` : ""}`, "pp");
+      stackRows($("sz-bars2"), K.map(k => ({ label: KN[k], sub: nd[k] + " dams", total: nd[k], valueText: np[k] + " of " + nd[k],
+        segs: [{ v: np[k], c: GC.cleared, t: `With a forest request: ${np[k]}` }, { v: nd[k] - np[k], c: GC.none, t: `No forest request on ${P}: ${nd[k] - np[k]}` }], aria: `${KN[k]}: ${np[k]} of ${nd[k]} have a forest request` })));
+      $("sz-lg2").innerHTML = legend([{ c: GC.cleared, t: "Has a forest request" }, { c: GC.none, t: "No forest request found" }]);
+      const rej = projects.filter(p => p.d && p.rows.every(r => r.status_group === "rejected"));
+      if (rej.length) {
+        const rk = k => rej.filter(p => kind(p.mw) === k).length, rha = rej.reduce((t, p) => t + p.area, 0), rs = {};
+        rej.forEach(p => rs[SL[p.d.dhpd_status]] = (rs[SL[p.d.dhpd_status]] || 0) + 1);
+        $("sz-flag").hidden = false;
+        $("sz-flag").innerHTML = `<p><b>${rej.length} of these ${np.large + np.small} dams have only turned-down requests.</b> Every request we can see for them on ${P} was rejected, returned or withdrawn (${rk("large")} large, ${rk("small")} small, ${nf(rha, 1)} ha in total), yet ${D} still lists them: ${Object.keys(rs).map(k => rs[k] + " as " + esc(k)).join(", ")}. A turned-down request normally means the dam cannot go ahead.</p>` +
+          `<p class="small mute">This does not show a dam is being built without permission. A later request may have been filed after ${P}'s 28 June 2022 cutoff, which this data cannot show. <a href="#grp-C" data-tab="disagree" data-open="grp-C">See the list under “Where the two sites disagree”</a>.</p>`;
+      }
+      $("sz-note2").innerHTML = `A dam counts once, however many requests it filed. Projects found only on ${P} have no capacity on ${D}, so we cannot say whether they are large or small.`;
+      $("sz-figs3").innerHTML = fig(nf(ha.large, 1) + " ha", `asked for by large dams<br>${pct(ha.large, haAll)}% of the total`, "pp") + fig(nf(ha.small, 1) + " ha", `asked for by small dams<br>${pct(ha.small, haAll)}% of the total`, "pp") + fig(nf(haAll, 1) + " ha", `asked for in total, all ${npAll} projects${ha.unk ? `<br>including ${nf(ha.unk, 1)} ha for dams of unknown size` : ""}`, "pp");
+      stackRows($("sz-bars3"), A.filter(k => k !== "unk" || ha.unk > 0).map(k => ({ label: KN[k], sub: np[k] + " projects", total: ha[k], valueText: nf(ha[k], 1) + " ha",
+        segs: GROUPS.map(g => ({ v: byG[k][g], c: GC[g], t: `${GN[g]}: ${nf(byG[k][g], 1)} ha` })), aria: `${KN[k]}: ${nf(ha[k], 1)} hectares asked for` })));
+      $("sz-lg3").innerHTML = legend(GROUPS.map(g => ({ c: GC[g], t: GN[g] })));
+      $("sz-note3").innerHTML = `Forest area is from ${P}. Each project is counted once, even if it applied more than once.`;
+    }
+
     /* --- tab 4 --- */
     $("only-note").innerHTML = `A dam counts as missing only after matching by name (see <a href="../data/official/match_table.csv">match_table.csv</a>). <b class="num">${both.length}</b> dams were matched, including ${S.coverage.manual_matches} by hand.`;
     const t1rows = dOnly.map(m => damRow(dById[m.dhpd_id]));
@@ -752,7 +814,7 @@
 
   /* ---------- tabs ---------- */
   function setupTabs() {
-    const TABS = ["story", "forest", "dams", "disagree", "method"];
+    const TABS = ["story", "forest", "dams", "size", "disagree", "method"];
     function show(id, opts) {
       opts = opts || {};
       TABS.forEach(t => { $("p-" + t).hidden = t !== id; const b = $("t-" + t); b.setAttribute("aria-selected", t === id); b.tabIndex = t === id ? 0 : -1; });
