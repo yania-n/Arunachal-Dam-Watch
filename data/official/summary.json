@@ -20,26 +20,26 @@
     }
   },
   "parivesh": {
-    "proposals": 36,
-    "distinct_projects": 31,
-    "raw_total_ha": 14285.271,
-    "project_total_ha": 14226.095,
+    "proposals": 32,
+    "distinct_projects": 28,
+    "raw_total_ha": 14147.271,
+    "project_total_ha": 14127.795,
     "raw_by_group": {
       "cleared": {
         "ha": 6598.37,
         "proposals": 8
       },
       "in_principle": {
-        "ha": 223.995,
-        "proposals": 8
+        "ha": 191.255,
+        "proposals": 7
       },
       "in_progress": {
-        "ha": 5257.33,
-        "proposals": 12
+        "ha": 5231.47,
+        "proposals": 11
       },
       "rejected": {
-        "ha": 2205.576,
-        "proposals": 8
+        "ha": 2126.176,
+        "proposals": 6
       }
     },
     "project_by_group": {
@@ -48,25 +48,19 @@
         "proposals_counted": 8
       },
       "in_principle": {
-        "ha": 205.435,
-        "proposals_counted": 7
+        "ha": 172.695,
+        "proposals_counted": 6
       },
       "in_progress": {
-        "ha": 5257.33,
-        "proposals_counted": 12
+        "ha": 5231.47,
+        "proposals_counted": 11
       },
       "rejected": {
-        "ha": 2164.96,
-        "proposals_counted": 6
+        "ha": 2125.26,
+        "proposals_counted": 5
       }
     },
     "superseded": [
-      {
-        "proposal_no": "FP/AR/HYD/4233/2012",
-        "project": "Tagurshit",
-        "area_ha": 39.7,
-        "superseded_by": "FP/AR/HYD/16697/2015"
-      },
       {
         "proposal_no": "FP/AR/HYD/4133/2012",
         "project": "Kangtangshiri",
@@ -79,7 +73,39 @@
         "area_ha": 0.916,
         "superseded_by": "FP/AR/HYD/48835/2020"
       }
-    ]
+    ],
+    "all": {
+      "proposals": 36,
+      "distinct_projects": 31,
+      "raw_total_ha": 14285.271,
+      "project_total_ha": 14226.095,
+      "project_by_group": {
+        "cleared": {
+          "ha": 6598.37,
+          "proposals_counted": 8
+        },
+        "in_principle": {
+          "ha": 205.435,
+          "proposals_counted": 7
+        },
+        "in_progress": {
+          "ha": 5257.33,
+          "proposals_counted": 12
+        },
+        "rejected": {
+          "ha": 2164.96,
+          "proposals_counted": 6
+        }
+      }
+    },
+    "not_on_dhpd": {
+      "projects": [
+        "Phudung",
+        "Simang-I",
+        "Tagurshit"
+      ],
+      "project_total_ha": 98.3
+    }
   },
   "coverage": {
     "matched": 28,
@@ -166,19 +192,6 @@
       "in_principle": 0.0,
       "in_progress": 157.53,
       "rejected": 0.0
-    },
-    {
-      "label": "Not in DHPD",
-      "projects": [
-        "Phudung",
-        "Simang-I",
-        "Tagurshit"
-      ],
-      "applied_ha": 98.3,
-      "cleared": 0.0,
-      "in_principle": 32.74,
-      "in_progress": 25.86,
-      "rejected": 39.7
     },
     {
       "label": "Lohit",
@@ -285,19 +298,6 @@
       "in_principle": 91.7,
       "in_progress": 18.56,
       "rejected": 0.0
-    },
-    {
-      "label": "Not in DHPD",
-      "projects": [
-        "Phudung",
-        "Simang-I",
-        "Tagurshit"
-      ],
-      "applied_ha": 98.3,
-      "cleared": 0.0,
-      "in_principle": 32.74,
-      "in_progress": 25.86,
-      "rejected": 39.7
     },
     {
       "label": "Papum Pare",

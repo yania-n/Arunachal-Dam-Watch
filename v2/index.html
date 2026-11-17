@@ -240,7 +240,7 @@
     <h3 class="tip" tabindex="0" data-tip="Forest area asked for, grouped by the river basin DHPD gives for each dam, coloured by the decision.">Forest requested, by river basin</h3>
     <div id="basin1"></div>
     <div class="legend" id="lg5"></div>
-    <p class="note">Basins are as listed on <span class="d">DHPD</span>. Three projects that are on Parivesh but not on DHPD have no basin on DHPD, so they sit under "Not on the DHPD list".</p>
+    <p class="note">Basins are as listed on <span class="d">DHPD</span>. Only projects that are on DHPD are included here.</p>
   </section>
 
   <section class="chapter" id="ch6">
@@ -271,6 +271,7 @@
   <section class="chapter">
     <div class="kicker"><span class="p">Parivesh</span> · hectares</div>
     <h2>Forest requests in detail</h2>
+    <div class="callout" id="fr-scope"></div>
     <h3 class="tip" tabindex="0" data-tip="What each decision label means, and which Parivesh statuses it includes.">What the four decisions mean</h3>
     <dl class="gl" id="defs"></dl>
 
@@ -568,14 +569,14 @@
     const PV = S.parivesh, tot = PV.project_total_ha;
     const both = mt.filter(m => m.side === "both"), dOnly = mt.filter(m => m.side === "dhpd_only"), pOnly = mt.filter(m => m.side === "parivesh_only");
     const pFlag = pOnly.filter(m => m.expected_absence !== "True"), pExp = pOnly.filter(m => m.expected_absence === "True");
-    const expNames = pExp.map(m => m.parivesh_project), expHa = pv.filter(p => p.counted && expNames.indexOf(p.project) >= 0).reduce((t, p) => t + (p.area || 0), 0);
-    if (pExp.length) $("exp-note").textContent = " Includes " + nf(expHa, 1) + " ha for " + (pExp.length === 1 ? "one project" : pExp.length + " projects") + " that " + (pExp.length === 1 ? "was" : "were") + " rejected and " + (pExp.length === 1 ? "is" : "are") + " not on DHPD.";
+    $("exp-note").textContent = pOnly.length ? " " + pOnly.length + " " + (pOnly.length === 1 ? "project" : "projects") + " found only on Parivesh (" + S.parivesh.not_on_dhpd.projects.join(", ") + ", " + nf(S.parivesh.not_on_dhpd.project_total_ha, 1) + " ha in all) " + (pOnly.length === 1 ? "is" : "are") + " not counted, because " + (pOnly.length === 1 ? "it is" : "they are") + " not on the DHPD list." : "";
     const dById = {}; dh.forEach(d => dById[d.dhpd_id] = d);
     const mByD = {}, dByP = {}; both.forEach(m => { mByD[m.dhpd_id] = m; dByP[m.parivesh_project] = dById[m.dhpd_id]; });
 
     /* projects from Parivesh, each counted once */
     const pm = new Map();
     pv.forEach(p => {
+      if (!p.dhpd_id) return;
       if (!pm.has(p.project)) pm.set(p.project, { name: p.project, rows: [], area: 0, by: { cleared: 0, in_principle: 0, in_progress: 0, rejected: 0 } });
       const o = pm.get(p.project); o.rows.push(p);
       if (p.counted && p.area) { o.area += p.area; o.by[p.status_group] += p.area; }
@@ -588,7 +589,7 @@
     const bestOfD = d => { const m = mByD[d.dhpd_id]; return m && pm.get(m.parivesh_project) ? pm.get(m.parivesh_project).best : null; };
     const G = g => PV.project_by_group[g];
     const byArea = (g) => projects.filter(p => p.by[g] > 0).sort((a, b) => b.by[g] - a.by[g])[0];
-    const mwTxt = p => p.mw ? ` (${nf(p.mw)} MW on DHPD)` : "";
+    const mwTxt = p => ` (${nf(p.mw)} MW on DHPD)`;
 
     const stat = S.dhpd.by_status, done = stat["Completed"], bld = stat["Under construction"], impl = stat["Under implementation"];
     const conf = inc.filter(r => r.group === "C");
@@ -617,7 +618,7 @@
     $("ch2h").textContent = `${PV.distinct_projects} dam projects have asked for ${nf(tot)} hectares of forest`;
     $("figs2").innerHTML = fig(nf(tot) + " ha", "forest area asked for (Parivesh)", "pp") +
       fig("≈ " + nf(Math.round(tot / 0.714 / 100) * 100), "football pitches, roughly", "pp") +
-      fig(PV.distinct_projects, `dam projects asked. ${both.length} are on the DHPD list, ${pOnly.length} are not`, "pp");
+      fig(PV.distinct_projects, `dam projects asked, out of ${dh.length} dams on the DHPD list`, "pp");
 
     /* --- ch3 --- */
     $("ch3h").textContent = `About ${pct(G("cleared").ha, tot)}% of the forest asked for has been fully approved`;
@@ -631,7 +632,7 @@
 
     /* --- ch4 --- */
     const segsOf = p => GROUPS.map(g => ({ v: p.by[g], c: GC[g], t: `${GN[g]}: ${nf(p.by[g], 1)} ha` }));
-    const rowOf = p => ({ label: esc(p.name), sub: p.mw ? nf(p.mw) + " MW" : "not on the DHPD list", total: p.area, valueText: nf(p.area, p.area < 10 ? 1 : 0) + " ha", segs: segsOf(p), aria: `${p.name}: ${nf(p.area, 1)} hectares` });
+    const rowOf = p => ({ label: esc(p.name), sub: nf(p.mw) + " MW", total: p.area, valueText: nf(p.area, p.area < 10 ? 1 : 0) + " ha", segs: segsOf(p), aria: `${p.name}: ${nf(p.area, 1)} hectares` });
     const top10 = projects.slice().sort((a, b) => b.area - a.area).slice(0, 10);
     document.querySelector("#ch4 p.big").textContent = `The ten biggest requests make up ${pct(top10.reduce((s, p) => s + p.area, 0), tot)}% of the forest area asked for. The colour shows what happened to each one.`;
     stackRows($("top10"), top10.map(rowOf));
@@ -640,11 +641,11 @@
 
     /* --- ch5 + tab 2 basin/district --- */
     const areaRows = arr => arr.map(r => ({
-      label: r.label === "Not in DHPD" ? "Not on the DHPD list" : esc(r.label), sub: r.projects.length + (r.projects.length === 1 ? " dam: " : " dams: ") + r.projects.join(", "),
+      label: esc(r.label), sub: r.projects.length + (r.projects.length === 1 ? " dam: " : " dams: ") + r.projects.join(", "),
       total: r.applied_ha, valueText: nf(r.applied_ha, r.applied_ha < 10 ? 1 : 0) + " ha",
       segs: GROUPS.map(g => ({ v: r[g], c: GC[g], t: `${GN[g]}: ${nf(r[g], 1)} ha` })), aria: `${r.label}: ${nf(r.applied_ha, 1)} hectares`
     }));
-    const realB = S.area_by_basin.filter(r => r.label !== "Not in DHPD").sort((a, b) => b.applied_ha - a.applied_ha)[0];
+    const realB = S.area_by_basin.slice().sort((a, b) => b.applied_ha - a.applied_ha)[0];
     $("ch5h").textContent = `The ${realB.label} river basin holds ${pct(realB.applied_ha, tot)}% of the forest requested`;
     stackRows($("basin1"), areaRows(S.area_by_basin)); stackRows($("basin2"), areaRows(S.area_by_basin)); stackRows($("district2"), areaRows(S.area_by_district));
 
@@ -661,11 +662,13 @@
     const finds = (a, b) => [
       find(dOnly.length, `dams have no forest record on Parivesh`, `Parivesh only covers requests filed before June 2022, so some may not have applied yet. Missing from one site does not tell us which site is incomplete.`, "disagree", "grp-A", "See the list"),
       find(conf.length, `dams are still on the list, but their forest request was turned down`, conf.map(r => esc(r.project)).join(", ") + ".", "disagree", "grp-C", "See why this is flagged"),
-      find(pFlag.length, `projects have a live forest request on Parivesh but are not on the DHPD list`, pFlag.map(m => esc(m.parivesh_project)).join(", ") + ". Their requests are approved in principle or still waiting.", "disagree", "grp-A", "See the list"),
+      find(pFlag.length, `projects have a live forest request on Parivesh but are not on the DHPD list`, pFlag.map(m => esc(m.parivesh_project)).join(", ") + ". Their requests are approved in principle or still waiting. They are not counted in the forest figures.", "disagree", "grp-A", "See the list"),
       find(cB.length, `smaller differences in details`, `Capacity differs for ${nB("Capacity")} dams, district for ${nB("District")}, developer name for ${nB("Developer")} and spelling for ${nB("Project name")}.`, "disagree", "grp-B", "See the differences")
     ].join("");
     $("finds").innerHTML = finds(); $("finds2").innerHTML = finds();
 
+    $("fr-scope").innerHTML = `<p><b>These numbers cover only the ${projects.length} dams on the ${D} list that have a forest request on ${P}.</b> They do not include the ${dOnly.length} dams on the ${D} list for which no forest request was found, so they are not totals for all ${dh.length} dams.` +
+      (pOnly.length ? ` ${pOnly.length} projects found only on ${P} (${esc(S.parivesh.not_on_dhpd.projects.join(", "))}) are not counted either. See the "Where the two sites disagree" tab.` : "") + `</p>`;
     /* --- tab 2: definitions + project table --- */
     $("defs").innerHTML = GROUPS.map(g => `<dt>${chip(GC[g])}${GN[g]} · <span class="num">${nf(G(g).ha, 1)} ha</span></dt><dd>${GD[g]} <i>Parivesh statuses: ${GS[g]}.</i></dd>`).join("");
     const zero = v => v ? nf(v, 2) : "–";
@@ -699,20 +702,19 @@
 
     /* --- tab: large and small dams (size from DHPD capacity only) --- */
     {
-      const LIM = 25, kind = mw => mw === null || mw === undefined ? "unk" : mw > LIM ? "large" : "small";
-      const KN = { large: "Large dams", small: "Small dams", unk: "Size unknown" };
-      const KC = { large: ["#1f5f8b", "#1f5f8b"], small: ["#7aa5c4", "#1f5f8b"], unk: ["#e6e6e1", "#6b6b66"] };
-      const K = ["large", "small"], A = ["large", "small", "unk"];
+      const LIM = 25, kind = mw => mw > LIM ? "large" : "small";
+      const KN = { large: "Large dams", small: "Small dams" };
+      const K = ["large", "small"];
       const nd = {}, mwSum = {}, np = {}, ha = {}, byG = {};
-      A.forEach(k => { nd[k] = 0; mwSum[k] = 0; np[k] = 0; ha[k] = 0; byG[k] = {}; GROUPS.forEach(g => byG[k][g] = 0); });
+      K.forEach(k => { nd[k] = 0; mwSum[k] = 0; np[k] = 0; ha[k] = 0; byG[k] = {}; GROUPS.forEach(g => byG[k][g] = 0); });
       dh.forEach(d => { const k = kind(d.mw); nd[k]++; mwSum[k] += d.mw; });
       projects.forEach(p => { const k = kind(p.mw); np[k]++; ha[k] += p.area; GROUPS.forEach(g => byG[k][g] += p.by[g]); });
-      const haAll = ha.large + ha.small + ha.unk, npAll = np.large + np.small + np.unk;
+      const haAll = ha.large + ha.small, npAll = np.large + np.small;
       $("sz-intro").innerHTML = `A dam is <b>large</b> if its power capacity is over ${LIM} MW and <b>small</b> if it is ${LIM} MW or less. Capacity comes from ${D}. ${nd.large} of the ${dh.length} dams on the list are large, and they hold ${pct(mwSum.large, mwSum.large + mwSum.small)}% of the power.`;
       $("sz-figs1").innerHTML = fig(nd.large, `large dams, over ${LIM} MW<br>${nf(mwSum.large)} MW in total (${D})`, "dd") + fig(nd.small, `small dams, ${LIM} MW or less<br>${nf(mwSum.small, 1)} MW in total (${D})`, "dd") + fig(dh.length, `dams on the ${D} list<br>${nf(mwSum.large + mwSum.small)} MW in total`, "dd");
       const at = dh.filter(d => d.mw === LIM).map(d => esc(d.project)), grp = dh.filter(d => d.project.indexOf(",") >= 0);
       $("sz-note1").innerHTML = (at.length ? `Exactly ${LIM} MW counts as small (${at.join(", ")}). ` : "") + (grp.length ? `${D} lists ${grp.length === 1 ? "one row that holds" : grp.length + " rows that hold"} several small dams together (${grp.map(d => esc(d.project.split(" (")[0]) + " and others").join("; ")}); each row is counted once here.` : "");
-      $("sz-figs2").innerHTML = fig(np.large, `large dams with a forest request<br>of ${nd.large} large dams (${pct(np.large, nd.large)}%)`, "pp") + fig(np.small, `small dams with a forest request<br>of ${nd.small} small dams (${pct(np.small, nd.small)}%)`, "pp") + fig(npAll, `dam projects with a forest request in total${np.unk ? `<br>${np.unk} of them are not on ${D}, so their size is unknown` : ""}`, "pp");
+      $("sz-figs2").innerHTML = fig(np.large, `large dams with a forest request<br>of ${nd.large} large dams (${pct(np.large, nd.large)}%)`, "pp") + fig(np.small, `small dams with a forest request<br>of ${nd.small} small dams (${pct(np.small, nd.small)}%)`, "pp") + fig(npAll, `dam projects with a forest request in total<br>of ${dh.length} dams on the ${D} list (${pct(npAll, dh.length)}%)`, "pp");
       stackRows($("sz-bars2"), K.map(k => ({ label: KN[k], sub: nd[k] + " dams", total: nd[k], valueText: np[k] + " of " + nd[k],
         segs: [{ v: np[k], c: GC.cleared, t: `With a forest request: ${np[k]}` }, { v: nd[k] - np[k], c: GC.none, t: `No forest request on ${P}: ${nd[k] - np[k]}` }], aria: `${KN[k]}: ${np[k]} of ${nd[k]} have a forest request` })));
       $("sz-lg2").innerHTML = legend([{ c: GC.cleared, t: "Has a forest request" }, { c: GC.none, t: "No forest request found" }]);
@@ -724,9 +726,9 @@
         $("sz-flag").innerHTML = `<p><b>${rej.length} of these ${np.large + np.small} dams have only turned-down requests.</b> Every request we can see for them on ${P} was rejected, returned or withdrawn (${rk("large")} large, ${rk("small")} small, ${nf(rha, 1)} ha in total), yet ${D} still lists them: ${Object.keys(rs).map(k => rs[k] + " as " + esc(k)).join(", ")}. A turned-down request normally means the dam cannot go ahead.</p>` +
           `<p class="small mute">This does not show a dam is being built without permission. A later request may have been filed after ${P}'s 28 June 2022 cutoff, which this data cannot show. <a href="#grp-C" data-tab="disagree" data-open="grp-C">See the list under “Where the two sites disagree”</a>.</p>`;
       }
-      $("sz-note2").innerHTML = `A dam counts once, however many requests it filed. Projects found only on ${P} have no capacity on ${D}, so we cannot say whether they are large or small.`;
-      $("sz-figs3").innerHTML = fig(nf(ha.large, 1) + " ha", `asked for by large dams<br>${pct(ha.large, haAll)}% of the total`, "pp") + fig(nf(ha.small, 1) + " ha", `asked for by small dams<br>${pct(ha.small, haAll)}% of the total`, "pp") + fig(nf(haAll, 1) + " ha", `asked for in total, all ${npAll} projects${ha.unk ? `<br>including ${nf(ha.unk, 1)} ha for dams of unknown size` : ""}`, "pp");
-      stackRows($("sz-bars3"), A.filter(k => k !== "unk" || ha.unk > 0).map(k => ({ label: KN[k], sub: np[k] + " projects", total: ha[k], valueText: nf(ha[k], 1) + " ha",
+      $("sz-note2").innerHTML = `A dam counts once, however many requests it filed.`;
+      $("sz-figs3").innerHTML = fig(nf(ha.large, 1) + " ha", `asked for by large dams<br>${pct(ha.large, haAll)}% of the total`, "pp") + fig(nf(ha.small, 1) + " ha", `asked for by small dams<br>${pct(ha.small, haAll)}% of the total`, "pp") + fig(nf(haAll, 1) + " ha", `asked for in total, all ${npAll} projects`, "pp");
+      stackRows($("sz-bars3"), K.map(k => ({ label: KN[k], sub: np[k] + " projects", total: ha[k], valueText: nf(ha[k], 1) + " ha",
         segs: GROUPS.map(g => ({ v: byG[k][g], c: GC[g], t: `${GN[g]}: ${nf(byG[k][g], 1)} ha` })), aria: `${KN[k]}: ${nf(ha[k], 1)} hectares asked for` })));
       $("sz-lg3").innerHTML = legend(GROUPS.map(g => ({ c: GC[g], t: GN[g] })));
       $("sz-note3").innerHTML = `Forest area is from ${P}. Each project is counted once, even if it applied more than once.`;
@@ -744,8 +746,8 @@
       table($("t1"), [{ k: "project", h: "Dam" }, { k: "mw", h: "Capacity (MW, DHPD)", n: 1, f: r => nf(r.mw, 1) }, { k: "district", h: "District (DHPD)" }, { k: "basin", h: "Basin (DHPD)" }, { k: "dev", h: "Developer (DHPD)" }, { k: "status", h: "Progress (DHPD)", f: r => esc(SL[r.status]) }], rows, { sortKey: "mw", sortDir: "desc" });
     }
     ["t1-filter", "t1-basin", "t1-dist"].forEach(i => $(i).addEventListener("change", drawT1)); drawT1();
-    $("t2-count").innerHTML = `<b class="num">${pFlag.length}</b> projects with a live forest request on ${P} (approved in principle or still waiting) and no entry on ${D}.` + (pExp.length ? ` <span class="mute">Not listed: ${pExp.map(m => esc(m.parivesh_project)).join(", ")}. Every request for ${pExp.length === 1 ? "it was" : "them was"} turned down, so ${pExp.length === 1 ? "it is" : "they are"} not expected on DHPD.</span>` : "");
-    const t2rows = []; pFlag.forEach(m => (pm.get(m.parivesh_project) || { rows: [] }).rows.forEach(p => t2rows.push({ project: p.project, no: p.proposal_no, ha: p.area, grp: GN[p.status_group] + " (" + p.status + ")", ua: p.user_agency, dist: p.district || (p.district_in_proposal_text ? p.district_in_proposal_text + " (from proposal text)" : "not available") })));
+    $("t2-count").innerHTML = `<b class="num">${pFlag.length}</b> projects with a live forest request on ${P} (approved in principle or still waiting) and no entry on ${D}. Their forest area is not counted in the numbers on the other tabs.` + (pExp.length ? ` <span class="mute">Not listed: ${pExp.map(m => esc(m.parivesh_project)).join(", ")}. Every request for ${pExp.length === 1 ? "it was" : "them was"} turned down, so ${pExp.length === 1 ? "it is" : "they are"} not expected on DHPD.</span>` : "");
+    const t2rows = []; pFlag.forEach(m => pv.filter(r => r.project === m.parivesh_project).forEach(p => t2rows.push({ project: p.project, no: p.proposal_no, ha: p.area, grp: GN[p.status_group] + " (" + p.status + ")", ua: p.user_agency, dist: p.district || (p.district_in_proposal_text ? p.district_in_proposal_text + " (from proposal text)" : "not available") })));
     table($("t2"), [{ k: "project", h: "Project" }, { k: "no", h: "Proposal no." }, { k: "ha", h: "Forest asked (ha, Parivesh)", n: 1, f: r => nf(r.ha, 3) }, { k: "grp", h: "Decision (Parivesh)" }, { k: "ua", h: "Applicant (Parivesh)" }, { k: "dist", h: "District (Parivesh)" }], t2rows, { sortKey: "ha", sortDir: "desc" });
 
     const IG = {
@@ -790,11 +792,12 @@
     $("method").innerHTML =
       `<h3>Sources</h3><ul class="plain">` +
       `<li>${D} (<a href="https://dhpdap.online">dhpdap.online</a>): ${dh.length} projects, ${nf(S.dhpd.capacity_mw, 1)} MW. The export has no progress column, so each dam’s progress (finished, being built, planned) is rebuilt from the three original downloads. Pulled 14 Nov 2026.</li>` +
-      `<li>${P} (<a href="https://forestsclearance.nic.in/FCDashboard/FC_Public_Dashboard_Proposals.aspx?Role=Total&amp;State=Arunachal+Pradesh">forestsclearance.nic.in</a>): ${PV.proposals} hydropower requests for Arunachal Pradesh, ${PV.distinct_projects} projects. Pulled 7 Nov 2026. The dashboard covers requests filed before 28 June 2022.</li>` +
+      `<li>${P} (<a href="https://forestsclearance.nic.in/FCDashboard/FC_Public_Dashboard_Proposals.aspx?Role=Total&amp;State=Arunachal+Pradesh">forestsclearance.nic.in</a>): ${PV.all.proposals} hydropower requests for Arunachal Pradesh, ${PV.all.distinct_projects} projects. Pulled 7 Nov 2026. The dashboard covers requests filed before 28 June 2022.</li>` +
       `<li><b>All power capacity comes from DHPD. All forest figures come from Parivesh.</b> Capacity is never read from Parivesh project names. The two sources are never merged or averaged.</li></ul>` +
       `<h3>What the Parivesh statuses mean (confirmed by the project owner)</h3><ul class="plain">` +
       GROUPS.map(g => `<li><b>${GN[g]}</b>: ${GS[g]}.</li>`).join("") + `<li>Status text is tidied for upper/lower case only. Nothing else was changed.</li></ul>` +
       `<h3>Forest area</h3><ul class="plain">` +
+      `<li><b>Scope.</b> The forest figures count only projects that are on the ${D} list: ${PV.distinct_projects} projects and ${PV.proposals} requests. ${PV.not_on_dhpd.projects.length} projects found only on ${P} (${esc(PV.not_on_dhpd.projects.join(", "))}; ${nf(PV.not_on_dhpd.project_total_ha, 1)} ha) are left out. They stay in the data files and on the "Where the two sites disagree" tab.</li>` +
       `<li>The area asked for (Area_Applied) is converted from text to hectares. Area_Diverted is not used: it is often empty or 0, and it is not evidence of land cleared on the ground.</li>` +
       `<li><b>Refiling rule.</b> Requests are grouped by project. A later full request replaces an earlier full request for the same project, so its area is counted once. Extra requests such as a change of quarry site add their own area. Every request is kept in <a href="../data/official/parivesh_proposals.csv">parivesh_proposals.csv</a>.</li>` +
       `<li>Replaced here: ${sup.map(s => `${esc(s.project)} ${esc(s.proposal_no)} (${nf(s.area_ha, 3)} ha)`).join("; ")}. Raw total ${nf(PV.raw_total_ha, 3)} ha, minus these, is the project total ${nf(PV.project_total_ha, 3)} ha.</li>` +

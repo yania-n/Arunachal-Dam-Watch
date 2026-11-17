@@ -481,16 +481,22 @@ def main():
         return {g: round(float(df[df.status_group == g].area_applied_ha.sum()), 3) for g in GROUPS}
     raw_by = {g: dict(ha=round(float(pv[pv.status_group == g].area_applied_ha.sum()), 3),
                       proposals=int((pv.status_group == g).sum())) for g in GROUPS}
-    proj_by = {g: dict(ha=round(float(pv[cnt & (pv.status_group == g)].area_applied_ha.sum()), 3),
-                       proposals_counted=int((cnt & (pv.status_group == g)).sum())) for g in GROUPS}
+    proj_by_all = {g: dict(ha=round(float(pv[cnt & (pv.status_group == g)].area_applied_ha.sum()), 3),
+                           proposals_counted=int((cnt & (pv.status_group == g)).sum())) for g in GROUPS}
+    # The page's forest figures cover only projects that are on the DHPD list (matched to a DHPD dam).
+    # Parivesh-only projects are kept in the CSVs and the discrepancy lists, but left out of these totals.
+    pv_in = pv[pv.dhpd_id != ""]
+    cnt_in = pv_in.counted_in_project_area
+    pv_out = pv[pv.dhpd_id == ""]
+    raw_by_in = {g: dict(ha=round(float(pv_in[pv_in.status_group == g].area_applied_ha.sum()), 3),
+                         proposals=int((pv_in.status_group == g).sum())) for g in GROUPS}
+    proj_by = {g: dict(ha=round(float(pv_in[cnt_in & (pv_in.status_group == g)].area_applied_ha.sum()), 3),
+                       proposals_counted=int((cnt_in & (pv_in.status_group == g)).sum())) for g in GROUPS}
 
     def area_by(col):
         out = {}
-        for _, r in pv[cnt].iterrows():
-            if r.dhpd_id:
-                lab = dmap.loc[r.dhpd_id, col]
-            else:
-                lab = "Not in DHPD"
+        for _, r in pv_in[cnt_in].iterrows():
+            lab = dmap.loc[r.dhpd_id, col]
             o = out.setdefault(lab, dict(label=lab, projects=set(), applied_ha=0.0, **{g: 0.0 for g in GROUPS}))
             o["projects"].add(r.project)
             o["applied_ha"] += r.area_applied_ha
@@ -509,12 +515,20 @@ def main():
     summary = dict(
         dhpd_pull=DHPD_PULL, parivesh_pull=PARIVESH_PULL,
         dhpd=dict(projects=int(len(dh)), capacity_mw=round(float(dh.capacity_mw.sum()), 3), by_status=stat),
-        parivesh=dict(proposals=int(len(pv)), distinct_projects=int(pv.project.nunique()),
-                      raw_total_ha=round(float(pv.area_applied_ha.sum()), 3),
-                      project_total_ha=round(float(pv[cnt].area_applied_ha.sum()), 3),
-                      raw_by_group=raw_by, project_by_group=proj_by,
+        # scope: projects that are on the DHPD list
+        parivesh=dict(proposals=int(len(pv_in)), distinct_projects=int(pv_in.project.nunique()),
+                      raw_total_ha=round(float(pv_in.area_applied_ha.sum()), 3),
+                      project_total_ha=round(float(pv_in[cnt_in].area_applied_ha.sum()), 3),
+                      raw_by_group=raw_by_in, project_by_group=proj_by,
                       superseded=[dict(proposal_no=r.proposal_no, project=r.project, area_ha=r.area_applied_ha, superseded_by=r.superseded_by)
-                                  for _, r in pv[pv.role == "superseded"].iterrows()]),
+                                  for _, r in pv_in[pv_in.role == "superseded"].iterrows()],
+                      # everything in the Parivesh file, for reconciliation
+                      all=dict(proposals=int(len(pv)), distinct_projects=int(pv.project.nunique()),
+                               raw_total_ha=round(float(pv.area_applied_ha.sum()), 3),
+                               project_total_ha=round(float(pv[cnt].area_applied_ha.sum()), 3), project_by_group=proj_by_all),
+                      # projects only on Parivesh: left out of the figures above
+                      not_on_dhpd=dict(projects=sorted(pv_out.project.unique().tolist()),
+                                       project_total_ha=round(float(pv_out[pv_out.counted_in_project_area].area_applied_ha.sum()), 3))),
         coverage=dict(matched=int((mt.side == "both").sum()), dhpd_only=int((mt.side == "dhpd_only").sum()),
                       parivesh_only=int((mt.side == "parivesh_only").sum()),
                       parivesh_only_flagged=int(((mt.side == "parivesh_only") & (~mt.expected_absence)).sum()),
@@ -546,8 +560,10 @@ def main():
         ("Parivesh Area_Applied (ha)", round(src_area, 3), round(chk_p.area_applied_ha.sum(), 3), abs(src_area - chk_p.area_applied_ha.sum()) < 1e-6),
         ("Status groups cover all rows", 36, int(chk_p.status_group.notna().sum()), True),
         ("Matched + DHPD-only = DHPD", len(src), summary["coverage"]["matched"] + summary["coverage"]["dhpd_only"], summary["coverage"]["matched"] + summary["coverage"]["dhpd_only"] == len(src)),
-        ("Matched + Parivesh-only = distinct Parivesh projects", summary["parivesh"]["distinct_projects"], summary["coverage"]["matched"] + summary["coverage"]["parivesh_only"],
-         summary["coverage"]["matched"] + summary["coverage"]["parivesh_only"] == summary["parivesh"]["distinct_projects"]),
+        ("Matched + Parivesh-only = distinct Parivesh projects", summary["parivesh"]["all"]["distinct_projects"], summary["coverage"]["matched"] + summary["coverage"]["parivesh_only"],
+         summary["coverage"]["matched"] + summary["coverage"]["parivesh_only"] == summary["parivesh"]["all"]["distinct_projects"]),
+        ("In-scope + outside-DHPD forest area = all projects (ha)", summary["parivesh"]["all"]["project_total_ha"], round(summary["parivesh"]["project_total_ha"] + summary["parivesh"]["not_on_dhpd"]["project_total_ha"], 3),
+         abs(summary["parivesh"]["all"]["project_total_ha"] - summary["parivesh"]["project_total_ha"] - summary["parivesh"]["not_on_dhpd"]["project_total_ha"]) < 0.001),
     ]
     print("\nRECONCILIATION  (source Excel vs CSV)")
     print(f"{'check':58s}{'source':>14s}{'csv':>14s}  ok")
@@ -560,8 +576,9 @@ def main():
         e = expect[g]
         o = raw_by[g]
         print(f"  {g:13s} computed {o['ha']:>10.3f} ({o['proposals']:2d})   expected {e[0]:>9.2f} ({e[1]})   {'OK' if abs(o['ha'] - e[0]) < 0.006 and o['proposals'] == e[1] else 'DIFFERS'}")
-    print(f"  total         computed {summary['parivesh']['raw_total_ha']:>10.3f}        expected 14285.27")
-    print("Project-level (refilings once):", json.dumps({g: proj_by[g]['ha'] for g in GROUPS}), "total", summary["parivesh"]["project_total_ha"])
+    print(f"  total         computed {summary['parivesh']['all']['raw_total_ha']:>10.3f}        expected 14285.27")
+    print("Project-level, DHPD-listed projects only (refilings once):", json.dumps({g: proj_by[g]['ha'] for g in GROUPS}), "total", summary["parivesh"]["project_total_ha"])
+    print("Parivesh-only projects left out:", summary["parivesh"]["not_on_dhpd"])
     print("Coverage:", summary["coverage"])
     print("Inconsistency counts:", summary["inconsistency_counts"])
     if not all(r[3] for r in rows):

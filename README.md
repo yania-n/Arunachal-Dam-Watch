@@ -121,6 +121,7 @@ The script prints a reconciliation table (CSV totals against the source Excel su
 
 ### Definitions
 
+- **Scope of the forest figures:** only projects that are on the DHPD list (28 projects, 14,127.8 ha). Three projects found only on Parivesh (Phudung, Simang-I, Tagurshit; 98.3 ha) are left out of the totals. They stay in `parivesh_proposals.csv` and in the discrepancy lists, and `summary.json` reports them under `parivesh.not_on_dhpd`. The whole Parivesh file is 31 projects and 14,226.1 ha (`parivesh.all`).
 - **Cleared** = Approved + Closed: final forest approval granted. It does not mean trees were felled.
 - **Approved in principle** = In-principle (Stage-I granted, final approval awaited).
 - **In progress** = DFO, Nodal Officer, Pending With-SG.
