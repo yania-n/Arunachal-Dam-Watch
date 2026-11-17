@@ -986,7 +986,17 @@ window.dash = (() => {
   });
 </script>
 
-<p class="footer">Data compiled from public records, clearance papers and news reports up to 1 Nov 2026. Figures are a minimum where reporting is incomplete; see sources above. This page counts visits with <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a>. It sets no cookies and does not identify you.</p>
+<p class="footer">Data compiled from public records, clearance papers and news reports up to 1 Nov 2026. Figures are a minimum where reporting is incomplete; see sources above. This page counts visits with <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a>. It sets no cookies and does not identify you. <span id="gc-views" hidden>Views of this page: <b id="gc-n"></b>.</span></p>
+<script>
+(function () {
+  var s = document.getElementById("gc-views"), n = document.getElementById("gc-n");
+  if (!s || !window.fetch) return;
+  fetch("https://yania.goatcounter.com/counter/" + encodeURIComponent(location.pathname) + ".json")
+    .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    .then(function (j) { if (j && j.count) { n.textContent = j.count; s.hidden = false; } })
+    .catch(function () {});
+})();
+</script>
 </div>
 </body>
 </html>
