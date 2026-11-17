@@ -82,6 +82,12 @@ window.dash = (() => {
   return {data, draw, colors, calc: (id, o) => { calcs[id] = o; }, onData: () => {}, params: () => ({}), setParams: () => {}, resetParams: () => {}, refresh: () => {}, setLink: () => {}};
 })();
 </script>
+<style>
+#to-top{position:fixed;right:18px;bottom:18px;z-index:40;width:44px;height:44px;padding:0;border:1px solid var(--color-fg);border-radius:50%;background:var(--color-bg);color:var(--color-fg);font:inherit;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+#to-top.show{opacity:1;visibility:visible}
+#to-top:hover{background:var(--color-fg);color:var(--color-bg)}
+#to-top:focus-visible{outline:2px solid var(--color-fg);outline-offset:3px}
+</style>
 <script data-goatcounter="https://yania.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -995,6 +1001,17 @@ window.dash = (() => {
     .then(function (r) { if (!r.ok) throw 0; return r.json(); })
     .then(function (j) { if (j && j.count) { n.textContent = j.count; s.hidden = false; } })
     .catch(function () {});
+})();
+</script>
+<button id="to-top" type="button" aria-label="Back to top" title="Back to top">&uarr;</button>
+<script>
+(function () {
+  var b = document.getElementById("to-top");
+  if (!b) return;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function toggle() { b.classList.toggle("show", (window.pageYOffset || document.documentElement.scrollTop) > 500); }
+  window.addEventListener("scroll", toggle, { passive: true }); toggle();
+  b.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); });
 })();
 </script>
 </div>
