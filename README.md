@@ -8,8 +8,9 @@ This repo holds two separate dashboards, both live on GitHub Pages:
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | **Arunachal Dam Watch** (`index.html`)       | [yania-n.github.io/Arunachal-Dam-Watch/](https://yania-n.github.io/Arunachal-Dam-Watch/)       | Compiled from government records and news reports |
 | **Arunachal Dam Watch II** (`v2/index.html`) | [yania-n.github.io/Arunachal-Dam-Watch/v2/](https://yania-n.github.io/Arunachal-Dam-Watch/v2/) | Official portal data only: DHPD and Parivesh      |
+| **Dam map** (`map/index.html`)               | [yania-n.github.io/Arunachal-Dam-Watch/map/](https://yania-n.github.io/Arunachal-Dam-Watch/map/)   | Global Energy Monitor (independent) shown beside DHPD and Parivesh |
 
-The two are kept apart on purpose: the first mixes government records with news reports, the second uses only the two official portals. Each links to the other.
+The two dashboards are kept apart on purpose: the first mixes government records with news reports, the second uses only the two official portals. Each links to the other.
 
 The rest of this file up to "Conclusions" describes the first dashboard. The second is described in its own section near the end.
 
@@ -128,3 +129,23 @@ The script prints a reconciliation table (CSV totals against the source Excel su
 - **Rejected** = Rejected, Returned, Withdrawn.
 - **Refilings:** proposals are grouped by project. A later full proposal supersedes an earlier one, so the project's area is counted once. Ancillary proposals (quarry-patch changes) add their own area. Raw proposal totals are shown too.
 - **Corrections:** only the spelling "Nyikong", New Melling's capacity (DHPD's 96 MW), and the district of Attunli, Etalin and Anonpani (shown as Dibang Valley, as the project owner says; DHPD says Lower Dibang Valley and the mismatch is still listed). DHPD's district and basin are otherwise shown unchanged, including for Yammeng and Halaipani, whose discrepancies are listed with the project owner's notes.
+
+## Map of the dam sites (`map/index.html`)
+
+A separate mobile-first page with its own dark look. One marker per dam in the Global Energy Monitor (GEM) Global Hydropower Tracker (March 2026 release, CC BY 4.0): 61 Arunachal rows plus Subansiri Lower, which GEM tags as Assam (pulled from the full tracker file). Tapping a marker opens a bottom sheet with DHPD, Parivesh and GEM figures side by side. Nothing is averaged or merged; every number carries its source. Below the map are the dams the map cannot place and six combined insights (status and capacity disagreements, forest vs GEM status, coverage, pipeline MW by basin, location quality).
+
+Serve it like v2: `python -m http.server 8000 --bind 127.0.0.1`, then open `http://localhost:8000/map/`. It links back to `v2/`, and `v2/index.html` links to it.
+
+**Basemap:** CARTO `dark_all` now returns an "API key required" tile, so the page uses OpenStreetMap tiles darkened with CSS. The `TILES` constant in `map/index.html` shows where to swap in CARTO with a key.
+
+### New files
+
+| File | Contents |
+| ---- | -------- |
+| `build_gem_data.py` | Matches GEM rows to DHPD and Parivesh (needs `pandas` and `openpyxl`); prints a reconciliation |
+| `data/official/gem_projects.csv` | 62 GEM sites: GEM fields, `dhpd_id`, `parivesh_project`, basin |
+| `data/official/gem_match_table.csv` | GEM to DHPD match with `match_method` (`exact` / `normalised` / `manual` / `unmatched`) and notes; DHPD-only rows included |
+
+### Matching rules
+
+Names are lowercased; the suffixes "hydroelectric plant", "hydro electric project" and "HEP" are stripped, as is any "(NNN MW)"; punctuation is dropped. Then, in order: exact, stage/roman-numeral equal ("Siang Upper II" = "Siang Upper St-II"), word-order swap ("Siang Lower" = "Lower Siang"), spaces removed ("Mago Chu" = "Magochu"), and a lone name equal to stage I ("Oju" = "Oju - I"). Each match is checked on capacity and district and the differences are written to the notes. Manual: Ranganadi 405 MW to Panyor Lower (the 130 MW row stays unmatched) and Upper Subansiri to Subansiri Upper (flagged for confirmation). Parivesh is linked through `dhpd_id`, or by name for GEM dams not on DHPD (Simang-I, Tagurshit). A dam is flagged "Sources disagree" when capacities differ by more than 5% of the larger figure, or the statuses conflict (DHPD Completed vs GEM not operating; DHPD Under construction vs GEM not construction; DHPD Under implementation vs GEM shelved, cancelled or operating). GEM's "inferred" statuses are GEM's own inference, not an official finding.

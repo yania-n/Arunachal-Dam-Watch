@@ -1,0 +1,128 @@
+gem_unit_id,gem_project,gem_status,gem_capacity_mw,dhpd_id,dhpd_project,dhpd_capacity_mw,dhpd_status,parivesh_project,match_method,side,notes
+G100000601828,Amulin,announced,420.0,D057,Amulin,420.0,Under implementation,,exact,both,
+G100001030840,Anjaw,pre-construction,270.0,D047,Anjaw HEP,270.0,Under implementation,,exact,both,
+G100000601831,Attunli,pre-construction,680.0,D055,Attunli,680.0,Under implementation,Attunli,exact,both,
+G100000604347,Demwe Lower,shelved - inferred 2 y,1750.0,D042,Demwe Lower,1750.0,Under implementation,,exact,both,"District differs: GEM 'Lohit', DHPD 'Anjaw'."
+G100000604348,Demwe Upper,announced,270.0,D046,Demwe Upper,1080.0,Under implementation,,exact,both,"Capacity differs: GEM 270 MW, DHPD 1080 MW (75% gap)."
+G100000601873,Dibang Multipurpose,construction,2880.0,D106,Dibang Multipurpose,3000.0,Under construction,,exact,both,
+G100000601874,Dibbin,shelved - inferred 2 y,120.0,D070,Dibbin,120.0,Under implementation,,exact,both,
+G100000604370,Elango,shelved - inferred 2 y,180.0,,,,,,unmatched,gem_only,
+G100000601883,Emini,cancelled,500.0,D056,Emini,500.0,Under implementation,,exact,both,
+G100001030881,Emra II,announced,315.0,D059,Emra-II,390.0,Under implementation,,normalised,both,"Name matched by rule: stage/roman/punctuation. Capacity differs: GEM 315 MW, DHPD 390 MW (19% gap). District differs: GEM 'Dibang', DHPD 'Anjaw'."
+G100000601884,Etalin,shelved - inferred 2 y,3097.0,D054,Etalin,3097.0,Under implementation,Etalin,exact,both,
+G100001073535,Gimiliang,shelved - inferred 2 y,80.0,,,,,,unmatched,gem_only,
+G100000604401,Gongri,shelved - inferred 2 y,144.0,,,,,,unmatched,gem_only,
+G100000604424,Heo,construction,240.0,D109,Heo,240.0,Under construction,Heo,exact,both,
+G100000604428,Hirong,pre-construction,500.0,D010,Hirong,500.0,Under implementation,Hirong,exact,both,
+G100000604440,Hutong II,shelved - inferred 2 y,1200.0,D045,Hutong- II,1200.0,Under implementation,,normalised,both,Name matched by rule: stage/roman/punctuation.
+G100001030643,Jameri,shelved - inferred 2 y,172.0,,,,,,unmatched,gem_only,
+G100001073508,Kalai I,shelved - inferred 2 y,1352.0,D043,Kalai-I,1304.0,Under implementation,,normalised,both,Name matched by rule: stage/roman/punctuation.
+G100000604484,Kalai II,pre-construction,1200.0,D044,Kalai-II,1200.0,Under implementation,,normalised,both,Name matched by rule: stage/roman/punctuation.
+G100000601922,Kamala,shelved - inferred 2 y,1720.0,D030,Kamala,1800.0,Under implementation,Kamala,exact,both,"District differs: GEM 'Kamle', DHPD 'Kurung Kumey'."
+G100000601923,Kameng,operating,600.0,D001,Kameng,600.0,Completed,,exact,both,"District differs: GEM 'Papum Pare', DHPD 'West Kameng'."
+G100001073539,Kangtangshiri,shelved - inferred 2 y,80.0,D017,Kangtangshiri,80.0,Under implementation,Kangtangshiri,exact,both,"District differs: GEM 'West Siang', DHPD 'Upper Siang'."
+G100001030709,Khuitam,shelved - inferred 2 y,66.0,D074,Khuitam,66.0,Under implementation,Khuitam,exact,both,"District differs: GEM 'West Kameng', DHPD 'East Kameng'."
+G100001073514,Kurung,announced,320.0,D034,Kurung,330.0,Under implementation,,exact,both,"District differs: GEM 'Kra Daadi', DHPD 'Kurung Kumey'."
+G100000604573,Lower Siang,shelved - inferred 2 y,2700.0,D007,Siang Lower,2700.0,Under implementation,Lower Siang,normalised,both,"Name matched by rule: word order swap. District differs: GEM 'East Siang', DHPD 'Lower Siang'."
+G100001073544,Magochu,pre-construction,96.0,D091,Mago Chu,96.0,Under implementation,Mago Chu,normalised,both,Name matched by rule: spaces removed.
+G100000601985,Mihumdon,announced,400.0,D058,Mihumdon,400.0,Under implementation,,exact,both,
+G100000601990,Naba,shelved,1000.0,D031,Naba,1000.0,Under implementation,,exact,both,"District differs: GEM 'Upper Subansiri', DHPD 'Kurung Kumey'."
+G100000601991,Nafra,shelved - inferred 2 y,120.0,D071,Nafra,120.0,Under implementation,,exact,both,
+G100000604646,Nalo,cancelled,635.0,,,,,,unmatched,gem_only,
+G100000601997,Naying,shelved - inferred 2 y,1000.0,D009,Naying,1000.0,Under implementation,Naying,exact,both,
+G100000604664,New Melling,announced,48.0,D092,New Melling,96.0,Under implementation,New Melling,exact,both,"Capacity differs: GEM 48 MW, DHPD 96 MW (50% gap)."
+G100001030877,Niare,announced,909.0,D032,Niare,800.0,Under implementation,,exact,both,"Capacity differs: GEM 909 MW, DHPD 800 MW (12% gap). District differs: GEM 'Upper Subansiri', DHPD 'Lower Subansiri'."
+G100000604679,Nyamjung Chhu,cancelled - inferred 4 y,780.0,,,,,,unmatched,gem_only,
+G100001073543,Nyukcharong Chu,shelved - inferred 2 y,96.0,D093,Nyukcharongchu,96.0,Under implementation,Nyukcharong Chu,normalised,both,Name matched by rule: spaces removed.
+G100001027001,Oju,announced,2220.0,D029,Oju - I,1800.0,Under implementation,,normalised,both,"Name matched by rule: lone project = stage I. Capacity differs: GEM 2220 MW, DHPD 1800 MW (19% gap)."
+G100000604708,Papu,shelved - inferred 2 y,100.0,,,,,,unmatched,gem_only,"Possible DHPD 'Papu Valley' (48 MW, East Kameng) but GEM says 100 MW; not matched. Please confirm if you know they are the same."
+G100001030710,Par,shelved - inferred 2 y,85.0,D099,Par,52.0,Under implementation,,exact,both,"Capacity differs: GEM 85 MW, DHPD 52 MW (39% gap)."
+G100000602011,Pare,operating,110.0,D003,Pare,110.0,Completed,,exact,both,
+G100000604717,Pauk,shelved,145.0,D011,Pauk,145.0,Under implementation,Pauk,exact,both,"District differs: GEM 'West Siang', DHPD 'Upper Siang'."
+G100001073512,Pemashelphu,pre-construction,90.0,,,,,,unmatched,gem_only,
+G100001030708,Phanchung Pachi,announced,36.0,,,,,,unmatched,gem_only,"Possible DHPD 'Phanchung' (45 MW, West Kameng) but GEM says 36 MW on the Pachi river in East Kameng; not matched. Please confirm."
+G100001073538,Raigam,shelved - inferred 2 y,141.0,D048,Raigam,141.0,Under implementation,,exact,both,
+G100001073504,Ranganadi,pre-construction,130.0,,,,,,unmatched,gem_only,"Second GEM 'Ranganadi' row (130 MW, pre-construction) at the same point as the 405 MW plant. No DHPD project is matched to it."
+G100000602029,Ranganadi,operating,405.0,D002,Panyor Lower (Ranganadi Stage-I ),405.0,Completed,,manual,both,"GEM 'Ranganadi' 405 MW (operating) is DHPD 'Panyor Lower (Ranganadi Stage-I)' 405 MW. Same capacity. This mapping was specified by the analyst, not inferred."
+G100001030704,Saskangrong,shelved - inferred 2 y,45.0,,,,,,unmatched,gem_only,
+G100000602059,Siang Upper,announced,10000.0,,,,,,unmatched,gem_only,"DHPD has only 'Siang Upper St-II' (matched to GEM 'Siang Upper II'). No DHPD row for the 10,000 MW 'Siang Upper' project."
+G100000602060,Siang Upper II,cancelled,3750.0,D006,Siang Upper St-II,3750.0,Under implementation,,normalised,both,Name matched by rule: stage/roman/punctuation.
+G100001030706,Simang I,shelved - inferred 2 y,67.0,,,,,Simang-I,unmatched,gem_only,Parivesh project 'Simang-I' matched to GEM by name (not on DHPD).
+G100001030707,Simang II,shelved - inferred 2 y,66.0,D021,Simang-II,66.0,Under implementation,Simang-II,normalised,both,Name matched by rule: stage/roman/punctuation.
+G100000604821,Sissiri,shelved - inferred 2 y,100.0,D061,Sissiri,100.0,Under implementation,,exact,both,"District differs: GEM 'East Siang', DHPD 'Lower Dibang Valley'."
+G100000602065,Siyom,shelved,1000.0,D008,Siyom,1000.0,Under implementation,Siyom,exact,both,
+G100001073545,Tagurshit,pre-construction,74.0,,,,,Tagurshit,unmatched,gem_only,Parivesh project 'Tagurshit' matched to GEM by name (not on DHPD).
+G100000604855,Talong Londa,shelved - inferred 2 y,225.0,D069,Talong Londa,225.0,Under implementation,Talong Londa,exact,both,
+G100000604862,Tato-I,construction,186.0,D110,Tato-I,186.0,Under construction,Tato-I,exact,both,"District differs: GEM 'Shi Yomi', DHPD 'West Siang'."
+G100000604863,Tato-II,pre-construction,700.0,D108,Tato-II,700.0,Under construction,,exact,both,"District differs: GEM 'Shi Yomi', DHPD 'West Siang'."
+G100000604864,Tawang-I,shelved - inferred 2 y,600.0,D090,Tawang- I,600.0,Under implementation,,normalised,both,Name matched by rule: stage/roman/punctuation.
+G100000604865,Tawang-II,shelved - inferred 2 y,800.0,D089,Tawang- II,800.0,Under implementation,,normalised,both,Name matched by rule: stage/roman/punctuation.
+G100000604924,Upper Subansiri,announced,1605.0,D028,Subansiri Upper,2000.0,Under implementation,,manual,both,"Matched by word order (GEM 'Upper Subansiri' / DHPD 'Subansiri Upper'), but GEM's district is Lower Subansiri and its pin (27.54 N, 93.82 E) is far from the Upper Subansiri area, and capacity differs (1,605 vs 2,000 MW). Please confirm. Capacity differs: GEM 1605 MW, DHPD 2000 MW (20% gap). District differs: GEM 'Lower Subansiri', DHPD 'Upper Subansiri'."
+G100000604961,Yamne I,cancelled,111.0,D012,Yamne Stage-I,111.0,Under implementation,,normalised,both,Name matched by rule: stage/roman/punctuation.
+G100000604962,Yamne II,pre-construction,84.0,D013,Yamne Stage-II,96.0,Under implementation,,normalised,both,"Name matched by rule: stage/roman/punctuation. Capacity differs: GEM 84 MW, DHPD 96 MW (12% gap). District differs: GEM 'Upper Siang', DHPD 'East Siang'."
+G100000602069,Subansiri Lower,construction,2000.0,D107,Subansiri Lower,2000.0,Under construction,,exact,both,"GEM lists this in Assam; the dam sits on the border. Row taken from the full GEM tracker, not the Arunachal extract. District differs: GEM 'Dhemaji', DHPD 'Lower Subansiri'."
+,,,,D004,Dikshi,24.0,Completed,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D005,Khangtang,7.0,Completed,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D014,Sippi,96.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D015,Pango,96.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D016,Jidu,92.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D018,Ropum,80.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D019,Lower Yamne Stage - I,75.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D020,Rego,70.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D022,Palsi,24.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D023,Yammeng,20.0,Under implementation,Yammeng,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D024,Pitgong St-I,15.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D025,Kaying,15.0,Under implementation,Kaying,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D026,Nyikong,13.0,Under implementation,Nyikong,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D027,Pitgong St-II,10.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D033,Dengser,552.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D035,Panyi,24.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D036,Sichi,24.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D037,Palin HEP,15.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D038,Pein,10.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D039,Siken,8.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D040,Pei HEP,5.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D041,Phurchi,5.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D049,Tidding-I,98.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D050,Tidding-II,68.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D051,Kamlang,24.9,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D052,Halaipani,16.0,Under implementation,Halaipani,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D053,Tenga Pani,5.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D060,Emra-I,275.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D062,Ithun - I,84.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D063,Ithun - II,48.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D064,Ashupani,30.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D065,Ithipani,22.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D066,Anonpani,22.0,Under implementation,Anonpani,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D067,Kameng Dam,480.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D068,Dinchang,252.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D072,Utung,100.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D073,Pachuk- I,84.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D075,Marjingla,60.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D076,Pachuk- II,60.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D077,Para,55.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D078,Papu Valley,48.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D079,Marjingla Lower,48.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D080,Phanchung,45.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D081,Pachuk-II Lower,45.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D082,Lachung,41.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D083,Rebby,31.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D084,Pakke Bung -III,24.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D085,Sepla,21.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D086,Dengzi,18.0,Under implementation,Dengzi,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D087,Pakke Bung -IV,15.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D088,"Debra (1.5 MW), Dipre (6.2 MW), Ditchi (2.5 MW), Dibri (3.2 MW) HEPs",13.4,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D094,Rho,93.0,Under implementation,Rho,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D095,Jaswantgarh Stage-I,4.5,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D096,Panyor,80.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D097,Turu,63.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D098,Dardu,63.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D100,Adum Panyor,25.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D101,Panyor Lepa Middle,24.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D102,Papumpam,21.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D103,Papum,15.0,Under implementation,Papum,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D104,Pith,13.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D105,Rima,8.0,Under implementation,,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D111,Keyi,23.0,Under construction,Keyi,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D112,Pareng,14.5,Under construction,Pareng,unmatched,dhpd_only,No GEM row matched to this DHPD project.
+,,,,D113,Ressing,12.0,Under construction,Ressing,unmatched,dhpd_only,No GEM row matched to this DHPD project.

@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arunachal dam map</title>
+<link rel="icon" href="data:,">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Map of hydropower dam sites in Arunachal Pradesh from Global Energy Monitor, shown next to the official DHPD and Parivesh records.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<style>
+  :root{
+    --bg:#0a1020; --card:#121a2f; --card2:#1a2440; --line:#2b3860;
+    --fg:#eef1fb; --mute:#aab5d3; --link:#9cbcff; --focus:#ffd166;
+    /* source colours (labels always repeat the name) */
+    --gem:#b8c2ff; --dhpd:#f1ead8; --pv:#8be3cf;
+    /* GEM status: Okabe-Ito set, each with its own shape */
+    --s-operating:#009E73; --s-construction:#56B4E9; --s-pre:#F0E442;
+    --s-announced:#E69F00; --s-shelved:#CC79A7; --s-cancelled:#D55E00;
+    /* forest groups */
+    --f-cleared:#e4ebff; --f-in_principle:#9fb6ff; --f-in_progress:#6f82e6; --f-rejected:#ff9fb0; --f-none:#4a5578;
+    --warn:#ffcf70; --warn-bg:#3a2b0c;
+    --font:"Avenir Next","Trebuchet MS",system-ui,"Roboto",sans-serif;
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);font-variant-numeric:tabular-nums;overflow-x:hidden}
+  a{color:var(--link);text-underline-offset:3px;overflow-wrap:anywhere}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.15;margin:0}
+  p{margin:0 0 12px}
+  button{font:inherit;color:inherit}
+  .mute{color:var(--mute)} .sm{font-size:14px}
+
+  /* ---------- hero: full-bleed map with floating cards ---------- */
+  .hero{position:relative;height:88vh;height:88dvh;min-height:460px;max-height:980px;isolation:isolate}
+  #map{position:absolute;inset:0;background:#0d1426}
+  .rail{position:absolute;z-index:1100;top:10px;left:10px;width:calc(100% - 20px);max-height:calc(100% - 20px);overflow:auto;display:flex;flex-direction:column;gap:8px;pointer-events:none;overscroll-behavior:contain}
+  .rail>*{pointer-events:auto}
+  .card{background:rgba(18,26,47,.94);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 8px 28px rgba(0,0,0,.45);padding:10px 14px}
+  .title h1{font-size:22px}
+  .badge{display:inline-block;font-size:14px;font-weight:700;color:#0a1020;background:var(--gem);border-radius:999px;padding:1px 10px;margin-bottom:4px;line-height:1.3}
+  .title p{font-size:14px;line-height:1.4;margin:4px 0 0;color:var(--mute)}
+  .title .count{color:var(--fg);font-weight:600}
+  .bar{display:flex;gap:8px;flex-wrap:wrap}
+  .btn{min-height:44px;min-width:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card2);font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .btn[aria-expanded=true]{background:var(--fg);color:#0a1020;border-color:var(--fg)}
+  .panel[hidden]{display:none}
+  .panel h2{font-size:16px;margin:0 0 8px}
+  .panel fieldset{border:0;padding:0;margin:0 0 14px}
+  .panel legend{font-weight:800;font-size:15px;padding:0;margin-bottom:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{position:relative}
+  .chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+  .chip span{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card2);font-size:15px}
+  .chip input:checked+span{border-color:var(--fg);background:#27345c}
+  .chip input:checked+span::before{content:"✓";font-weight:800}
+  .chip input:focus-visible+span{outline:3px solid var(--focus);outline-offset:2px}
+  .legend ul{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:6px}
+  .legend li{display:flex;gap:10px;align-items:center;font-size:14px}
+  .legend svg{flex:none}
+  .legend .sep{margin:10px 0 6px;font-weight:800;font-size:15px}
+
+  .toast{position:absolute;z-index:1200;left:50%;bottom:70px;transform:translateX(-50%);background:var(--fg);color:#0a1020;font-weight:700;font-size:15px;padding:10px 16px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;max-width:calc(100% - 30px);text-align:center}
+  .toast.on{opacity:1}
+
+  /* leaflet on dark */
+  .leaflet-container{font:inherit;background:#0d1426}
+  .dark-tiles{filter:invert(1) hue-rotate(188deg) brightness(.82) contrast(.92) saturate(.55)}
+  .leaflet-bar a,.leaflet-bar a:hover{width:44px;height:44px;line-height:44px;font-size:22px;background:var(--card);color:var(--fg);border-color:var(--line)}
+  .leaflet-bar{border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.45)}
+  .leaflet-control-attribution{background:rgba(10,16,32,.82)!important;color:#c3cce6!important;font-size:12px}
+  .leaflet-control-attribution a{color:#a9c4ff!important}
+  .leaflet-marker-icon.pin{background:none;border:0}
+  .pin svg{display:block;overflow:visible;filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+  .pin .o{vector-effect:non-scaling-stroke;stroke:#fff;stroke-width:2px}
+  .pin.apx .o{stroke-dasharray:3.2 2.6;stroke-width:2.4px}
+  .pin .x{vector-effect:non-scaling-stroke;stroke:#0a1020;stroke-width:2.4px;fill:none}
+  .pin.sel svg{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 6px #fff) drop-shadow(0 0 3px #fff);transform:scale(1.18)}
+
+  /* ---------- bottom sheet ---------- */
+  .sheet{position:fixed;z-index:2000;left:0;right:0;bottom:0;max-height:74vh;max-height:74dvh;overflow:auto;background:var(--card);border:1px solid var(--line);border-bottom:0;border-radius:20px 20px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.6);padding:14px 16px calc(20px + env(safe-area-inset-bottom));transform:translateY(105%);visibility:hidden;transition:transform .22s,visibility .22s;overscroll-behavior:contain}
+  .sheet.open{transform:none;visibility:visible}
+  .sheet .grab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 10px}
+  .sheet-head{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+  .sheet h2{font-size:24px}
+  .close{flex:none;min-width:44px;min-height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card2);font-size:22px;line-height:1;cursor:pointer}
+  .stat{display:inline-flex;align-items:center;gap:8px;margin:8px 0 2px;padding:5px 12px;border-radius:999px;background:var(--card2);border:1px solid var(--line);font-size:15px;font-weight:700}
+  .stat small{font-weight:600;color:var(--mute);font-size:14px}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .fact{background:var(--card2);border-radius:12px;padding:10px 12px}
+  .fact .k{font-size:14px;color:var(--mute)}
+  .fact .v{font-size:19px;font-weight:800;letter-spacing:-.02em;overflow-wrap:anywhere}
+  .fact .v.t{font-size:16px;font-weight:700;letter-spacing:0}
+  .src{display:inline-block;font-size:14px;font-weight:700;padding:0 8px;border-radius:6px;margin-left:4px;color:#0a1020;letter-spacing:0;vertical-align:middle}
+  .src.gem{background:var(--gem)} .src.dhpd{background:var(--dhpd)} .src.pv{background:var(--pv)}
+  .block{margin:12px 0;padding:12px 14px;border-radius:12px;background:var(--card2)}
+  .block h3{font-size:16px;margin-bottom:4px}
+  .flag{background:var(--warn-bg);border:1.5px solid var(--warn)}
+  .flag b.hd{color:var(--warn)}
+  .ok{background:none;border:1px dashed var(--line);color:var(--mute);font-size:15px}
+  details{margin-top:12px}
+  summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:800;list-style:none;padding:0 2px}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸";margin-right:8px;color:var(--mute)}
+  details[open]>summary::before{content:"▾"}
+  dl.kv{display:grid;grid-template-columns:minmax(110px,max-content) 1fr;gap:6px 14px;margin:6px 0 0;font-size:15px}
+  dl.kv dt{color:var(--mute)} dl.kv dd{margin:0;overflow-wrap:anywhere}
+
+  /* ---------- below the map ---------- */
+  .page{max-width:880px;margin:0 auto;padding:28px 16px 70px}
+  .page>section{margin-top:44px}
+  .page h2.sec{font-size:clamp(24px,6vw,32px);margin-bottom:10px}
+  .kicker{font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gem);margin-bottom:6px}
+  .note{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--gem);border-radius:12px;padding:12px 14px;font-size:15px}
+  .ins{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:16px}
+  .ins h3{font-size:19px;margin-bottom:6px}
+  .ins .lead{font-size:16px}
+  .rowx{margin:12px 0}
+  .rowx .l{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:15px}
+  .rowx .l b{font-weight:800} .rowx .l span:last-child{text-align:right}
+  .track{height:14px;border-radius:7px;background:#0d1426;overflow:hidden;display:flex;margin-top:4px;border:1px solid var(--line)}
+  .track i{display:block;height:100%}
+  .track.th{height:10px;margin-top:3px}
+  .sub{font-size:14px;color:var(--mute);margin-top:2px}
+  .keys{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;margin:8px 0 2px}
+  .keys span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:14px;height:14px;border-radius:4px;display:inline-block;border:1px solid rgba(255,255,255,.5)}
+  .list{list-style:none;margin:0;padding:0}
+  .list li{padding:11px 0;border-top:1px solid var(--line);display:grid;gap:2px}
+  .list li:first-child{border-top:0}
+  .list .n{font-weight:800}
+  .list .m{font-size:14px;color:var(--mute)}
+  .pill{display:inline-block;font-size:14px;font-weight:700;padding:1px 9px;border-radius:999px;border:1px solid var(--line);background:var(--card2);margin-right:4px}
+  .foot{font-size:14px;color:var(--mute)}
+  .err{padding:20px;color:#ffb4b4}
+
+  @media (min-width:760px){
+    .rail{width:360px}
+    .title h1{font-size:26px}
+    .sheet{left:auto;right:16px;bottom:36px;width:440px;max-height:calc(100dvh - 80px);border-radius:20px;border-bottom:1px solid var(--line)}
+    .sheet .grab{display:none}
+    .toast{bottom:36px}
+  }
+  @media (prefers-reduced-motion:reduce){.sheet,.toast{transition:none}}
+</style>
+</head>
+<body>
+<noscript><p class="err">This map needs JavaScript. The data is in <a href="../data/official/">data/official/</a>.</p></noscript>
+
+<section class="hero" aria-label="Map of dam sites">
+  <div id="map" role="region" aria-label="Map of dam sites in Arunachal Pradesh. Markers can be tabbed to and opened with Enter."></div>
+  <div class="rail" id="rail">
+    <div class="card title">
+      <span class="badge">Map explorer · uses an independent source too</span>
+      <h1>Arunachal dam sites</h1>
+      <p>Tap a dam to compare GEM, an independent tracker, with the official records. <span class="count" id="count" aria-live="polite"></span></p>
+    </div>
+    <div class="bar">
+      <button class="btn" id="b-filters" aria-expanded="false" aria-controls="filters">Filters</button>
+      <button class="btn" id="b-legend" aria-expanded="false" aria-controls="legend">Legend</button>
+      <button class="btn" id="b-reset">Reset view</button>
+    </div>
+    <div class="card panel" id="filters" hidden>
+      <h2>Filter the map</h2>
+      <fieldset><legend>Status (GEM)</legend><div class="chips" id="f-status"></div></fieldset>
+      <fieldset><legend>River basin</legend><div class="chips" id="f-basin"></div></fieldset>
+      <fieldset><legend>Forest request (Parivesh)</legend><div class="chips" id="f-forest"></div></fieldset>
+      <button class="btn" id="f-clear" type="button">Show everything</button>
+    </div>
+    <div class="card panel legend" id="legend" hidden>
+      <h2>How to read the map</h2>
+      <div class="sep" style="margin-top:0">Colour and shape: GEM status</div>
+      <ul id="lg-status"></ul>
+      <div class="sep">Size</div>
+      <ul><li>Bigger marker = more megawatts (GEM's figure).</li></ul>
+      <div class="sep">Outline</div>
+      <ul id="lg-outline"></ul>
+      <div class="sep">Overlapping dams</div>
+      <ul><li>Some dams share one GEM point. Their pins are nudged apart by up to 7 km so each can be tapped. Zoom in to separate them; the details show GEM's true coordinates.</li></ul>
+      <div class="sep">Touch screens</div>
+      <ul><li>One finger scrolls the page. Use two fingers, or the + and − buttons, to move and zoom the map.</li></ul>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status">Use two fingers to move the map</div>
+</section>
+
+<aside class="sheet" id="sheet" role="dialog" aria-labelledby="sh-title" aria-hidden="true"></aside>
+
+<main class="page" id="page">
+  <p class="foot"><a href="../v2/">&larr; Back to the official-data dashboard (Arunachal Dam Watch II)</a></p>
+  <p class="foot" id="loading">Loading data…</p>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+"use strict";
+/* ============================================================ data */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const nf = (n, d = 0) => Number(n).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+const mwf = n => nf(n, Number.isInteger(+n) ? 0 : 1);
+const hf = n => nf(n, 1);
+
+function parseCSV(t) {
+  const rows = []; let r = [], f = "", q = false;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ",") { r.push(f); f = ""; }
+    else if (c === "\n") { r.push(f); rows.push(r); r = []; f = ""; }
+    else if (c !== "\r") f += c;
+  }
+  if (f !== "" || r.length) { r.push(f); rows.push(r); }
+  const h = rows.shift();
+  return rows.filter(x => x.length > 1).map(x => Object.fromEntries(h.map((k, i) => [k, x[i] ?? ""])));
+}
+const getCSV = u => fetch(u).then(r => { if (!r.ok) throw new Error(u + " " + r.status); return r.text(); }).then(parseCSV);
+
+/* ============================================================ vocab */
+const STATUS = [ // order = legend order
+  { k: "operating", label: "Operating", color: "var(--s-operating)", hex: "#009E73", shape: "circle" },
+  { k: "construction", label: "Construction", color: "var(--s-construction)", hex: "#56B4E9", shape: "square" },
+  { k: "pre-construction", label: "Pre-construction", color: "var(--s-pre)", hex: "#F0E442", shape: "diamond" },
+  { k: "announced", label: "Announced", color: "var(--s-announced)", hex: "#E69F00", shape: "triangle" },
+  { k: "shelved", label: "Shelved (incl. inferred)", color: "var(--s-shelved)", hex: "#CC79A7", shape: "hex" },
+  { k: "cancelled", label: "Cancelled (incl. inferred)", color: "var(--s-cancelled)", hex: "#D55E00", shape: "cross" },
+];
+const ST = Object.fromEntries(STATUS.map(s => [s.k, s]));
+const baseStatus = s => STATUS.find(x => s.startsWith(x.k) && !(x.k === "construction" && s.startsWith("pre")))?.k ||
+  (s.startsWith("pre-construction") ? "pre-construction" : s);
+const FOREST = [
+  { k: "cleared", label: "Fully approved" },
+  { k: "in_principle", label: "Approved in principle" },
+  { k: "in_progress", label: "Waiting for a decision" },
+  { k: "rejected", label: "Turned down" },
+  { k: "none", label: "No forest request" },
+];
+const FL = Object.fromEntries(FOREST.map(f => [f.k, f.label]));
+
+function shapeSVG(shape, d, fill, cls = "") {
+  const P = {
+    circle: `<circle class="o" cx="50" cy="50" r="44"/>`,
+    square: `<rect class="o" x="9" y="9" width="82" height="82" rx="9"/>`,
+    diamond: `<polygon class="o" points="50,3 97,50 50,97 3,50"/>`,
+    triangle: `<polygon class="o" points="50,6 97,90 3,90"/>`,
+    hex: `<polygon class="o" points="27,7 73,7 97,50 73,93 27,93 3,50"/>`,
+    cross: `<circle class="o" cx="50" cy="50" r="44"/><path class="x" d="M32 32L68 68M68 32L32 68"/>`,
+  }[shape];
+  return `<svg class="${cls}" width="${d}" height="${d}" viewBox="0 0 100 100" aria-hidden="true" focusable="false" fill="${fill}">${P}</svg>`;
+}
+const statusLabel = s => {
+  const b = baseStatus(s), m = /inferred\s*(\d+)\s*y/.exec(s);
+  return ST[b] ? ST[b].label.replace(" (incl. inferred)", "") + (s.includes("inferred") ? ` (GEM inferred${m ? ", " + m[1] + " y" : ""})` : "") : s;
+};
+
+/* ============================================================ load */
+Promise.all([
+  getCSV("../data/official/gem_projects.csv"),
+  getCSV("../data/official/gem_match_table.csv"),
+  getCSV("../data/official/dhpd_projects.csv"),
+  getCSV("../data/official/parivesh_proposals.csv"),
+  fetch("../data/official/summary.json").then(r => r.json()),
+]).then(([gem, mt, dh, pv, summary]) => start(gem, mt, dh, pv, summary)).catch(e => {
+  $("#loading").innerHTML = `<span class="err">Could not load the data (${esc(e.message)}). Serve the repo over http: run <code>python -m http.server 8000 --bind 127.0.0.1</code> in the repo folder, then open <code>http://localhost:8000/map/</code>.</span>`;
+});
+
+function start(gemRaw, mt, dhRaw, pvRaw, summary) {
+  /* ---- model ---- */
+  const dhById = Object.fromEntries(dhRaw.map(d => [d.dhpd_id, { ...d, mw: +d.capacity_mw, name: d.project.trim() }]));
+  const mtByGem = Object.fromEntries(mt.filter(m => m.gem_unit_id).map(m => [m.gem_unit_id, m]));
+  // Parivesh: one record per project; hectares counted once (rows flagged counted_in_project_area)
+  const pvp = {};
+  pvRaw.forEach(r => {
+    const p = pvp[r.project] ||= { name: r.project, dhpd_id: r.dhpd_id, rows: [], ha: 0, group: null };
+    p.rows.push(r);
+    if (r.counted_in_project_area === "True") p.ha += +r.area_applied_ha || 0;
+    if (r.role === "primary") p.group = r.status_group;
+  });
+  Object.values(pvp).forEach(p => { p.group ||= p.rows[0].status_group; });
+  const G = gemRaw.map(g => ({
+    ...g, mw: +g.capacity_mw, lat: +g.latitude, lon: +g.longitude, base: baseStatus(g.status),
+    inferred: g.status.includes("inferred"), approx: g.location_accuracy === "approximate",
+    d: g.dhpd_id ? dhById[g.dhpd_id] : null, pv: g.parivesh_project ? pvp[g.parivesh_project] : null,
+    m: mtByGem[g.gem_unit_id],
+  }));
+  const forestKey = g => g.pv ? g.pv.group : "none";
+  const gapPct = g => g.d ? Math.abs(g.mw - g.d.mw) / Math.max(g.mw, g.d.mw) : 0;
+  const capDiffers = g => g.d && gapPct(g) > 0.05;
+  const statusConflict = g => {
+    if (!g.d) return false; const s = g.d.dhpd_status, b = g.base;
+    if (s === "Completed") return b !== "operating";
+    if (s === "Under construction") return !["construction", "operating"].includes(b);
+    if (s === "Under implementation") return ["shelved", "cancelled", "operating"].includes(b);
+    return false;
+  };
+  G.forEach(g => { g.disagree = capDiffers(g) || statusConflict(g); });
+
+  // deterministic offsets for dams that share one GEM point
+  const groups = {};
+  G.forEach(g => (groups[g.lat.toFixed(4) + "," + g.lon.toFixed(4)] ||= []).push(g));
+  const R = 0.06; // degrees, about 6.7 km
+  Object.values(groups).forEach(arr => {
+    arr.sort((a, b) => a.gem_unit_id.localeCompare(b.gem_unit_id));
+    arr.forEach((g, i) => {
+      g.plat = g.lat; g.plon = g.lon; g.shifted = arr.length > 1;
+      if (arr.length > 1) {
+        const a = 2 * Math.PI * i / arr.length + (arr.length === 2 ? 0 : Math.PI / 2);
+        g.plat = g.lat + R * Math.sin(a); g.plon = g.lon + R * Math.cos(a) / Math.cos(g.lat * Math.PI / 180);
+      }
+    });
+  });
+
+  /* ---- map ---- */
+  const wide = matchMedia("(min-width:760px)").matches;
+  const coarse = matchMedia("(pointer:coarse)").matches && ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  const map = L.map("map", { zoomControl: false, scrollWheelZoom: false, dragging: !coarse, tap: false, minZoom: 6, zoomSnap: 0.25 });
+  L.control.zoom({ position: wide ? "topright" : "bottomleft" }).addTo(map);
+  // Basemap. CARTO "dark_all" now answers every request with an "API KEY REQUIRED" tile, so this uses
+  // OpenStreetMap tiles darkened with CSS (see .dark-tiles). To use CARTO instead, get a key and swap TILES.
+  const TILES = {
+    url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png", subdomains: "abc", className: "dark-tiles",
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    // url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=YOUR_KEY", subdomains: "abcd",
+    // attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  };
+  L.tileLayer(TILES.url, { subdomains: TILES.subdomains, maxZoom: 18, className: TILES.className, attribution: TILES.attribution }).addTo(map);
+  const bounds = L.latLngBounds(G.map(g => [g.plat, g.plon]));
+  const fit = () => map.fitBounds(bounds, wide
+    ? { paddingTopLeft: [390, 30], paddingBottomRight: [60, 40] }
+    : { paddingTopLeft: [16, 190], paddingBottomRight: [16, 60] });
+  fit();
+  $("#b-reset").onclick = fit;
+
+  // scrolling: mouse wheel zooms only after the map has been clicked; touch uses two fingers
+  if (!coarse) {
+    map.on("click focus", () => map.scrollWheelZoom.enable());
+    map.getContainer().addEventListener("mouseleave", () => map.scrollWheelZoom.disable());
+  }
+  const toast = $("#toast"); let tt;
+  const showHint = () => { toast.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove("on"), 3200); };
+  if (coarse) {
+    let seen = false; try { seen = localStorage.getItem("hintSeen") === "1"; } catch (e) {}
+    if (!seen) { showHint(); try { localStorage.setItem("hintSeen", "1"); } catch (e) {} }
+    let last = 0;
+    map.getContainer().addEventListener("touchmove", e => {
+      if (e.touches.length === 1 && Date.now() - last > 6000) { last = Date.now(); showHint(); }
+    }, { passive: true });
+  }
+
+  const markers = [];
+  const layer = L.layerGroup().addTo(map);
+  const diam = mw => Math.round(24 + 24 * Math.sqrt(Math.min(mw, 10000) / 10000));
+  G.sort((a, b) => b.mw - a.mw);
+  G.forEach(g => {
+    const s = ST[g.base] || ST["announced"], d = diam(g.mw);
+    const icon = L.divIcon({
+      className: "pin" + (g.approx ? " apx" : ""), iconSize: [d, d], iconAnchor: [d / 2, d / 2],
+      html: shapeSVG(s.shape, d, s.hex),
+    });
+    const mk = L.marker([g.plat, g.plon], { icon, keyboard: true, title: `${g.name}, ${mwf(g.mw)} MW (GEM)`, zIndexOffset: 1000 - Math.round(g.mw / 10), alt: g.name });
+    mk.on("add", () => { const el = mk.getElement(); if (el) { el.setAttribute("role", "button"); el.setAttribute("aria-label", `${g.name}, ${mwf(g.mw)} megawatts, GEM status ${statusLabel(g.status)}. Open details`); } });
+    mk.on("click", e => { L.DomEvent.stopPropagation(e); openSheet(g, mk); });
+    g.marker = mk; markers.push(mk);
+  });
+
+  let current = null, lastEl = null;
+  /* ---- filters ---- */
+  const basins = [...new Set(G.map(g => g.basin))].sort((a, b) => (a === "Not stated") - (b === "Not stated") || a.localeCompare(b));
+  const sel = { status: new Set(STATUS.map(s => s.k)), basin: new Set(basins), forest: new Set(FOREST.map(f => f.k)) };
+  function chips(el, items, set, kind) {
+    el.innerHTML = items.map(i => `<label class="chip"><input type="checkbox" data-k="${esc(i.k)}" checked><span>${esc(i.label)}</span></label>`).join("");
+    el.addEventListener("change", e => { const k = e.target.dataset.k; e.target.checked ? set.add(k) : set.delete(k); apply(); });
+  }
+  chips($("#f-status"), STATUS.map(s => ({ k: s.k, label: s.label })), sel.status);
+  chips($("#f-basin"), basins.map(b => ({ k: b, label: b })), sel.basin);
+  chips($("#f-forest"), FOREST, sel.forest);
+  $("#f-clear").onclick = () => { document.querySelectorAll(".chip input").forEach(i => { i.checked = true; }); Object.entries({ status: STATUS.map(s => s.k), basin: basins, forest: FOREST.map(f => f.k) }).forEach(([k, v]) => sel[k] = new Set(v)); apply(); };
+  function apply() {
+    let n = 0;
+    G.forEach(g => {
+      const on = sel.status.has(g.base) && sel.basin.has(g.basin) && sel.forest.has(forestKey(g));
+      if (on) { layer.addLayer(g.marker); n++; } else layer.removeLayer(g.marker);
+    });
+    $("#count").textContent = `Showing ${n} of ${G.length} dam sites.`;
+    if (current && !layer.hasLayer(current.marker)) closeSheet(true);
+  }
+  function toggle(btn, panel, startOpen) {
+    const set = o => { btn.setAttribute("aria-expanded", o); panel.hidden = !o; };
+    set(startOpen); btn.onclick = () => set(btn.getAttribute("aria-expanded") !== "true");
+  }
+  toggle($("#b-filters"), $("#filters"), false);
+  toggle($("#b-legend"), $("#legend"), wide);
+
+  /* ---- legend ---- */
+  $("#lg-status").innerHTML = STATUS.map(s => `<li>${shapeSVG(s.shape, 26, s.hex)}<span>${esc(s.label)}</span></li>`).join("");
+  $("#lg-outline").innerHTML =
+    `<li><span class="pin">${shapeSVG("circle", 26, "#8892b8")}</span><span>Solid outline: GEM says the position is exact.</span></li>` +
+    `<li><span class="pin apx">${shapeSVG("circle", 26, "#8892b8")}</span><span>Dashed outline: GEM says the position is approximate (about the right valley, not the exact spot).</span></li>`;
+  apply();
+
+  /* ---- sheet ---- */
+  const sheet = $("#sheet");
+  function src(k) { return `<span class="src ${k}">${{ gem: "GEM", dhpd: "DHPD", pv: "Parivesh" }[k]}</span>`; }
+  function openSheet(g, mk) {
+    if (current && current.marker.getElement()) current.marker.getElement().classList.remove("sel");
+    current = g; lastEl = document.activeElement;
+    mk.getElement().classList.add("sel");
+    sheet.innerHTML = sheetHTML(g);
+    sheet.classList.add("open"); sheet.setAttribute("aria-hidden", "false"); sheet.scrollTop = 0;
+    $(".close", sheet).onclick = () => closeSheet();
+    $(".close", sheet).focus({ preventScroll: true });
+    // keep the pin visible above the sheet on phones
+    if (!wide) {
+      const mapEl = $("#map").getBoundingClientRect(), p = mk.getElement().getBoundingClientRect();
+      const limit = innerHeight - Math.min(innerHeight * .74, sheet.offsetHeight) - 30;
+      const py = p.top + p.height / 2;
+      if (py > limit) map.panBy([0, py - Math.max(limit - 40, mapEl.top + 150)], { animate: true });
+    }
+  }
+  function closeSheet(noFocus) {
+    if (!current) return;
+    const el = current.marker.getElement(); if (el) el.classList.remove("sel");
+    sheet.classList.remove("open"); sheet.setAttribute("aria-hidden", "true");
+    const back = current.marker.getElement(); current = null;
+    if (!noFocus && back) back.focus({ preventScroll: true });
+  }
+  map.on("click", () => closeSheet(true));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+
+  function sheetHTML(g) {
+    const d = g.d, s = ST[g.base];
+    const statusBadge = d
+      ? `<span class="stat">${src("dhpd")} ${esc(d.dhpd_status)}</span>`
+      : `<span class="stat">${shapeSVG(s.shape, 18, s.hex)} ${src("gem")} ${esc(statusLabel(g.status))}</span>`;
+    const cap = d ? `${mwf(d.mw)} MW ${src("dhpd")}` : `${mwf(g.mw)} MW ${src("gem")}`;
+    const dist = d ? `${esc(d.district)} ${src("dhpd")}` : (g.district ? `${esc(g.district)} ${src("gem")}` : `Not stated ${src("gem")}`);
+    const dev = d ? `${esc(d.developer_agency.replace(/\s+/g, " ").trim())} ${src("dhpd")}` : (g.owner ? `${esc(g.owner)} ${src("gem")}` : `Not stated ${src("gem")}`);
+
+    let forest;
+    if (g.pv) {
+      const rows = g.pv.rows.filter(r => r.counted_in_project_area === "True");
+      const extra = rows.length > 1 ? `<div class="sub">Counted once across ${rows.length} requests: ` + rows.map(r => `${hf(+r.area_applied_ha)} ha ${esc(FL[r.status_group].toLowerCase())}${r.role === "ancillary" ? " (extra request)" : ""}`).join("; ") + `.</div>` : "";
+      forest = `<div class="block"><h3>Forest ${src("pv")}</h3><b>${esc(FL[g.pv.group])}</b> · ${hf(g.pv.ha)} ha requested${extra}</div>`;
+    } else forest = `<div class="block"><h3>Forest ${src("pv")}</h3>no forest proposal on Parivesh</div>`;
+
+    let cmp;
+    if (!d) cmp = `<div class="block ok">Not on DHPD, so there is nothing to compare. Only GEM's figures are shown.</div>`;
+    else if (g.disagree) cmp = `<div class="block flag"><b class="hd">Sources disagree.</b> GEM lists <b>${mwf(g.mw)} MW</b> / ${esc(statusLabel(g.status))}, DHPD lists <b>${mwf(d.mw)} MW</b> / ${esc(d.dhpd_status)}.<div class="sub" style="color:var(--fg)">Why? The two trackers collect data differently, so we show both and do not pick one.</div></div>`;
+    else cmp = `<div class="block ok"><b>GEM agrees.</b> ${mwf(g.mw)} MW, ${esc(statusLabel(g.status).toLowerCase())}.</div>`;
+
+    const kv = [
+      ["GEM name", esc(g.name)], d && d.name !== g.name ? ["DHPD name", esc(d.name)] : null,
+      ["GEM status", esc(statusLabel(g.status))], ["GEM capacity", `${mwf(g.mw)} MW`],
+      ["Owner", esc(g.owner || "Not stated")], g.operator ? ["Operator", esc(g.operator)] : null,
+      ["River", esc(g.river || "Not stated")], ["Start year", esc(g.start_year || "Not stated")],
+      ["Location accuracy", esc(g.location_accuracy) + (g.approx ? " (dashed outline)" : "")],
+      ["GEM coordinates", `${g.lat.toFixed(4)}, ${g.lon.toFixed(4)}` + (g.shifted ? " (pin nudged up to 7 km: shares this point with another dam)" : "")],
+      ["Last researched", esc(g.date_last_researched)],
+      g.special_case ? ["Note", esc(g.special_case)] : null,
+      d ? ["Match to DHPD", `${esc(g.m.match_method)}${g.m.notes ? ": " + esc(g.m.notes) : ""}`] : ["Match to DHPD", "none" + (g.m && g.m.notes ? ": " + esc(g.m.notes) : "")],
+      ["GEM page", `<a href="${esc(g.wiki_url)}" target="_blank" rel="noopener">Open on GEM wiki</a>`],
+    ].filter(Boolean);
+    return `<div class="grab"></div>
+      <div class="sheet-head"><div><h2 id="sh-title">${esc(g.name)}</h2>${statusBadge}</div><button class="close" aria-label="Close details" type="button">&times;</button></div>
+      <div class="facts"><div class="fact"><div class="k">Capacity</div><div class="v">${cap}</div></div>
+        <div class="fact"><div class="k">District</div><div class="v t">${dist}</div></div>
+        <div class="fact"><div class="k">Developer</div><div class="v t">${dev}</div></div></div>
+      ${forest}${cmp}
+      <details><summary>More from GEM</summary><dl class="kv">${kv.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl></details>`;
+  }
+
+  /* ============================================================ below the map */
+  const onMap = new Set(G.filter(g => g.d).map(g => g.d.dhpd_id));
+  const dhOnly = dhRaw.map(d => dhById[d.dhpd_id]).filter(d => !onMap.has(d.dhpd_id)).sort((a, b) => b.mw - a.mw);
+  const pvOnGem = new Set(G.filter(g => g.pv).map(g => g.pv.name));
+  const pvByDhpd = Object.fromEntries(Object.values(pvp).filter(p => p.dhpd_id).map(p => [p.dhpd_id, p]));
+  const pvOnly = Object.values(pvp).filter(p => !p.dhpd_id && !pvOnGem.has(p.name));
+  const NG = G.length;
+
+  const forestLine = p => p ? `${src("pv")} ${esc(FL[p.group])}, ${hf(p.ha)} ha` : "";
+  const dhRow = d => `<li><span class="n">${esc(d.name)}</span><span class="m">${mwf(d.mw)} MW ${src("dhpd")} · ${esc(d.dhpd_status)} · ${esc(d.district)}</span>${pvByDhpd[d.dhpd_id] ? `<span class="m">Forest request: ${forestLine(pvByDhpd[d.dhpd_id])}</span>` : ""}</li>`;
+  const pvRow = p => `<li><span class="n">${esc(p.name)}</span><span class="m">Only on Parivesh: no DHPD or GEM row, so no capacity is shown</span><span class="m">Forest request: ${forestLine(p)}</span></li>`;
+  const top = 8;
+  const notOnMap = `
+  <section id="not-on-map">
+    <div class="kicker">Not on the map</div>
+    <h2 class="sec">${dhOnly.length + pvOnly.length} projects the map cannot place</h2>
+    <p class="note">The Global Hydropower Tracker (<a href="https://globalenergymonitor.org/projects/global-hydropower-tracker" target="_blank" rel="noopener">https://globalenergymonitor.org/projects/global-hydropower-tracker</a>) only has data for these ${NG} dams, so the others cannot be placed on the map.</p>
+    <p class="sm mute" style="margin-top:12px">${dhOnly.length} projects are on DHPD only and ${pvOnly.length} on Parivesh only. Largest first; capacity is DHPD's figure.</p>
+    <ul class="list">${dhOnly.slice(0, top).map(dhRow).join("")}</ul>
+    <details><summary>Show the other ${dhOnly.length - top + pvOnly.length} projects</summary>
+      <ul class="list">${dhOnly.slice(top).map(dhRow).join("")}${pvOnly.map(pvRow).join("")}</ul></details>
+  </section>`;
+
+  /* ---- insights (all numbers computed here) ---- */
+  const sum = (a, f) => a.reduce((t, x) => t + f(x), 0);
+  const bar = (pct, color, h) => `<div class="track${h ? " th" : ""}"><i style="width:${Math.max(0, Math.min(100, pct))}%;background:${color}"></i></div>`;
+  const rowx = (l, r, inner, sub) => `<div class="rowx"><div class="l"><b>${l}</b><span>${r}</span></div>${inner || ""}${sub ? `<div class="sub">${sub}</div>` : ""}</div>`;
+
+  // a) status
+  const impl = G.filter(g => g.d && g.d.dhpd_status === "Under implementation");
+  const aSh = impl.filter(g => g.base === "shelved"), aCa = impl.filter(g => g.base === "cancelled"), aAn = impl.filter(g => g.base === "announced");
+  const aBoth = [...aSh, ...aCa], maxA = Math.max(sum(aBoth, g => g.d.mw), sum(aBoth, g => g.mw), 1);
+  const insA = `
+  <article class="ins"><h3>1 · Official: "under implementation". GEM: shelved or cancelled.</h3>
+    <p class="lead"><b>${aBoth.length}</b> dams that DHPD lists as "Under implementation" are shelved or cancelled in GEM. DHPD puts them at <b>${mwf(sum(aBoth, g => g.d.mw))} MW</b>; GEM puts the same dams at <b>${mwf(sum(aBoth, g => g.mw))} MW</b>.</p>
+    ${[["Shelved", aSh], ["Cancelled", aCa]].map(([l, a]) => rowx(`${l} in GEM`, `${a.length} dams`, "", `${src("dhpd")} ${mwf(sum(a, g => g.d.mw))} MW · ${src("gem")} ${mwf(sum(a, g => g.mw))} MW · ${a.filter(g => g.inferred).length} of ${a.length} are GEM's own inference`)).join("")}
+    <div class="rowx"><div class="l"><b>All ${aBoth.length}, in MW</b></div>
+      <div class="sub">${src("dhpd")} ${mwf(sum(aBoth, g => g.d.mw))} MW</div>${bar(sum(aBoth, g => g.d.mw) / maxA * 100, "var(--dhpd)")}
+      <div class="sub">${src("gem")} ${mwf(sum(aBoth, g => g.mw))} MW</div>${bar(sum(aBoth, g => g.mw) / maxA * 100, "var(--gem)")}</div>
+    <p class="sm mute">For comparison, ${aAn.length} DHPD "Under implementation" dams are only "announced" in GEM (DHPD ${mwf(sum(aAn, g => g.d.mw))} MW, GEM ${mwf(sum(aAn, g => g.mw))} MW). That is a milder difference, so it is not flagged on the map.</p>
+    <details><summary>Show the ${aBoth.length} dams</summary><ul class="list">${aBoth.sort((x, y) => y.d.mw - x.d.mw).map(g => `<li><span class="n">${esc(g.name)}</span><span class="m">${esc(statusLabel(g.status))} · DHPD ${mwf(g.d.mw)} MW · GEM ${mwf(g.mw)} MW</span></li>`).join("")}</ul></details>
+    <p class="sm mute">GEM's "shelved - inferred" and "cancelled - inferred" are GEM's own inference from a lack of news, not an official finding.</p>
+  </article>`;
+
+  // b) capacity
+  const bRows = G.filter(capDiffers).sort((a, b) => Math.abs(b.mw - b.d.mw) - Math.abs(a.mw - a.d.mw));
+  const maxB = Math.max(...bRows.map(g => Math.max(g.mw, g.d.mw)));
+  const nMatched = G.filter(g => g.d).length;
+  const insB = `
+  <article class="ins"><h3>2 · The two trackers give different capacities</h3>
+    <p class="lead">Of ${nMatched} dams found in both, <b>${bRows.length}</b> differ by more than 5% (measured against the larger figure). Biggest gap in MW first.</p>
+    <div class="keys"><span><i class="sw" style="background:var(--dhpd)"></i>DHPD</span><span><i class="sw" style="background:var(--gem)"></i>GEM</span></div>
+    ${bRows.map(g => rowx(esc(g.name), `${nf(gapPct(g) * 100)}% gap`, `<div class="sub">DHPD ${mwf(g.d.mw)} MW</div>${bar(g.d.mw / maxB * 100, "var(--dhpd)", 1)}<div class="sub">GEM ${mwf(g.mw)} MW</div>${bar(g.mw / maxB * 100, "var(--gem)", 1)}`)).join("")}
+    <p class="sm mute">We cannot tell from the data which figure is right. Both are shown; neither is averaged.</p>
+  </article>`;
+
+  // c) forest vs GEM status
+  const pvG = G.filter(g => g.pv);
+  const bucket = g => ["shelved", "cancelled"].includes(g.base) ? "sc" : g.base === "announced" ? "an" : "ac";
+  const BK = { ac: "GEM: operating, construction or pre-construction", an: "GEM: announced", sc: "GEM: shelved or cancelled" };
+  const cData = Object.keys(BK).map(k => { const a = pvG.filter(g => bucket(g) === k); const byG = {}; a.forEach(g => byG[g.pv.group] = (byG[g.pv.group] || 0) + g.pv.ha); return { k, a, ha: sum(a, g => g.pv.ha), byG }; });
+  const maxC = Math.max(...cData.map(x => x.ha), 1);
+  const pvNoGem = Object.values(pvp).filter(p => !pvOnGem.has(p.name));
+  const insC = `
+  <article class="ins"><h3>3 · Forest requested for dams that GEM calls shelved or cancelled</h3>
+    <p class="lead">Parivesh forest requests cover <b>${hf(cData[2].ha)} ha</b> at ${cData[2].a.length} dams that GEM lists as shelved or cancelled, against <b>${hf(cData[0].ha)} ha</b> at ${cData[0].a.length} dams GEM lists as active (operating, construction or pre-construction).</p>
+    <div class="keys">${FOREST.slice(0, 4).map(f => `<span><i class="sw" style="background:var(--f-${f.k})"></i>${f.label}</span>`).join("")}</div>
+    ${cData.map(x => rowx(BK[x.k], `${hf(x.ha)} ha · ${x.a.length} dams`, `<div class="track" style="width:${x.ha / maxC * 100}%;min-width:6px">${FOREST.slice(0, 4).map(f => `<i style="width:${x.ha ? (x.byG[f.k] || 0) / x.ha * 100 : 0}%;background:var(--f-${f.k})"></i>`).join("")}</div>`, FOREST.slice(0, 4).filter(f => x.byG[f.k]).map(f => `${f.label} ${hf(x.byG[f.k])} ha`).join(" · "))).join("")}
+    <p class="sm mute">Hectares are Parivesh's, counted once per project. ${pvNoGem.length} Parivesh projects (${hf(sum(pvNoGem, p => p.ha))} ha) have no GEM row and are not counted here. A request that was turned down is still a request: check the colours. "Shelved - inferred" is GEM's own inference.</p>
+  </article>`;
+
+  // d) coverage
+  const dhOnlyRows = dhOnly;
+  const cov = [
+    ["On all three", G.filter(g => g.d && g.pv).length],
+    ["GEM and DHPD only", G.filter(g => g.d && !g.pv).length],
+    ["GEM and Parivesh only", G.filter(g => !g.d && g.pv).length],
+    ["GEM only", G.filter(g => !g.d && !g.pv).length],
+    ["DHPD and Parivesh only", dhOnlyRows.filter(d => pvByDhpd[d.dhpd_id]).length],
+    ["DHPD only", dhOnlyRows.filter(d => !pvByDhpd[d.dhpd_id]).length],
+    ["Parivesh only", pvOnly.length],
+  ];
+  const covTot = sum(cov, c => c[1]), maxCov = Math.max(...cov.map(c => c[1]));
+  const insD = `
+  <article class="ins"><h3>4 · Who has which dam</h3>
+    <p class="lead">${covTot} different dams appear across the three sources. Only <b>${cov[0][1]}</b> appear in all three. ${NG} are in GEM, ${dhRaw.length} in DHPD and ${Object.keys(pvp).length} in Parivesh.</p>
+    ${cov.map(c => rowx(c[0], `${c[1]} dams`, bar(c[1] / maxCov * 100, "var(--gem)", 1))).join("")}
+    <p class="sm mute">Matching is by name, checked by capacity and district (see gem_match_table.csv). Two rows are marked "manual" and need your confirmation.</p>
+  </article>`;
+
+  // e) pipeline MW by basin and GEM status
+  const pipe = G.filter(g => g.base !== "operating");
+  const PS = STATUS.slice(1);
+  const bas = [...new Set(pipe.map(g => g.basin))].map(b => { const a = pipe.filter(g => g.basin === b); return { b, a, mw: sum(a, g => g.mw), by: Object.fromEntries(PS.map(s => [s.k, sum(a.filter(g => g.base === s.k), g => g.mw)])) }; }).sort((x, y) => (x.b === "Not stated") - (y.b === "Not stated") || y.mw - x.mw);
+  const maxE = Math.max(...bas.map(x => x.mw));
+  const insE = `
+  <article class="ins"><h3>5 · Planned capacity by river basin</h3>
+    <p class="lead">GEM counts <b>${mwf(sum(pipe, g => g.mw))} MW</b> in ${pipe.length} dams that are not yet operating. By basin (GEM's capacity figures, split by GEM's status):</p>
+    <div class="keys">${PS.map(s => `<span>${shapeSVG(s.shape, 16, s.hex)}${esc(s.label)}</span>`).join("")}</div>
+    ${bas.map(x => rowx(esc(x.b), `${mwf(x.mw)} MW · ${x.a.length} dams`, `<div class="track" style="width:${x.mw / maxE * 100}%;min-width:6px">${PS.map(s => `<i style="width:${x.by[s.k] / x.mw * 100}%;background:${s.hex}"></i>`).join("")}</div>`, PS.filter(s => x.by[s.k]).map(s => `${s.label.replace(" (incl. inferred)", "")} ${mwf(x.by[s.k])}`).join(" · "))).join("")}
+    <p class="sm mute">Basin comes from DHPD where the dam is matched. For unmatched GEM dams it is taken from GEM's river name only when that river is one of the main rivers; otherwise it is "Not stated". Shelved and cancelled are included, so this is not a forecast of what will be built.</p>
+  </article>`;
+
+  // f) location quality
+  const fEx = pvG.filter(g => !g.approx), fAp = pvG.filter(g => g.approx);
+  const allAp = G.filter(g => g.approx).length;
+  const insF = `
+  <article class="ins"><h3>6 · How well do we know where the forest-request dams are?</h3>
+    <p class="lead"><b>${fAp.length} of the ${pvG.length}</b> dams with Parivesh forest requests that GEM could place have only an approximate position. ${Object.keys(pvp).length - pvG.length} more forest-request projects are not in GEM at all.</p>
+    ${rowx("Approximate position (dashed outline)", `${fAp.length} dams`, bar(fAp.length / pvG.length * 100, "var(--gem)", 1), fAp.map(g => esc(g.name)).join(", "))}
+    ${rowx("Exact position", `${fEx.length} dams`, bar(fEx.length / pvG.length * 100, "var(--gem)", 1), fEx.map(g => esc(g.name)).join(", "))}
+    <p class="sm mute">Across all ${NG} GEM dams, ${allAp} are approximate. An approximate pin means the dam is somewhere in that valley, not at that spot.</p>
+  </article>`;
+
+  const pull = summary.dhpd_pull, pull2 = summary.parivesh_pull;
+  const dates = G.map(g => g.date_last_researched).sort();
+  const fd = s => new Date(s + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  $("#page").innerHTML = `
+    <p class="foot"><a href="../v2/">&larr; Back to the official-data dashboard (Arunachal Dam Watch II)</a></p>
+    ${notOnMap}
+    <section id="insights">
+      <div class="kicker">Combined insights</div>
+      <h2 class="sec">What the three sources say together</h2>
+      <p class="mute">GEM is an independent tracker, not a government site. Its figures sit beside DHPD and Parivesh and are never averaged with them. Every number below is computed from the CSV files in <a href="../data/official/">data/official/</a>.</p>
+      ${insA}${insB}${insC}${insD}${insE}${insF}
+    </section>
+    <section id="credits">
+      <div class="kicker">Credits and dates</div>
+      <p class="foot">Map data: <a href="https://globalenergymonitor.org/projects/global-hydropower-tracker" target="_blank" rel="noopener">Global Energy Monitor, Global Hydropower Tracker</a> (March 2026 release), licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Pulled into this repo on ${fd("2026-11-17")}; GEM's own research dates for these dams run from ${fd(dates[0])} to ${fd(dates[dates.length - 1])}. Official data: <a href="https://dhpdap.online/" target="_blank" rel="noopener">DHPD</a> pulled ${fd(pull)}, <a href="https://forestsclearance.nic.in/FCDashboard/FCPublicDashboard.aspx" target="_blank" rel="noopener">Parivesh</a> pulled ${fd(pull2)} (requests filed before 28 June 2022). Basemap: &copy; OpenStreetMap contributors &copy; CARTO. Subansiri Lower is listed by GEM in Assam; the dam sits on the border.</p>
+      <p class="foot"><a href="../v2/">&larr; Back to the official-data dashboard</a></p>
+    </section>`;
+  window.__map = { G, map };
+}
+</script>
+</body>
+</html>
