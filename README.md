@@ -149,3 +149,36 @@ Serve it like v2: `python -m http.server 8000 --bind 127.0.0.1`, then open `http
 ### Matching rules
 
 Names are lowercased; the suffixes "hydroelectric plant", "hydro electric project" and "HEP" are stripped, as is any "(NNN MW)"; punctuation is dropped. Then, in order: exact, stage/roman-numeral equal ("Siang Upper II" = "Siang Upper St-II"), word-order swap ("Siang Lower" = "Lower Siang"), spaces removed ("Mago Chu" = "Magochu"), and a lone name equal to stage I ("Oju" = "Oju - I"). Each match is checked on capacity and district and the differences are written to the notes. Manual: Ranganadi 405 MW to Panyor Lower (the 130 MW row stays unmatched) and Upper Subansiri to Subansiri Upper (flagged for confirmation). Parivesh is linked through `dhpd_id`, or by name for GEM dams not on DHPD (Simang-I, Tagurshit). A dam is flagged "Sources disagree" when capacities differ by more than 5% of the larger figure, or the statuses conflict (DHPD Completed vs GEM not operating; DHPD Under construction vs GEM not construction; DHPD Under implementation vs GEM shelved, cancelled or operating). GEM's "inferred" statuses are GEM's own inference, not an official finding.
+
+## Map of the EC proposals (`map/kml.html`)
+
+A second map page, built from the KML files uploaded with Parivesh **environment clearance (EC)** proposals (IDs like `IA/AR/RIV/…`, not the forest-clearance `FP/AR/HYD/…` IDs used elsewhere). 149 manifest rows (`data/kml/parivesh_kml_manifest(2).csv`) cover 24 proposals and 14 projects. One marker per project; opening it loads that project's GeoJSON and draws it: dam axes as lines, project area, reservoir and forest land as polygons, ancillary works as points. Filters cover proposal status, which proposals to draw (default, delisted, earlier, returned) and the layer by role. A details panel shows capacity, district and developer (DHPD, else GEM, else "Not stated"), every proposal with its status and files, and the match status.
+
+Serve it like the other pages: `python -m http.server 8000 --bind 127.0.0.1`, then open `http://localhost:8000/map/kml.html`.
+
+### New files
+
+| File | Contents |
+| ---- | -------- |
+| `build_kml_data.py` | Parses the KMLs, classifies roles, removes duplicates, matches projects, simplifies the geometry and writes everything below (standard library only) |
+| `data/official/kml_catalogue.csv` | One row per manifest row: geometry types, feature counts, centroid, bounding box, area or length, flags, role, `role_confidence`, proposal kind and `dedupe_status` (`mapped` / `duplicate` / `excluded` / `missing`) |
+| `data/official/kml_match_table.csv` | One row per EC proposal: matched DHPD and GEM id, `match_method` (`exact` / `fuzzy` / `manual` / `unmatched`), notes, MW and distance checks |
+| `data/official/kml_projects.json` | What the page reads: marker position, proposals, files, counts and GeoJSON paths per project |
+| `data/official/kml_geojson/<slug>.geojson` | Simplified geometry per project, with `role`, `proposal_no`, `status`, `layer` and `role_confidence` on each feature |
+| `data/official/kml_geojson/<slug>_cad.geojson` | CAD / survey line-work (Kurung, Niare), loaded only when that layer is switched on |
+| `data/official/kml_summary.json` | File counts and sizes before and after simplification |
+| `data/official/kml_review.md` | Roles and matches that need a human decision |
+
+### Rules
+
+- **Files:** 54 mapped, 90 duplicates (same geometry as another file), 2 excluded and 3 missing. The two `PLATE-1_14.3.24.kml` files are NetworkLinks to a .KMZ that is not in the download set; the 3 missing files failed to download (HTTP 500). All are listed on the page and in the catalogue. A few files have an undeclared `xsi:` prefix, which the script patches in memory; no KML is changed.
+- **Duplicates:** geometry is hashed after rounding to 5 decimals and normalising ring start and direction, then de-duplicated per project at the level of one shape.
+- **Default proposal:** the newest proposal that is not "Proposal returned in present form" and not `DELISTED_BY_SYSTEM`. Returned and delisted proposals stay as toggleable layers. A delisted proposal draws grey only for geometry no other proposal has (Kamala 562202); one that repeats another proposal draws nothing and the panel says so (Naying 573573 is "DELISTED, same geometry as 470969/2024").
+- **Roles** are read from the placemark name, its attributes and folders, then the document and file name, then the upload prefix. Each feature stores `role_confidence`: `high` for a placemark, attribute or folder name or the `FORM_C_FOREST_LAND_PROPOSED_DIVERSION` prefix, `medium` for a file name only or the plain `FC_KML` prefix, `low` when nothing matched (role `other`). Hirong's MDA / CBP / RQ / RBM labels are kept as written. Subansiri Upper Sites A to E are marked "alternative site (inferred from file names)". Tato-I's "Project Area" is its own role, `project_area`. Unlabelled shapes are labelled with their area.
+- **CAD / survey detail** (`cad_detail`): Kurung's unlabelled lines and Niare's `power house alt-N` lines. They are simplified more coarsely and are off by default.
+- **Matching** uses the same name rules as the GEM match (suffixes, "(NNN MW)" and village or district text stripped, roman numerals, word order), then checks MW against DHPD and GEM and the KML centroid against the GEM pin. `exact`: name matches and MW and location agree. `fuzzy`: name matches but MW or location does not (shown as "match unverified (name/MW only)"). `unmatched`: name matches but MW and location both disagree (Hirong: 351 vs 500 MW, 61 km; it may be a re-scoped version of D010 / G100000604428). The manual override table is empty. Unmatched projects are shown as "EC proposal only" at the KML centroid.
+- **Marker position:** the GEM pin when the KML centroid is within 10 km of it, otherwise the KML centroid; the details panel gives the pin distance.
+- **Simplification:** Douglas-Peucker at 0.00003 degrees (about 3 m), or 0.0001 for CAD detail, coordinates to 5 decimals. About 53.6 MB of KML became 9.6 MB of de-duplicated GeoJSON and 3.3 MB after simplification (1.6 MB drawn by default, 1.7 MB CAD detail).
+- **Not stated:** anything missing from the KMLs, the manifest, DHPD, GEM or Parivesh reads "Not stated". The page links to the Parivesh home page and shows each proposal number to search for; no deep link is used because none could be checked.
+
+Re-run with `python build_kml_data.py` from the repo root. It never writes to `map/index.html` or to any existing data file.
