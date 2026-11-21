@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Kurung_Kumey_Forest_Area.shp</name>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.6.10201"></atom:link>
+	<Schema name="Kurung_Kumey_Forest_Area" id="S_Kurung_Kumey_Forest_Area_SSSSSSSSDDDDDD">
+		<SimpleField type="long" name="OBJECTID"><displayName>&lt;b&gt;OBJECTID&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="GM_LAYER"><displayName>&lt;b&gt;GM_LAYER&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="KML_STYLE"><displayName>&lt;b&gt;KML_STYLE&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="KML_FOLDER"><displayName>&lt;b&gt;KML_FOLDER&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="NAME"><displayName>&lt;b&gt;NAME&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="LAYER"><displayName>&lt;b&gt;LAYER&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="GM_TYPE"><displayName>&lt;b&gt;GM_TYPE&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="long" name="ELEVATION"><displayName>&lt;b&gt;ELEVATION&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="FID_1"><displayName>&lt;b&gt;FID_1&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="long" name="Id"><displayName>&lt;b&gt;Id&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="Area"><displayName>&lt;b&gt;Area&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="long" name="tessellate"><displayName>&lt;b&gt;tessellate&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="double" name="AREA_NEW"><displayName>&lt;b&gt;AREA_NEW&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="double" name="SHAPE_Leng"><displayName>&lt;b&gt;SHAPE_Leng&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="double" name="NEW_AREA"><displayName>&lt;b&gt;NEW_AREA&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="double" name="Area_1"><displayName>&lt;b&gt;Area_1&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="double" name="SHAPE_Le_1"><displayName>&lt;b&gt;SHAPE_Le_1&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="double" name="SHAPE_Area"><displayName>&lt;b&gt;SHAPE_Area&lt;/b&gt;</displayName>
+</SimpleField>
+	</Schema>
+	<Style id="falseColor1">
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>OBJECTID</b></td><td>$[Kurung_Kumey_Forest_Area/OBJECTID]</td></tr>
+  <tr><td><b>GM_LAYER</b></td><td>$[Kurung_Kumey_Forest_Area/GM_LAYER]</td></tr>
+  <tr><td><b>KML_STYLE</b></td><td>$[Kurung_Kumey_Forest_Area/KML_STYLE]</td></tr>
+  <tr><td><b>KML_FOLDER</b></td><td>$[Kurung_Kumey_Forest_Area/KML_FOLDER]</td></tr>
+  <tr><td><b>NAME</b></td><td>$[Kurung_Kumey_Forest_Area/NAME]</td></tr>
+  <tr><td><b>LAYER</b></td><td>$[Kurung_Kumey_Forest_Area/LAYER]</td></tr>
+  <tr><td><b>GM_TYPE</b></td><td>$[Kurung_Kumey_Forest_Area/GM_TYPE]</td></tr>
+  <tr><td><b>ELEVATION</b></td><td>$[Kurung_Kumey_Forest_Area/ELEVATION]</td></tr>
+  <tr><td><b>FID_1</b></td><td>$[Kurung_Kumey_Forest_Area/FID_1]</td></tr>
+  <tr><td><b>Id</b></td><td>$[Kurung_Kumey_Forest_Area/Id]</td></tr>
+  <tr><td><b>Area</b></td><td>$[Kurung_Kumey_Forest_Area/Area]</td></tr>
+  <tr><td><b>tessellate</b></td><td>$[Kurung_Kumey_Forest_Area/tessellate]</td></tr>
+  <tr><td><b>AREA_NEW</b></td><td>$[Kurung_Kumey_Forest_Area/AREA_NEW]</td></tr>
+  <tr><td><b>SHAPE_Leng</b></td><td>$[Kurung_Kumey_Forest_Area/SHAPE_Leng]</td></tr>
+  <tr><td><b>NEW_AREA</b></td><td>$[Kurung_Kumey_Forest_Area/NEW_AREA]</td></tr>
+  <tr><td><b>Area_1</b></td><td>$[Kurung_Kumey_Forest_Area/Area_1]</td></tr>
+  <tr><td><b>SHAPE_Le_1</b></td><td>$[Kurung_Kumey_Forest_Area/SHAPE_Le_1]</td></tr>
+  <tr><td><b>SHAPE_Area</b></td><td>$[Kurung_Kumey_Forest_Area/SHAPE_Area]</td></tr>
+</table>]]></text>
+		</BalloonStyle>
+		<PolyStyle>
+			<color>9900ff55</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="falseColor2">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#falseColor4</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#falseColor1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="falseColor4">
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>OBJECTID</b></td><td>$[Kurung_Kumey_Forest_Area/OBJECTID]</td></tr>
+  <tr><td><b>GM_LAYER</b></td><td>$[Kurung_Kumey_Forest_Area/GM_LAYER]</td></tr>
+  <tr><td><b>KML_STYLE</b></td><td>$[Kurung_Kumey_Forest_Area/KML_STYLE]</td></tr>
+  <tr><td><b>KML_FOLDER</b></td><td>$[Kurung_Kumey_Forest_Area/KML_FOLDER]</td></tr>
+  <tr><td><b>NAME</b></td><td>$[Kurung_Kumey_Forest_Area/NAME]</td></tr>
+  <tr><td><b>LAYER</b></td><td>$[Kurung_Kumey_Forest_Area/LAYER]</td></tr>
+  <tr><td><b>GM_TYPE</b></td><td>$[Kurung_Kumey_Forest_Area/GM_TYPE]</td></tr>
+  <tr><td><b>ELEVATION</b></td><td>$[Kurung_Kumey_Forest_Area/ELEVATION]</td></tr>
+  <tr><td><b>FID_1</b></td><td>$[Kurung_Kumey_Forest_Area/FID_1]</td></tr>
+  <tr><td><b>Id</b></td><td>$[Kurung_Kumey_Forest_Area/Id]</td></tr>
+  <tr><td><b>Area</b></td><td>$[Kurung_Kumey_Forest_Area/Area]</td></tr>
+  <tr><td><b>tessellate</b></td><td>$[Kurung_Kumey_Forest_Area/tessellate]</td></tr>
+  <tr><td><b>AREA_NEW</b></td><td>$[Kurung_Kumey_Forest_Area/AREA_NEW]</td></tr>
+  <tr><td><b>SHAPE_Leng</b></td><td>$[Kurung_Kumey_Forest_Area/SHAPE_Leng]</td></tr>
+  <tr><td><b>NEW_AREA</b></td><td>$[Kurung_Kumey_Forest_Area/NEW_AREA]</td></tr>
+  <tr><td><b>Area_1</b></td><td>$[Kurung_Kumey_Forest_Area/Area_1]</td></tr>
+  <tr><td><b>SHAPE_Le_1</b></td><td>$[Kurung_Kumey_Forest_Area/SHAPE_Le_1]</td></tr>
+  <tr><td><b>SHAPE_Area</b></td><td>$[Kurung_Kumey_Forest_Area/SHAPE_Area]</td></tr>
+</table>]]></text>
+		</BalloonStyle>
+		<PolyStyle>
+			<color>9900ff55</color>
+		</PolyStyle>
+	</Style>
+	<Folder id="layer 0">
+		<name>Kurung_Kumey_Forest_Area</name>
+		<Placemark>
+			<styleUrl>#falseColor2</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Kurung_Kumey_Forest_Area_SSSSSSSSDDDDDD">
+					<SimpleData name="OBJECTID">0</SimpleData>
+					<SimpleData name="GM_LAYER"></SimpleData>
+					<SimpleData name="KML_STYLE"></SimpleData>
+					<SimpleData name="KML_FOLDER"></SimpleData>
+					<SimpleData name="NAME"></SimpleData>
+					<SimpleData name="LAYER"></SimpleData>
+					<SimpleData name="GM_TYPE"></SimpleData>
+					<SimpleData name="ELEVATION">0</SimpleData>
+					<SimpleData name="FID_1"></SimpleData>
+					<SimpleData name="Id">0</SimpleData>
+					<SimpleData name="Area"></SimpleData>
+					<SimpleData name="tessellate">0</SimpleData>
+					<SimpleData name="AREA_NEW">0</SimpleData>
+					<SimpleData name="SHAPE_Leng">0</SimpleData>
+					<SimpleData name="NEW_AREA">0</SimpleData>
+					<SimpleData name="Area_1">0.983667</SimpleData>
+					<SimpleData name="SHAPE_Le_1">0</SimpleData>
+					<SimpleData name="SHAPE_Area">0</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							93.59699958602569,28.01660649016154,0 93.59574127410092,28.01667157346177,0 93.59389451451221,28.01616129163776,0 93.59390449458107,28.01615427859051,0 93.59390067983799,28.01613901957914,0 93.59394645677831,28.0161237620164,0 93.59395027073469,28.01610087381611,0 93.59403800922809,28.01612376173379,0 93.59419059749227,28.01611613330586,0 93.59424018904298,28.01608943006572,0 93.59434699983099,28.01607417206326,0 93.59454536479841,28.01607035688228,0 93.59476280237362,28.01611994567931,0 93.59484672636307,28.01611613326833,0 93.59501075721113,28.01605509669805,0 93.59521293744784,28.01603220893788,0 93.59525489805615,28.01604365399555,0 93.59528541638726,28.01608561473151,0 93.59537696943583,28.01608943017115,0 93.59545326276306,28.01612376064186,0 93.59549140921932,28.0161123179386,0 93.59552192658964,28.01612376194174,0 93.59552574182544,28.01614664962285,0 93.59559440611135,28.01617335275584,0 93.59565544063598,28.01614665087529,0 93.59572029070932,28.01619242557308,0 93.59575843935885,28.01625346058249,0 93.59578895638744,28.01642893778078,0 93.59592628404243,28.0164976029881,0 93.59600257841042,28.01648234421474,0 93.59601402342037,28.01640986373268,0 93.59594535822998,28.01637934690893,0 93.59597206095965,28.0163183106006,0 93.59612464916364,28.0163564577524,0 93.59628868093613,28.01632594085195,0 93.59635353111524,28.01632975593952,0 93.59642601013702,28.01637934721269,0 93.59656333912217,28.0164251229116,0 93.59673958899599,28.01642732630375,0 93.59686851541728,28.01642893793737,0 93.59692573480159,28.01644419692293,0 93.59700202859352,28.0164937866656,0 93.59707069377966,28.01651667604443,0 93.59709358195344,28.01654719168285,0 93.59712791374159,28.01656245071561,0 93.59718513512337,28.01655482162493,0 93.59721565178386,28.01656626705629,0 93.5972309110507,28.01658534069808,0 93.59727295957441,28.0165923491672,0 93.59699958602569,28.01660649016154,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#falseColor2</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Kurung_Kumey_Forest_Area_SSSSSSSSDDDDDD">
+					<SimpleData name="OBJECTID">0</SimpleData>
+					<SimpleData name="GM_LAYER"></SimpleData>
+					<SimpleData name="KML_STYLE"></SimpleData>
+					<SimpleData name="KML_FOLDER"></SimpleData>
+					<SimpleData name="NAME"></SimpleData>
+					<SimpleData name="LAYER"></SimpleData>
+					<SimpleData name="GM_TYPE"></SimpleData>
+					<SimpleData name="ELEVATION">0</SimpleData>
+					<SimpleData name="FID_1"></SimpleData>
+					<SimpleData name="Id">0</SimpleData>
+					<SimpleData name="Area"></SimpleData>
+					<SimpleData name="tessellate">0</SimpleData>
+					<SimpleData name="AREA_NEW">0</SimpleData>
+					<SimpleData name="SHAPE_Leng">0</SimpleData>
+					<SimpleData name="NEW_AREA">0</SimpleData>
+					<SimpleData name="Area_1">0.786307</SimpleData>
+					<SimpleData name="SHAPE_Le_1">0</SimpleData>
+					<SimpleData name="SHAPE_Area">0</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							93.60096931535163,28.01682948215713,0 93.6008281703164,28.01681040776226,0 93.600751876431,28.01682566559606,0 93.60064887987083,28.01689051705402,0 93.60059166017942,28.01688670224995,0 93.60053825254965,28.01690958977187,0 93.60051990798519,28.01696986756682,0 93.59958637341386,28.01683015589459,0 93.59960365259762,28.01681040774788,0 93.59958076503686,28.01675700187455,0 93.59965324357631,28.01674174328188,0 93.59970664938908,28.01669978116202,0 93.59972190797532,28.01666926381202,0 93.59983635040477,28.01661967287762,0 93.59988975528785,28.0165738958823,0 93.59990119993311,28.01655100672341,0 93.59999656551463,28.0164899732515,0 93.60004615833384,28.01648997158963,0 93.60007286028633,28.01647471402849,0 93.60007286023948,28.01649378807396,0 93.60010337764021,28.01647852919452,0 93.60010337768669,28.01645945605173,0 93.60013389625509,28.01645945459126,0 93.60011863731218,28.01644419698736,0 93.60013008126803,28.01643275314261,0 93.60010337777486,28.01642130886332,0 93.60012626691093,28.01639460636099,0 93.60015678381909,28.01640605023284,0 93.60024833687602,28.01637934575513,0 93.60022544810795,28.01630686775361,0 93.60016441286757,28.01631068280017,0 93.60017585664913,28.01626490476757,0 93.60016441338615,28.01624583194533,0 93.60012626706693,28.01622675927204,0 93.60008430525858,28.01622675923863,0 93.60003852885939,28.01621150036055,0 93.60005378765129,28.01619242559486,0 93.60004997284159,28.01618098067065,0 93.60001945450905,28.01619624134758,0 93.60001563991277,28.01618098070954,0 93.60006141743283,28.01615809510905,0 93.60005760182503,28.01614283628201,0 93.60003471363098,28.01613520458334,0 93.60002327003906,28.01610468822489,0 93.5999698644822,28.01607798570362,0 93.59994697559374,28.01604746784514,0 93.59993553100934,28.01607035700847,0 93.59989357005827,28.01607417172181,0 93.59993934601833,28.01602457979513,0 93.59999275167634,28.01601313604042,0 93.60005378772212,28.01602839511478,0 93.60010719268094,28.0160474679877,0 93.60012626676676,28.01608561584582,0 93.60018348685327,28.01607417070761,0 93.60018730176746,28.01602839529439,0 93.60016822759745,28.01602839373241,0 93.60016059759994,28.01599406307449,0 93.60023307800753,28.01595209960503,0 93.60029792806989,28.01595591373557,0 93.6003704065874,28.01589106586058,0 93.60039196361664,28.01588986889297,0 93.60100800732505,28.01685410324633,0 93.60096931535163,28.01682948215713,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

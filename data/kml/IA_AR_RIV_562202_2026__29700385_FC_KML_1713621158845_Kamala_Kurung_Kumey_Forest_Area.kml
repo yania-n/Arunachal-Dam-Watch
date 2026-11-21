@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Kamala_Kurung_Kumey_Forest_Area.shp</name>
+	<open>1</open>
+	<Schema name="Kamala_Kurung_Kumey_Forest_Area" id="S_Kamala_Kurung_Kumey_Forest_Area_SSSSSSS">
+		<SimpleField type="string" name="Name"><displayName>&lt;b&gt;Name&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="descriptio"><displayName>&lt;b&gt;descriptio&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="timestamp"><displayName>&lt;b&gt;timestamp&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="begin"><displayName>&lt;b&gt;begin&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="end"><displayName>&lt;b&gt;end&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="altitudeMo"><displayName>&lt;b&gt;altitudeMo&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="long" name="tessellate"><displayName>&lt;b&gt;tessellate&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="long" name="extrude"><displayName>&lt;b&gt;extrude&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="long" name="visibility"><displayName>&lt;b&gt;visibility&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="long" name="drawOrder"><displayName>&lt;b&gt;drawOrder&lt;/b&gt;</displayName>
+</SimpleField>
+		<SimpleField type="string" name="icon"><displayName>&lt;b&gt;icon&lt;/b&gt;</displayName>
+</SimpleField>
+	</Schema>
+	<Style id="falseColor">
+		<IconStyle>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>Name</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/Name]</td></tr>
+  <tr><td><b>descriptio</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/descriptio]</td></tr>
+  <tr><td><b>timestamp</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/timestamp]</td></tr>
+  <tr><td><b>begin</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/begin]</td></tr>
+  <tr><td><b>end</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/end]</td></tr>
+  <tr><td><b>altitudeMo</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/altitudeMo]</td></tr>
+  <tr><td><b>tessellate</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/tessellate]</td></tr>
+  <tr><td><b>extrude</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/extrude]</td></tr>
+  <tr><td><b>visibility</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/visibility]</td></tr>
+  <tr><td><b>drawOrder</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/drawOrder]</td></tr>
+  <tr><td><b>icon</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/icon]</td></tr>
+</table>
+]]></text>
+		</BalloonStyle>
+		<ListStyle>
+		</ListStyle>
+		<LineStyle>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+		<gx:IconStackStyle>
+		</gx:IconStackStyle>
+	</Style>
+	<Style id="falseColor0">
+		<IconStyle>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>Name</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/Name]</td></tr>
+  <tr><td><b>descriptio</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/descriptio]</td></tr>
+  <tr><td><b>timestamp</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/timestamp]</td></tr>
+  <tr><td><b>begin</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/begin]</td></tr>
+  <tr><td><b>end</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/end]</td></tr>
+  <tr><td><b>altitudeMo</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/altitudeMo]</td></tr>
+  <tr><td><b>tessellate</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/tessellate]</td></tr>
+  <tr><td><b>extrude</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/extrude]</td></tr>
+  <tr><td><b>visibility</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/visibility]</td></tr>
+  <tr><td><b>drawOrder</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/drawOrder]</td></tr>
+  <tr><td><b>icon</b></td><td>$[Kamala_Kurung_Kumey_Forest_Area/icon]</td></tr>
+</table>
+]]></text>
+		</BalloonStyle>
+		<ListStyle>
+		</ListStyle>
+		<LineStyle>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+		<gx:IconStackStyle>
+		</gx:IconStackStyle>
+	</Style>
+	<StyleMap id="falseColor1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#falseColor0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#falseColor</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder id="layer 0">
+		<name>Kamala_Kurung_Kumey_Forest_Area</name>
+		<open>1</open>
+		<Placemark>
+			<styleUrl>#falseColor1</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Kamala_Kurung_Kumey_Forest_Area_SSSSSSS">
+					<SimpleData name="Name"></SimpleData>
+					<SimpleData name="descriptio">0</SimpleData>
+					<SimpleData name="timestamp">2.81245982342484</SimpleData>
+					<SimpleData name="begin"></SimpleData>
+					<SimpleData name="end"></SimpleData>
+					<SimpleData name="altitudeMo"></SimpleData>
+					<SimpleData name="tessellate">-1</SimpleData>
+					<SimpleData name="extrude">1</SimpleData>
+					<SimpleData name="visibility">-1</SimpleData>
+					<SimpleData name="drawOrder">0</SimpleData>
+					<SimpleData name="icon"></SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							93.5621561232,28.00297664219999,473.7700000000041 93.56238703230004,28.00302082410001,473.7700000000041 93.5626516758,28.00305293380002,473.7700000000041 93.56276945640003,28.00305385090002,473.7700000000041 93.56310313500002,28.0030227315,473.7700000000041 93.56330152889997,28.00300234809999,473.7700000000041 93.56368034190001,28.00291407270004,473.7700000000041 93.56394939109998,28.00280782230001,473.7700000000041 93.56411546490006,28.00272545529999,473.7700000000041 93.56443688069999,28.00252927819998,473.7700000000041 93.56466685610003,28.00233780910005,473.7700000000041 93.56475574720002,28.0022676919,473.7700000000041 93.56477750620003,28.00224704800001,473.7700000000041 93.56480338090002,28.00222378730005,473.7700000000041 93.56482241749995,28.00220572720003,473.7700000000041 93.56484262140002,28.00218138860005,473.7700000000041 93.56489788060004,28.00207854199998,473.7700000000041 93.5651640562,28.00161711379997,473.7700000000041 93.56534208879998,28.00134399979999,473.7700000000041 93.56594373018982,27.99965330805197,473.7700000000041 93.56607818189011,27.99927503611125,473.7700000000041 93.56635405147712,27.99907409391562,473.7700000000041 93.56659581936323,27.99948615994709,473.7700000000041 93.56605064396928,28.00094937888831,473.7700000000041 93.56604843284863,28.00105862624917,473.7700000000041 93.56598353419997,28.00119505940002,473.7700000000041 93.56593222920004,28.00128554099999,473.7700000000041 93.5658863151,28.00138392629998,473.7700000000041 93.56584237289997,28.00151713870005,473.7700000000041 93.56572496610001,28.00183086039999,473.7700000000041 93.5657201037,28.00186768370004,473.7700000000041 93.565692532,28.00203330799999,473.7700000000041 93.56567346159999,28.002126663,473.7700000000041 93.56563580940002,28.00229007200002,473.7700000000041 93.5656210961,28.00233163890002,473.7700000000041 93.56556761119998,28.00247615630006,473.7700000000041 93.56554797750003,28.00252009039998,473.7700000000041 93.56550949030004,28.0025957149,473.7700000000041 93.5654747116,28.00264530809999,473.7700000000041 93.5654683584,28.00265180660001,473.7700000000041 93.5654441991,28.0026763331,473.7700000000041 93.5654287645,28.00268885390004,473.7700000000041 93.56541601499998,28.00270334960004,473.7700000000041 93.56538877219997,28.0027255689,473.7700000000041 93.56536541310004,28.00274557860005,473.7700000000041 93.56534502080002,28.00275916699998,473.7700000000041 93.56532412889997,28.00277836310001,473.7700000000041 93.5653017291,28.00279316029999,473.7700000000041 93.56528623589996,28.00280420090003,473.7700000000041 93.56525229819998,28.00282204240002,473.7700000000041 93.56520773519998,28.00285410020004,473.7700000000041 93.56520710640001,28.00285444580003,473.7700000000041 93.56520674149998,28.00285467290001,473.7700000000041 93.56520544310003,28.00285534630002,473.7700000000041 93.56515763399999,28.00288318360001,473.7700000000041 93.5651316909,28.00289916880001,473.7700000000041 93.56510547059999,28.00291466770001,473.7700000000041 93.56507759290004,28.00293025470003,473.7700000000041 93.5650577206,28.00294021190001,473.7700000000041 93.56504740910002,28.0029463476,473.7700000000041 93.56501611599998,28.0029603508,473.7700000000041 93.56500337630001,28.00296502500002,473.7700000000041 93.5649675482,28.00298704470001,473.7700000000041 93.56495331190003,28.00299338600001,473.7700000000041 93.56493726100001,28.00300671270004,473.7700000000041 93.56490350290007,28.00302196269998,473.7700000000041 93.5648878065,28.00303109940002,473.7700000000041 93.56484986329998,28.0030473595,473.7700000000041 93.56483385249997,28.00305862790001,473.7700000000041 93.5648080749,28.00307516300002,473.7700000000041 93.56480235269997,28.00307784950001,473.7700000000041 93.56479713240002,28.00308316980001,473.7700000000041 93.56475158330001,28.00310561760003,473.7700000000041 93.56472840319996,28.00312096850002,473.7700000000041 93.56470147799998,28.00313395170001,473.7700000000041 93.56467296890001,28.00315914589998,473.7700000000041 93.56465792029996,28.00316771120001,473.7700000000041 93.56464901299999,28.00317397650001,473.7700000000041 93.56461542810001,28.0031912568,473.7700000000041 93.5646066402,28.00319506609999,473.7700000000041 93.56456945870001,28.00322282350005,473.7700000000041 93.56456100889999,28.00322710999997,473.7700000000041 93.56455179490001,28.00323502840002,473.7700000000041 93.5645115674,28.0032559919,473.7700000000041 93.56448989270001,28.00327139979999,473.7700000000041 93.56446330059997,28.00328584390003,473.7700000000041 93.56443171900004,28.00331087919998,473.7700000000041 93.56441847619998,28.00331856140002,473.7700000000041 93.5644104803,28.0033240827,473.7700000000041 93.56437670130003,28.00334316010002,473.7700000000041 93.56436883029998,28.0033472727,473.7700000000041 93.56433097159997,28.00337391340004,473.7700000000041 93.5643226473,28.00337885830001,473.7700000000041 93.5643138802,28.00338666660002,473.7700000000041 93.56427616789999,28.00341018340001,473.7700000000041 93.5642516063,28.00342785080003,473.7700000000041 93.564228994,28.00344095159999,473.7700000000041 93.56422242104583,28.00344711121125,0 93.56144134368554,28.00303726170552,0 93.56095947977377,28.00273332333333,0 93.5621561232,28.00297664219999,473.7700000000041 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

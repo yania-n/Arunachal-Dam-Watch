@@ -1,0 +1,2145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Kalai_II_Hydro_Electric_Project_Alternate.kml</name>
+	<open>1</open>
+	<Style id="PolyStyle00">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>80e65c00</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80e65c00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle000">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>80e65c00</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80e65c00</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle001">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle000</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle00</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="PolyStyle01">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle012</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle010</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle010">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>807fa7ff</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>807fa7ff</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle011">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle0115</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle0114</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle0110">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle0111">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle01110">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle01116</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle0110</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle01111">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle01112">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle01111</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle01115</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle01113">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle01114">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle01115">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle01116">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle0112">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle0113">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle01113</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle0117</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle0114">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle0115">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle0116">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle0119</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle0112</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle0117">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle0118">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle0111</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle01114</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle0119">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>800000a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle012">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>807fa7ff</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>807fa7ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle02">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle020">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle021">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle029</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle026</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle0210">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle0211">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle0212">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle0213">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle0214">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle0215">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle023</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle0211</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle0216">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle022">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle023">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle024">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle0213</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle022</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="PolyStyle025">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle020</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle0214</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle026">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle027">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle0210</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle0216</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="PolyStyle028">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle0212</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle02</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle029">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>8000a8a8</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000a8a8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle08">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>80cd66aa</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80cd66aa</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle080">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle081</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle085</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle081">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>80cd66aa</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80cd66aa</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle082">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>80cd66aa</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80cd66aa</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle083">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle084</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle082</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle084">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>80cd66aa</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80cd66aa</color>
+		</PolyStyle>
+	</Style>
+	<Style id="PolyStyle085">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>80cd66aa</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80cd66aa</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="PolyStyle086">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle08</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle087</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle087">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>80cd66aa</color>
+			<width>0.4</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80cd66aa</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_grn-stars">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_grn-stars</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_grn-stars</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_grn-stars">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/grn-stars.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<BalloonStyle>
+		</BalloonStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/grn-stars-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Style id="sn_grn-stars">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/grn-stars.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<BalloonStyle>
+		</BalloonStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/grn-stars-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Folder id="FeatureLayer0">
+		<name>Kalai_II_Hydro_Electric_Project_Alternate</name>
+		<open>1</open>
+		<Snippet maxLines="0"></Snippet>
+		<Placemark id="ID_00000">
+			<name>Proposed Dam Site-II</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Proposed Dam Site-II</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>571.34974</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>20372.636282</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Proposed Dam Site-II</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle001</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.81240427973601,27.89372302503061,0 96.81277192358095,27.89250478509305,0 96.81425223282773,27.8928574223671,0 96.81388460224493,27.89407566424482,0 96.81240427973601,27.89372302503061,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00001">
+			<name>Power House Site-II</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Power House Site-II</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>590.374629</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>21533.413386</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Power House Site-II</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle01</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.81300107336956,27.89638400222045,0 96.81307881252152,27.89644448152766,0 96.81317626366513,27.89652029628319,0 96.81325496248311,27.89658152200234,0 96.81333688571017,27.89664525668183,0 96.81341480611388,27.89670587671625,0 96.81352709891017,27.89679323730864,0 96.81360409895294,27.89685314123888,0 96.81369836772284,27.89692647968827,0 96.81377605144142,27.89698691493754,0 96.81387468622655,27.89706364958454,0 96.81395320252683,27.89712473236637,0 96.81407786777788,27.89722171799233,0 96.81318077247307,27.89813190780864,0 96.81301597297947,27.89800369953031,0 96.81293798665575,27.89794302828697,0 96.81265298369506,27.89772130367372,0 96.81257503781515,27.89766066355365,0 96.81230692901156,27.8974520794516,0 96.81222927433508,27.89739166576515,0 96.8119101984591,27.89714343040577,0 96.81280729591853,27.89623324656408,0 96.81300107336956,27.89638400222045,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00002">
+			<name>Head Rance Tunnel</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>530.127609</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>2555.736337</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle0215</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.81438569936986,27.89450123557027,0 96.81393173498158,27.89585807762523,0 96.81392139488494,27.89589063712463,0 96.81391883456496,27.89589691155857,0 96.8139052362465,27.89592378093877,0 96.81390095947026,27.89593060868768,0 96.81389683006938,27.89593535268583,0 96.81325496248311,27.89658152200234,0 96.81317626366513,27.89652029628319,0 96.81381419856494,27.89587977419948,0 96.81382297275323,27.8958624382451,0 96.81383247322979,27.89583252965722,0 96.81428664109818,27.89447507427691,0 96.81438569936986,27.89450123557027,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00003">
+			<name>Head Rance Tunnel</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>547.09083</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>2636.42126</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle021</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.81459941716444,27.89456030471889,0 96.81410350897778,27.89596982420276,0 96.81409326716353,27.89600207351634,0 96.81409070684998,27.89600834795213,0 96.814077107637,27.89603521835248,0 96.81407283189399,27.89604204600864,0 96.81406873212947,27.89604675953456,0 96.81341480611388,27.89670587671625,0 96.81333688571017,27.89664525668183,0 96.81398606056973,27.89599123012698,0 96.81399484387782,27.89597387484413,0 96.81400424472154,27.89594427379955,0 96.81400465670001,27.89594304417646,0 96.81450078196669,27.89453291196128,0 96.81459941716444,27.89456030471889,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00004">
+			<name>Head Rance Tunnel</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>570.485248</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>2747.948819</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle025</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.8148358701081,27.89461306777344,0 96.81434283292205,27.89606557241427,0 96.81433251982651,27.89609804354558,0 96.81432995952298,27.89610431798442,0 96.81431636127023,27.89613118739235,0 96.81431208461771,27.89613801606354,0 96.8143080311478,27.89614268186202,0 96.81360409895294,27.89685314123888,0 96.81352709891017,27.89679323730864,0 96.81422529891222,27.89608722934998,0 96.81423409743918,27.89606984492908,0 96.81424362804479,27.89603984947624,0 96.81473692919717,27.89458655783234,0 96.8148358701081,27.89461306777344,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00005">
+			<name>Head Rance Tunnel</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>590.397801</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>2851.641813</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle028</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.8150483527541,27.89466107892707,0 96.81450552996418,27.89620437341876,0 96.81449528731504,27.89623662375762,0 96.81449272701677,27.89624289819789,0 96.81447912786467,27.89626976862419,0 96.81447485110787,27.89627659638541,0 96.81447088307966,27.89628117662292,0 96.81377605144142,27.89698691493754,0 96.81369836772284,27.89692647968827,0 96.8143880383183,27.89622586307361,0 96.81439686375427,27.8962084253438,0 96.81440626452054,27.89617882428475,0 96.81440667579345,27.89617759749661,0 96.81494971402704,27.89463369322947,0 96.8150483527541,27.89466107892707,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00006">
+			<name>Head Rance Tunnel</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>606.20602</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>2935.856623</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle024</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.81527034918707,27.89474223628638,0 96.81472586019049,27.89630453510774,0 96.81471559954063,27.89633684346721,0 96.8147130402792,27.89634311781386,0 96.81469944116347,27.89636998825541,0 96.81469516441521,27.89637681602164,0 96.81469103951757,27.89638155407731,0 96.81395320252683,27.89712473236637,0 96.81387468622655,27.89706364958454,0 96.81460840114816,27.89632598493047,0 96.8146171768793,27.89630864509753,0 96.81462657760098,27.89627904402943,0 96.81462694844572,27.89627793182176,0 96.81517163144382,27.89471507878648,0 96.81527034918707,27.89474223628638,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00007">
+			<name>Head Rance Tunnel</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>512.826597</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>2464.068067</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Head Rance Tunnel</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle027</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.81416872831996,27.89443205409525,0 96.81372949479614,27.8957462772334,0 96.81371915222363,27.89577884249203,0 96.81371659200433,27.89578511783677,0 96.81370299262689,27.8958119873,0 96.81369871584333,27.8958188150445,0 96.81369465041034,27.8958234939521,0 96.81307881252152,27.89644448152766,0 96.81300107336956,27.89638400222045,0 96.81361193487892,27.895768020187,0 96.81362072919765,27.89575064357912,0 96.81363022852628,27.89572074249623,0 96.81406966188034,27.8944059192903,0 96.81416872831996,27.89443205409525,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00008">
+			<name>Tail Race Outlet-B</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-B</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>2943.303964</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>14615.879975</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-B</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle080</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80370252238023,27.90646118496191,0 96.80370201478075,27.90646164520122,0 96.80369698254077,27.90646620471917,0 96.80369064302793,27.9064704149364,0 96.80368365512918,27.90647371557966,0 96.80367618220048,27.90647602948836,0 96.80366839863862,27.90647730247164,0 96.80364476170502,27.90647952426993,0 96.80364322786878,27.90647964765525,0 96.80354127934133,27.90648649260723,0 96.80186554613654,27.906598992961,0 96.80185775853759,27.90650743994691,0 96.8036346657281,27.90638814684387,0 96.80363680348351,27.90638794564638,0 96.80619896596077,27.90367926869967,0 96.80903946489411,27.90069779824335,0 96.81119192037649,27.89848697954325,0 96.81222927433508,27.89739166576515,0 96.81230692901156,27.8974520794516,0 96.81127054349253,27.89854656890187,0 96.80911799027321,27.90075749001014,0 96.80627797080869,27.90373846159688,0 96.80370252238023,27.90646118496191,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00009">
+			<name>Tail Race Outlet-B</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-B</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>3010.735772</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>14959.358981</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-B</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle083</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80394586946605,27.90669774045928,0 96.80394393455832,27.90669962417389,0 96.8039378521276,27.90670440672256,0 96.80392053112905,27.90671599944428,0 96.8039150264777,27.90671916205977,0 96.80389938419256,27.90672694058323,0 96.80389081632136,27.90673120169907,0 96.80388392536662,27.90673405842439,0 96.8038766363259,27.9067359867432,0 96.80386910720729,27.90673694323223,0 96.80375007803946,27.90674418830357,0 96.80340678132998,27.90676508247745,0 96.80326155878707,27.90677392058499,0 96.80180688420801,27.90686244702496,0 96.80179982168838,27.90677084735749,0 96.80335675969893,27.90667609657716,0 96.80350198212156,27.90666725838129,0 96.80385046226418,27.90664604823426,0 96.80386148348649,27.90664056757081,0 96.8038712369879,27.90663403778465,0 96.80638682642608,27.9040447149683,0 96.80948485867296,27.90083735467249,0 96.81257503781515,27.89766066355365,0 96.81265298369506,27.89772130367372,0 96.8095631695471,27.90089726760761,0 96.80646516205321,27.90410460566898,0 96.80394586946605,27.90669774045928,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00010">
+			<name>Tail Race Outlet-B</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-B</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>3063.403782</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>15219.926849</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-B</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle086</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80426802487146,27.90691752849143,0 96.80426611122043,27.90691938990694,0 96.80426435021543,27.90692093512432,0 96.80423639725453,27.90694431654963,0 96.8042313614723,27.90694802334674,0 96.80422328188112,27.90695230058963,0 96.80420219353115,27.90696109160668,0 96.80419246538882,27.90696514754079,0 96.80418477778372,27.90696771054413,0 96.8041804655299,27.9069686352508,0 96.8041493099936,27.90697406531854,0 96.80414478106425,27.90697467057439,0 96.8041432575007,27.90697479300155,0 96.80404428237941,27.90698144091174,0 96.80364043687945,27.90700856759375,0 96.80349820471247,27.90701812098409,0 96.80313691078695,27.90704238818922,0 96.80299073383661,27.90705220634127,0 96.80183906341638,27.90712955339652,0 96.80183127261199,27.90703799982255,0 96.80308660858823,27.90695369072621,0 96.8032327854159,27.90694387248443,0 96.80358843836505,27.906919984856,0 96.80373067041374,27.90691043138347,0 96.80413241437091,27.9068834459301,0 96.80415432564907,27.90687962605762,0 96.80417155522245,27.90687244569716,0 96.80419156608878,27.9068557078113,0 96.80690317966327,27.90406813828378,0 96.80941479954595,27.90151099100754,0 96.81155010619533,27.89933826644354,0 96.81293798665575,27.89794302828697,0 96.81301597297947,27.89800369953031,0 96.81162774622413,27.89939886456244,0 96.80949265961688,27.90157136628656,0 96.80698121447543,27.90412833760501,0 96.80426802487146,27.90691752849143,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00011">
+			<name>Tail Race Outlet-A</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>2441.983283</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>12076.263881</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle01110</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80004224971732,27.91115613872822,0 96.79770090336146,27.91351470396635,0 96.79769932898486,27.91351622052619,0 96.79769432017588,27.91352026333569,0 96.79762308531141,27.91357061405746,0 96.79762129761933,27.91357182192493,0 96.79761957027931,27.91357289027415,0 96.79755070538641,27.91361366312504,0 96.79754777073371,27.91361527751511,0 96.79534360458729,27.91473916154954,0 96.79529215080406,27.9146595340913,0 96.79749481854343,27.91353641404521,0 96.7975604351968,27.91349756470251,0 96.79762639809553,27.9134509398609,0 96.79996471288266,27.91109543006216,0 96.80404428237941,27.90698144091174,0 96.8041432575007,27.90697479300155,0 96.80414478106425,27.90697467057439,0 96.8041493099936,27.90697406531854,0 96.8041804655299,27.9069686352508,0 96.80418477778372,27.90696771054413,0 96.80419246538882,27.90696514754079,0 96.80420219353115,27.90696109160668,0 96.80004224971732,27.91115613872822,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00012">
+			<name>Tail Race Outlet-A</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>2346.127151</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>11611.550281</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle0113</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80364043687945,27.90700856759375,0 96.80321991392032,27.90746591927326,0 96.80321875406227,27.90746713580689,0 96.80063478510959,27.91008611554692,0 96.79756050258655,27.91324699470558,0 96.79751659811637,27.9132917294176,0 96.7975148307447,27.91329344130627,0 96.79751136765138,27.9132963478337,0 96.7974695411619,27.9133283432361,0 96.79746620786663,27.91333068829235,0 96.79746366472786,27.91333223001543,0 96.79741763216963,27.91335838382639,0 96.79741292144165,27.91336076092407,0 96.79736105952253,27.91338382400655,0 96.7951802576023,27.914514259603,0 96.79512816524749,27.91443495960382,0 96.79731039772332,27.91330378308408,0 96.79731330898217,27.91330238322842,0 96.79736422609265,27.91327974006289,0 96.7974048801055,27.91325664168221,0 96.79744112117058,27.91322891850189,0 96.79748244547122,27.91318681470565,0 96.80055681832719,27.91002584437458,0 96.80314043778648,27.90740721882949,0 96.80349820471247,27.90701812098409,0 96.80364043687945,27.90700856759375,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00013">
+			<name>Tail Race Outlet-A</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>79.029886</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>247.131252</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle0116</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80373067041374,27.90691043138347,0 96.80358843836505,27.906919984856,0 96.80375007803946,27.90674418830357,0 96.80386910720729,27.90673694323223,0 96.8038766363259,27.9067359867432,0 96.80388392536662,27.90673405842439,0 96.80389081632136,27.90673120169907,0 96.80389938419256,27.90672694058323,0 96.80373067041374,27.90691043138347,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00014">
+			<name>Tail Race Outlet-A</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>2258.690964</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>11172.351093</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle01112</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80313691078695,27.90704238818922,0 96.80223294256432,27.90797124942982,0 96.80042773239403,27.90981839248292,0 96.79865676002696,27.91169058939866,0 96.79726053401149,27.91311618062386,0 96.79725873137173,27.91311792812508,0 96.79725526827725,27.91312083464761,0 96.79721344178095,27.91315282999008,0 96.79721082187596,27.91315470571758,0 96.79716169565775,27.91318758860162,0 96.79715629944484,27.91319069644383,0 96.79500601525928,27.91426585688547,0 96.79495531685201,27.91418584746095,0 96.79710259894459,27.91311218818213,0 96.79714727268859,27.91308228231735,0 96.79718500207275,27.91305342090371,0 96.79857820508427,27.91163092270078,0 96.80034914354459,27.90975876203075,0 96.80215482791688,27.90791112941113,0 96.80299073383661,27.90705220634127,0 96.80313691078695,27.90704238818922,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00015">
+			<name>Tail Race Outlet-A</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>79.892219</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>258.120358</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle0118</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80340678132998,27.90676508247745,0 96.8032327854159,27.90694387248443,0 96.80308660858823,27.90695369072621,0 96.80326155878707,27.90677392058499,0 96.80340678132998,27.90676508247745,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark id="ID_00016">
+			<name>Tail Race Outlet-A</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>SHAPE</td>
+
+<td>Polygon</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>SHAPE_Length</td>
+
+<td>87.086341</td>
+
+</tr>
+
+<tr>
+
+<td>SHAPE_Area</td>
+
+<td>274.468193</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>Name</td>
+
+<td>Tail Race Outlet-A</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>]]></description>
+			<styleUrl>#PolyStyle011</styleUrl>
+			<MultiGeometry>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<coordinates>
+								96.80350198212156,27.90666725838129,0 96.80335675969893,27.90667609657716,0 96.80354127934133,27.90648649260723,0 96.80364322786878,27.90647964765525,0 96.80364476170502,27.90647952426993,0 96.80366839863862,27.90647730247164,0 96.80367618220048,27.90647602948836,0 96.80368365512918,27.90647371557966,0 96.80369064302793,27.9064704149364,0 96.80369698254077,27.90646620471917,0 96.80370201478075,27.90646164520122,0 96.80370205249254,27.90646167398132,0 96.80350198212156,27.90666725838129,0 
+							</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</MultiGeometry>
+		</Placemark>
+		<Placemark>
+			<name>Power House Site-II</name>
+			<LookAt>
+				<longitude>96.80930224954</longitude>
+				<latitude>27.89737543114775</latitude>
+				<altitude>0</altitude>
+				<heading>0.001960210129504135</heading>
+				<tilt>0</tilt>
+				<range>3812.267666200785</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_grn-stars</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>96.81303565115454,27.89713598780595,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Dam Axis Site-II</name>
+			<LookAt>
+				<longitude>96.80930224954</longitude>
+				<latitude>27.89737543114775</latitude>
+				<altitude>0</altitude>
+				<heading>0.001960210129504135</heading>
+				<tilt>0</tilt>
+				<range>3812.267666200785</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_grn-stars</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>96.81334886448469,27.89320671681393,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>A1</name>
+	<open>1</open>
+	<Style id="inline01">
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline010">
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline011">
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline013">
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="inline12">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#inline010</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#inline130</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="inline121">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#inline01</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#inline133</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="inline122">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#inline013</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#inline13</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="inline123">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#inline011</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#inline131</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="inline13">
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline130">
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline131">
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline133">
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin0">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl0">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Placemark>
+		<name>A4</name>
+		<open>1</open>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79419429277321,27.91305874743716,0 96.79392320303852,27.90965317102583,0 96.79631840488898,27.90548940870867,0 96.80031706624888,27.90212135823312,0 96.79895126486728,27.90742614668993,0 96.79419429277321,27.91305874743716,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>A12</name>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.8083794105995,27.89254343255372,0 96.80661809271291,27.89059670250612,0 96.80765111909,27.88825646963084,0 96.81306061716396,27.88649708439345,0 96.81408740429472,27.88869639461506,0 96.81189181391505,27.89127693418765,0 96.8083794105995,27.89254343255372,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>A11</name>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.80379687696134,27.89795222152889,0 96.80155146691988,27.89779596118973,0 96.80254661496085,27.89408793230429,0 96.80605968717055,27.89676712579676,0 96.80379687696134,27.89795222152889,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>A10</name>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.80834387082109,27.89282258675169,0 96.80632140147206,27.89625542804945,0 96.8048615326842,27.89549178541653,0 96.80510438197584,27.89289725874283,0 96.8068809292875,27.89059064708028,0 96.80834387082109,27.89282258675169,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>A3</name>
+		<styleUrl>#inline122</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79544341130666,27.90547051063664,0 96.7960968819087,27.90114719796279,0 96.79886827644192,27.89837998802907,0 96.80026966399643,27.90183651288278,0 96.79544341130666,27.90547051063664,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>A2</name>
+		<styleUrl>#inline12</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79527807268971,27.90658272089327,0 96.79166915824869,27.90882984560374,0 96.79449456778359,27.9035819227528,0 96.7946554869894,27.90334458691211,0 96.79527807268971,27.90658272089327,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>A5</name>
+		<styleUrl>#inline123</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79708065751083,27.90970909794815,0 96.79841333642175,27.90854891557978,0 96.7996904858669,27.90922845943319,0 96.79847209565067,27.91063487590622,0 96.79646248419374,27.91249235808785,0 96.79592328025336,27.9112760152215,0 96.79708065751083,27.90970909794815,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>A6</name>
+		<styleUrl>#inline121</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79978951925283,27.90580239792705,0 96.80259085671879,27.90749186377727,0 96.80079832058047,27.90891126528954,0 96.79907096312772,27.90757323258412,0 96.79978951925283,27.90580239792705,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>A1</name>
+		<styleUrl>#m_ylw-pushpin0</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79946786892026,27.90472754482036,0 96.80169490112655,27.89943278443031,0 96.809127946145,27.89275241000877,0 96.81510199695624,27.88988141873545,0 96.82077810865023,27.89107955731821,0 96.82937714694785,27.88816216702426,0 96.83641445052129,27.88294275696359,0 96.83897311358139,27.88752618750136,0 96.83585731891283,27.88987341742236,0 96.82965216210741,27.88998394971044,0 96.82546833001824,27.89263277463906,0 96.82009540259561,27.89308508060828,0 96.81561716880795,27.89196671521239,0 96.81192365829627,27.89342810163407,0 96.80771751329981,27.89549681656094,0 96.80422967516685,27.89870196217312,0 96.80282490626153,27.90115937820654,0 96.80217841732103,27.90603669022192,0 96.79981852076558,27.90885855284586,0 96.79808831481323,27.90817991590619,0 96.79946786892026,27.90472754482036,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>

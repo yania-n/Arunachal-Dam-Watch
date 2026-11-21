@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+<Document>
+<Folder>
+  <name>PLATE-1_14.3.24_index Index</name>
+  <open>1</open>
+  <NetworkLink>
+    <Region>
+      <LatLonAltBox>
+        <north>27.78748283852686600</north>
+        <south>27.76506007570341700</south>
+        <east>93.99444500854471600</east>
+        <west>93.97597975115915900</west>
+        <minAltitude>0</minAltitude>
+        <maxAltitude>0</maxAltitude>
+      </LatLonAltBox>
+      <Lod>
+        <minLodPixels>1024</minLodPixels>
+        <maxLodPixels>-1</maxLodPixels>
+        <minFadeExtent>0</minFadeExtent>
+        <maxFadeExtent>0</maxFadeExtent>
+      </Lod>
+    </Region>
+    <name>PLATE-1_14.3.24</name>
+    <Link>
+      <href>PLATE-1_14.3.24.KMZ</href>
+    </Link>
+  </NetworkLink>
+</Folder>
+  <!-- Begin Style Definitions -->
+  <Style id="area1">
+    <LineStyle>
+      <color>FF000000</color>
+      <width>1</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>7F000000</color>
+      <fill>0</fill>
+      <outline>1</outline>
+    </PolyStyle>
+    <BalloonStyle><text><![CDATA[$[description]]]></text></BalloonStyle>
+  </Style>
+  <Folder>
+    <name>Area Features</name>
+    <description>Area Features</description>
+    <Placemark>
+      <description><![CDATA[<a href="PLATE-1_14.3.24.KMZ">Click Here to Open Tile</a>]]></description>
+      <name>PLATE-1_14.3.24</name>
+      <styleUrl>#area1</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              93.9761787519,27.7874828385,0
+              93.9759797512,27.7651902046,0
+              93.9942422856,27.7650600757,0
+              93.9944450085,27.7873525873,0
+              93.9761787519,27.7874828385,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>

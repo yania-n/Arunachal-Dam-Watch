@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Kalai II Project Features</name>
+	<StyleMap id="m_ylw-pushpin05">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin111</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl09</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin111">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin07</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl110</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin134">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin134</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl123</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin07">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin111">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin134">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl09">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl110">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl123">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Placemark>
+		<name>Right Bank Diversion Tunnel</name>
+		<Camera>
+			<longitude>96.80243668794942</longitude>
+			<latitude>27.90044857019707</latitude>
+			<altitude>933.5919831569262</altitude>
+			<heading>-0.9596275261963704</heading>
+			<tilt>32.07729687584182</tilt>
+			<roll>-2.517848901182576</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.8026206197498,27.90553850399122,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Intake</name>
+		<Camera>
+			<longitude>96.80243668794942</longitude>
+			<latitude>27.90044857019707</latitude>
+			<altitude>933.5919831569262</altitude>
+			<heading>-0.9596275261963704</heading>
+			<tilt>32.07729687584182</tilt>
+			<roll>-2.517848901182576</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.80234962002804,27.90638240476289,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Power House</name>
+		<Camera>
+			<longitude>96.80251663933184</longitude>
+			<latitude>27.9026492474648</latitude>
+			<altitude>908.0900203904109</altitude>
+			<heading>-0.9595901171448612</heading>
+			<tilt>32.07729687584182</tilt>
+			<roll>-2.517848901182572</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.80400480579394,27.90791575699123,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Left Bank Diversion Tunnel</name>
+		<Camera>
+			<longitude>96.80243668794942</longitude>
+			<latitude>27.90044857019707</latitude>
+			<altitude>933.5919831569262</altitude>
+			<heading>-0.9596275261963704</heading>
+			<tilt>32.07729687584182</tilt>
+			<roll>-2.517848901182576</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.7986406733629,27.90444625652146,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Transformer Cavern</name>
+		<Camera>
+			<longitude>96.80251663933184</longitude>
+			<latitude>27.9026492474648</latitude>
+			<altitude>908.0900203904109</altitude>
+			<heading>-0.9595901171448612</heading>
+			<tilt>32.07729687584182</tilt>
+			<roll>-2.517848901182572</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.80433784925221,27.90852565246783,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Tail Race Tunnel</name>
+		<Camera>
+			<longitude>96.80378018019098</longitude>
+			<latitude>27.90184347469956</latitude>
+			<altitude>1319.184893421196</altitude>
+			<heading>-0.9589987930462264</heading>
+			<tilt>32.07729687534898</tilt>
+			<roll>-2.51746793480669</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.80340846047693,27.91078479614993,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Plunge Pool</name>
+		<Camera>
+			<longitude>96.79906026390452</longitude>
+			<latitude>27.90478748721797</latitude>
+			<altitude>537.605762252146</altitude>
+			<heading>-0.4852907354851873</heading>
+			<tilt>38.88684559450139</tilt>
+			<roll>-2.131384126390719</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.79872140609392,27.90898644299828,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Down Stream Coffer Dam</name>
+		<Camera>
+			<longitude>96.79980518389415</longitude>
+			<latitude>27.90373770679075</latitude>
+			<altitude>610.862718924562</altitude>
+			<heading>0.04481504184812794</heading>
+			<tilt>49.84855006685683</tilt>
+			<roll>-1.749599738985196</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.79813035231392,27.90958157916678,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Down Stream Surge Cavern</name>
+		<Camera>
+			<longitude>96.80342276576354</longitude>
+			<latitude>27.90436351828145</latitude>
+			<altitude>837.7725216576027</altitude>
+			<heading>-0.9591660548515518</heading>
+			<tilt>32.07729687584185</tilt>
+			<roll>-2.517848901182562</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.80490718510767,27.90900395846801,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin05</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.80097462594897,27.90491521176113,0 96.80214686641479,27.90523258586071,0 96.80159791916844,27.90603871035177,0 96.80048026226143,27.9056009970991,0 96.80097462594897,27.90491521176113,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin05</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79362956269196,27.91563976793934,0 96.8041221487112,27.91018927298655,0 96.80429113788105,27.90962882752579,0 96.80431057730884,27.91032756103353,0 96.79361135158506,27.91585768137021,0 96.79362956269196,27.91563976793934,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin05</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79366539616743,27.91610589274728,0 96.80463381419254,27.91040708385611,0 96.80472422186153,27.90934663490157,0 96.8048748969893,27.91050708574752,0 96.79368000942603,27.91635746187698,0 96.79366539616743,27.91610589274728,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin05</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79408519621711,27.91479293233427,0 96.80343413780335,27.91005229145534,0 96.80374744116297,27.90964792570008,0 96.80383536789746,27.91007172457561,0 96.79395961019864,27.91505335888714,0 96.79408519621711,27.91479293233427,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin05</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.80236897904039,27.90606832295698,0 96.8029193346779,27.90627794164565,0 96.80167667456912,27.90762347473007,0 96.80140617823939,27.90752425551426,0 96.80236897904039,27.90606832295698,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Upstream Coffer Dam</name>
+		<Camera>
+			<longitude>96.80243668794942</longitude>
+			<latitude>27.90044857019707</latitude>
+			<altitude>933.5919831569262</altitude>
+			<heading>-0.9596275261963704</heading>
+			<tilt>32.07729687584182</tilt>
+			<roll>-2.517848901182576</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.80092218748953,27.90514142773448,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Main Dam</name>
+		<Camera>
+			<longitude>96.80056376668225</longitude>
+			<latitude>27.90361581663193</latitude>
+			<altitude>567.3947242484978</altitude>
+			<heading>-0.9605039968813317</heading>
+			<tilt>32.07729687538174</tilt>
+			<roll>-2.519129969679347</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin134</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>96.7992544871136,27.90673904943232,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin111</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79980741630688,27.90643577678228,0 96.8017885465771,27.90700917554475,0 96.8011727336379,27.90775746692238,0 96.79911808162737,27.90724782304926,0 96.79980741630688,27.90643577678228,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin111</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.79724251864269,27.90363477451509,0 96.80188011075583,27.8957919353383,0 96.80930446266588,27.89176346984569,0 96.81914483945826,27.88953128845144,0 96.8260349882361,27.88905918288397,0 96.83509164519545,27.88616807407995,0 96.84790469276648,27.876669163006,0 96.85627549671671,27.8748228424167,0 96.87002949838222,27.87421666768858,0 96.88207021214754,27.8753318432971,0 96.89087827807448,27.87825125421782,0 96.9120324697257,27.8802642046788,0 96.92070273119765,27.88163461240543,0 96.95726490483696,27.91828643897801,0 96.95333585076207,27.92344556446027,0 96.91995447561152,27.88938638244196,0 96.8748291138875,27.88129973109485,0 96.85580447142985,27.87871666724583,0 96.84368042420856,27.88569744549554,0 96.84136540235674,27.88864553140807,0 96.83184140046741,27.89320626641208,0 96.8230557352191,27.89485959959338,0 96.81869321234431,27.89451278992432,0 96.81215229539332,27.89362624399211,0 96.80904253980584,27.89447395832973,0 96.80832552151413,27.89563377292214,0 96.80681199453564,27.89779711711038,0 96.80391374562129,27.89990482114699,0 96.80291464264606,27.90223371663538,0 96.80237892457328,27.90460046433703,0 96.79724251864269,27.90363477451509,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin111</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.80152251693806,27.90832226879445,0 96.80478690198682,27.90729200555572,0 96.8054594766033,27.90899940610002,0 96.80224595127814,27.91026422111283,0 96.80152251693806,27.90832226879445,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Untitled Polygon</name>
+		<styleUrl>#m_ylw-pushpin111</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						96.8327471807993,27.88655721568763,0 96.83423033380919,27.88247057516955,0 96.83371426431908,27.87914893464602,0 96.82927431505873,27.87776534517196,0 96.82817334120844,27.87429372816935,0 96.82878361139734,27.87184206088194,0 96.83425679174124,27.8745960299742,0 96.83583427237943,27.87748701641429,0 96.83814784689145,27.88011131269499,0 96.83946920874693,27.88267614639589,0 96.8327471807993,27.88655721568763,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>
