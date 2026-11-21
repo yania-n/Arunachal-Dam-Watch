@@ -1,0 +1,2397 @@
+[
+ {
+  "slug": "kurung",
+  "name": "Kurung",
+  "match_method": "fuzzy",
+  "dhpd_id": "D034",
+  "gem_unit_id": "G100001073514",
+  "match_notes": "MW differs: KML/Parivesh text 292 (project text), DHPD 330. MW differs: KML/Parivesh text 292 (project text), GEM 320. Match unverified (name/MW only).",
+  "kml_mw": 292.0,
+  "kml_mw_source": "project text",
+  "title_district": "",
+  "centroid": [
+   93.60536,
+   27.79076
+  ],
+  "pin": [
+   93.6612,
+   27.7513
+  ],
+  "pin_km": 7.0,
+  "marker": [
+   27.7513,
+   93.6612
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/592956/2026",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/592956/2026",
+    "status": "Proposal Accepted and Referred to EAC",
+    "kind": "default",
+    "geometry_note": "All of its geometry is only in this proposal",
+    "files": [
+     {
+      "label": "alt-1b",
+      "status": "mapped",
+      "bytes": 2573954,
+      "roles": {
+       "cad_detail": 7820
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "alt-2",
+      "status": "mapped",
+      "bytes": 1378373,
+      "roles": {
+       "cad_detail": 919,
+       "forest_land": 8
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "kurung hep",
+      "status": "mapped",
+      "bytes": 68388,
+      "roles": {
+       "cad_detail": 131
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/kurung.geojson",
+  "cad_geojson": "kml_geojson/kurung_cad.geojson",
+  "bbox": [
+   93.60505,
+   27.78891,
+   93.60707,
+   27.79118
+  ],
+  "counts": {
+   "forest_land": 8,
+   "cad_detail": 2533
+  }
+ },
+ {
+  "slug": "etalin",
+  "name": "Etalin",
+  "match_method": "exact",
+  "dhpd_id": "D054",
+  "gem_unit_id": "G100000601884",
+  "match_notes": "",
+  "kml_mw": 3097.0,
+  "kml_mw_source": "project text",
+  "title_district": "",
+  "centroid": [
+   95.86534,
+   28.6485
+  ],
+  "pin": [
+   95.8641,
+   28.6111
+  ],
+  "pin_km": 4.2,
+  "marker": [
+   28.6111,
+   95.8641
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/575562/2026",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/575562/2026",
+    "status": "Granted",
+    "kind": "default",
+    "geometry_note": "Same geometry as 544875/2025",
+    "files": [
+     {
+      "label": "kml etalin componentwise justification",
+      "status": "mapped",
+      "bytes": 1221224,
+      "roles": {
+       "ancillary": 86,
+       "project_layout": 74,
+       "submergence": 12
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/544875/2025",
+    "status": "EC Granted",
+    "kind": "earlier",
+    "geometry_note": "Same geometry as 575562/2026",
+    "files": [
+     {
+      "label": "kml etalin componentwise justification",
+      "status": "duplicate",
+      "bytes": 1221224,
+      "roles": {
+       "ancillary": 86,
+       "project_layout": 74,
+       "submergence": 12
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_575562_2026__kml_etalin_componentwise_justification.kml"
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/542725/2025",
+    "status": "Granted",
+    "kind": "earlier",
+    "geometry_note": "Same geometry as 575562/2026",
+    "files": [
+     {
+      "label": "kml etalin componentwise justification",
+      "status": "duplicate",
+      "bytes": 1221224,
+      "roles": {
+       "ancillary": 86,
+       "project_layout": 74,
+       "submergence": 12
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_575562_2026__kml_etalin_componentwise_justification.kml"
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/etalin.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   95.842,
+   28.60299,
+   96.02094,
+   28.74421
+  ],
+  "counts": {
+   "project_layout": 74,
+   "submergence": 12,
+   "ancillary": 86
+  }
+ },
+ {
+  "slug": "kamala",
+  "name": "Kamala",
+  "match_method": "exact",
+  "dhpd_id": "D030",
+  "gem_unit_id": "G100000601922",
+  "match_notes": "",
+  "kml_mw": 1720.0,
+  "kml_mw_source": "file name",
+  "title_district": "",
+  "centroid": [
+   93.98752,
+   27.77204
+  ],
+  "pin": [
+   93.9886,
+   27.7717
+  ],
+  "pin_km": 0.1,
+  "marker": [
+   27.7717,
+   93.9886
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/465936/2024",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/562202/2026",
+    "status": "DELISTED_BY_SYSTEM",
+    "kind": "delisted",
+    "geometry_note": "90 of 458 geometries are only in this proposal; the rest also appear in other proposals",
+    "files": [
+     {
+      "label": "14 updated new drift and drilling location 28-08-2024",
+      "status": "duplicate",
+      "bytes": 549547,
+      "roles": {
+       "ancillary": 175
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1724937201163_14 updated new drift and drilling location 28-08-2024.kml"
+     },
+     {
+      "label": "14 updated new drift and drilling location 28-08-2024",
+      "status": "duplicate",
+      "bytes": 549547,
+      "roles": {
+       "ancillary": 175
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1724937201163_14 updated new drift and drilling location 28-08-2024.kml"
+     },
+     {
+      "label": "14 updated new drift and drilling location 28-08-2024",
+      "status": "duplicate",
+      "bytes": 549547,
+      "roles": {
+       "ancillary": 175
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1724937201163_14 updated new drift and drilling location 28-08-2024.kml"
+     },
+     {
+      "label": "Kamala Hapoli Forest Area.shp",
+      "status": "mapped",
+      "bytes": 753854,
+      "roles": {
+       "forest_land": 90
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kamala Kurung Kumey Forest Area",
+      "status": "duplicate",
+      "bytes": 10611,
+      "roles": {
+       "forest_land": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1713621158845_Kamala_Kurung_Kumey_Forest_Area.kml"
+     },
+     {
+      "label": "kra-daadi draft",
+      "status": "duplicate",
+      "bytes": 1633236,
+      "roles": {
+       "forest_land": 2
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1713621572433_kra-daadi_draft.kml"
+     },
+     {
+      "label": "Kra-Daadi Forest 22-04-2024",
+      "status": "duplicate",
+      "bytes": 1015995,
+      "roles": {
+       "forest_land": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1714008809785_Kra-Daadi Forest 22-04-2024.kml"
+     },
+     {
+      "label": "hapoli forest area.shp",
+      "status": "duplicate",
+      "bytes": 1068905,
+      "roles": {
+       "forest_land": 33,
+       "project_layout": 1,
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743678520515_hapoli_div fl_nfl.kml"
+     },
+     {
+      "label": "kurung kumey forest area.shp",
+      "status": "duplicate",
+      "bytes": 16100,
+      "roles": {
+       "forest_land": 2
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743682942835_kurung_kumey_forest_area.kml"
+     },
+     {
+      "label": "kra dadi forest area.shp",
+      "status": "duplicate",
+      "bytes": 869340,
+      "roles": {
+       "forest_land": 4
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743687770774_kradaadidivflnfl.kml"
+     },
+     {
+      "label": "hapoli forest area.shp",
+      "status": "duplicate",
+      "bytes": 1068905,
+      "roles": {
+       "forest_land": 33,
+       "project_layout": 1,
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743678520515_hapoli_div fl_nfl.kml"
+     },
+     {
+      "label": "hapoli div fl nfl",
+      "status": "duplicate",
+      "bytes": 1249427,
+      "roles": {
+       "forest_land": 47,
+       "project_layout": 1,
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743678520515_hapoli_div fl_nfl.kml"
+     },
+     {
+      "label": "kra daadi div fl nfl",
+      "status": "duplicate",
+      "bytes": 886528,
+      "roles": {
+       "forest_land": 9
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743687770774_kradaadidivflnfl.kml"
+     },
+     {
+      "label": "kurung kumey forest area",
+      "status": "duplicate",
+      "bytes": 12754,
+      "roles": {
+       "forest_land": 2
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743682942835_kurung_kumey_forest_area.kml"
+     },
+     {
+      "label": "kradaadidivflnfl",
+      "status": "duplicate",
+      "bytes": 886528,
+      "roles": {
+       "forest_land": 9
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743687770774_kradaadidivflnfl.kml"
+     },
+     {
+      "label": "Kamala HEP 1720 MW-15-3-2024",
+      "status": "duplicate",
+      "bytes": 2469302,
+      "roles": {
+       "other": 5
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__Kamala HEP 1720 MW-15-3-2024.kml"
+     },
+     {
+      "label": "Kamala HEP Dam Axis Alternatives",
+      "status": "duplicate",
+      "bytes": 145961,
+      "roles": {
+       "dam_axis": 148,
+       "project_layout": 2
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__Kamala HEP_Dam Axis Alternatives.kml"
+     },
+     {
+      "label": "PLATE-1 14.3.24",
+      "status": "excluded",
+      "bytes": 1989,
+      "roles": {
+       "other": 1
+      },
+      "flags": [
+       "network_link"
+      ],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Project Dam LocationA2",
+      "status": "mapped",
+      "bytes": 1453,
+      "roles": {
+       "project_layout": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/465936/2024",
+    "status": "ToR Granted",
+    "kind": "default",
+    "geometry_note": "All of its geometry also appears in 562202/2026 (DELISTED_BY_SYSTEM)",
+    "files": [
+     {
+      "label": "14 updated new drift and drilling location 28-08-2024",
+      "status": "duplicate",
+      "bytes": 549547,
+      "roles": {
+       "ancillary": 175
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1724937201163_14 updated new drift and drilling location 28-08-2024.kml"
+     },
+     {
+      "label": "14 updated new drift and drilling location 28-08-2024",
+      "status": "duplicate",
+      "bytes": 549547,
+      "roles": {
+       "ancillary": 175
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1724937201163_14 updated new drift and drilling location 28-08-2024.kml"
+     },
+     {
+      "label": "14 updated new drift and drilling location 28-08-2024",
+      "status": "mapped",
+      "bytes": 549547,
+      "roles": {
+       "ancillary": 175
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kamala Hapoli Forest Area.shp",
+      "status": "missing",
+      "bytes": 0,
+      "roles": {},
+      "flags": [
+       "missing_download (Error: HTTP 500 application/json)"
+      ],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kamala Kurung Kumey Forest Area",
+      "status": "mapped",
+      "bytes": 10611,
+      "roles": {
+       "forest_land": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "kra-daadi draft",
+      "status": "mapped",
+      "bytes": 1633236,
+      "roles": {
+       "forest_land": 2
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kra-Daadi Forest 22-04-2024",
+      "status": "mapped",
+      "bytes": 1015995,
+      "roles": {
+       "forest_land": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "hapoli forest area.shp",
+      "status": "duplicate",
+      "bytes": 1068905,
+      "roles": {
+       "forest_land": 33,
+       "project_layout": 1,
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743678520515_hapoli_div fl_nfl.kml"
+     },
+     {
+      "label": "kurung kumey forest area.shp",
+      "status": "duplicate",
+      "bytes": 16100,
+      "roles": {
+       "forest_land": 2
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743682942835_kurung_kumey_forest_area.kml"
+     },
+     {
+      "label": "kra dadi forest area.shp",
+      "status": "duplicate",
+      "bytes": 869340,
+      "roles": {
+       "forest_land": 4
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743687770774_kradaadidivflnfl.kml"
+     },
+     {
+      "label": "hapoli forest area.shp",
+      "status": "duplicate",
+      "bytes": 1068905,
+      "roles": {
+       "forest_land": 33,
+       "project_layout": 1,
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743678520515_hapoli_div fl_nfl.kml"
+     },
+     {
+      "label": "hapoli div fl nfl",
+      "status": "mapped",
+      "bytes": 1249427,
+      "roles": {
+       "forest_land": 47,
+       "project_layout": 1,
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "kra daadi div fl nfl",
+      "status": "duplicate",
+      "bytes": 886528,
+      "roles": {
+       "forest_land": 9
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_465936_2024__29700385_FC_KML_1743687770774_kradaadidivflnfl.kml"
+     },
+     {
+      "label": "kurung kumey forest area",
+      "status": "mapped",
+      "bytes": 12754,
+      "roles": {
+       "forest_land": 2
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "kradaadidivflnfl",
+      "status": "mapped",
+      "bytes": 886528,
+      "roles": {
+       "forest_land": 9
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kamala HEP 1720 MW-15-3-2024",
+      "status": "mapped",
+      "bytes": 2469302,
+      "roles": {
+       "other": 5
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kamala HEP Dam Axis Alternatives",
+      "status": "mapped",
+      "bytes": 145961,
+      "roles": {
+       "dam_axis": 148,
+       "project_layout": 2
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "PLATE-1 14.3.24",
+      "status": "excluded",
+      "bytes": 1989,
+      "roles": {
+       "other": 1
+      },
+      "flags": [
+       "network_link"
+      ],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Project Dam LocationA2",
+      "status": "missing",
+      "bytes": 0,
+      "roles": {},
+      "flags": [
+       "missing_download (Error: HTTP 500 application/json)"
+      ],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/kamala.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   93.55985,
+   27.7228,
+   94.05756,
+   28.06038
+  ],
+  "counts": {
+   "project_layout": 4,
+   "dam_axis": 148,
+   "forest_land": 151,
+   "ancillary": 150,
+   "other": 5
+  }
+ },
+ {
+  "slug": "demwe-lower",
+  "name": "Demwe Lower",
+  "match_method": "exact",
+  "dhpd_id": "D042",
+  "gem_unit_id": "G100000604347",
+  "match_notes": "No MW in the Parivesh project text or file names; matched on name only.",
+  "kml_mw": null,
+  "kml_mw_source": "",
+  "title_district": "",
+  "centroid": [
+   96.36749,
+   27.88056
+  ],
+  "pin": [
+   96.3775,
+   27.881
+  ],
+  "pin_km": 1.0,
+  "marker": [
+   27.881,
+   96.3775
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/554221/2025",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/562775/2025",
+    "status": "Proposal returned in present form",
+    "kind": "returned",
+    "geometry_note": "Same geometry as 554221/2025",
+    "files": [
+     {
+      "label": "kml",
+      "status": "duplicate",
+      "bytes": 286987,
+      "roles": {
+       "ancillary": 20,
+       "project_layout": 7,
+       "other": 1,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_554221_2025__kml.kml"
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/554221/2025",
+    "status": "Granted",
+    "kind": "default",
+    "geometry_note": "Same geometry as 562775/2025 (Proposal returned in present form)",
+    "files": [
+     {
+      "label": "kml",
+      "status": "mapped",
+      "bytes": 286987,
+      "roles": {
+       "ancillary": 20,
+       "project_layout": 7,
+       "other": 1,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/demwe-lower.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   96.33615,
+   27.85243,
+   96.44813,
+   28.03025
+  ],
+  "counts": {
+   "project_layout": 7,
+   "submergence": 1,
+   "ancillary": 20,
+   "other": 1
+  }
+ },
+ {
+  "slug": "kalai-ii",
+  "name": "Kalai II",
+  "match_method": "exact",
+  "dhpd_id": "D044",
+  "gem_unit_id": "G100000604484",
+  "match_notes": "No MW in the Parivesh project text or file names; matched on name only.",
+  "kml_mw": null,
+  "kml_mw_source": "",
+  "title_district": "",
+  "centroid": [
+   96.80249,
+   27.90682
+  ],
+  "pin": [
+   96.8567,
+   27.8861
+  ],
+  "pin_km": 5.8,
+  "marker": [
+   27.8861,
+   96.8567
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/557663/2025",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/557663/2025",
+    "status": "EC Granted",
+    "kind": "default",
+    "geometry_note": "Same geometry as 539430/2025",
+    "files": [
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767964040678 perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767964040678 perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767963745506 perfect kalai ii with hac (1)",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767964040678 perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767963745506 perfect kalai ii with hac (1)",
+      "status": "mapped",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "kalai ii 1200 20250119",
+      "status": "mapped",
+      "bytes": 314598,
+      "roles": {
+       "project_layout": 26,
+       "dam_axis": 1,
+       "forest_land": 34,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/539430/2025",
+    "status": "ToR Granted",
+    "kind": "earlier",
+    "geometry_note": "Same geometry as 557663/2025",
+    "files": [
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "missing",
+      "bytes": 0,
+      "roles": {},
+      "flags": [
+       "missing_download (Error: HTTP 500 application/json)"
+      ],
+      "duplicate_of": ""
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767964040678 perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767964040678 perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767963745506 perfect kalai ii with hac (1)",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767964040678 perfect kalai ii with hac",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "128317503 fc form c forest land proposed diversion kml 1767963745506 perfect kalai ii with hac (1)",
+      "status": "duplicate",
+      "bytes": 300190,
+      "roles": {
+       "project_layout": 23,
+       "forest_land": 17,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "kalai ii 1200 20250119",
+      "status": "duplicate",
+      "bytes": 316248,
+      "roles": {
+       "project_layout": 26,
+       "dam_axis": 1,
+       "forest_land": 34,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/466561/2024",
+    "status": "ToR Granted",
+    "kind": "earlier",
+    "geometry_note": "66 of 127 geometries are only in this proposal; the rest also appear in other proposals",
+    "files": [
+     {
+      "label": "Namsai FD patch",
+      "status": "mapped",
+      "bytes": 8988,
+      "roles": {
+       "forest_land": 9
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "ANFD",
+      "status": "mapped",
+      "bytes": 21496,
+      "roles": {
+       "forest_land": 9,
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "kalai ii namsai r1",
+      "status": "mapped",
+      "bytes": 72689,
+      "roles": {
+       "forest_land": 11
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "kalai ii anjaw",
+      "status": "mapped",
+      "bytes": 143871,
+      "roles": {
+       "forest_land": 9
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "DAM AXIS ALTERNATIVE SITE - I FINAL",
+      "status": "mapped",
+      "bytes": 1444,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "DAM AXIS ALTERNATIVE SITE - II",
+      "status": "mapped",
+      "bytes": 1434,
+      "roles": {
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "KIMGFii",
+      "status": "mapped",
+      "bytes": 14416,
+      "roles": {
+       "project_layout": 20
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kalai II Hydro Electric Project Alternate-II",
+      "status": "mapped",
+      "bytes": 49725,
+      "roles": {
+       "project_layout": 18,
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kalai II Hydro Electric Project Alternate-I Final",
+      "status": "mapped",
+      "bytes": 213949,
+      "roles": {
+       "project_layout": 23,
+       "submergence": 2,
+       "ancillary": 5,
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Kalai II Hydro Electric Project Updated",
+      "status": "duplicate",
+      "bytes": 213949,
+      "roles": {
+       "project_layout": 23,
+       "submergence": 2,
+       "ancillary": 5,
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     },
+     {
+      "label": "alternative i 20250119",
+      "status": "mapped",
+      "bytes": 48522,
+      "roles": {
+       "project_layout": 15,
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "alternative ii 20250119",
+      "status": "duplicate",
+      "bytes": 49725,
+      "roles": {
+       "project_layout": 18,
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_466561_2024__Kalai_II_Hydro_Electric_Project_Alternate-II.kml"
+     },
+     {
+      "label": "kalai ii 1200 20250119",
+      "status": "duplicate",
+      "bytes": 314598,
+      "roles": {
+       "project_layout": 26,
+       "dam_axis": 1,
+       "forest_land": 34,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_557663_2025__128317503_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1768902428633_128317503_fc_form_c_forest_land_proposed_diversion_kml_1767963745506_perfect_kalai_ii_with_hac (1).kml"
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/kalai-ii.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   96.78837,
+   27.86469,
+   96.95726,
+   27.92345
+  ],
+  "counts": {
+   "project_layout": 64,
+   "dam_axis": 4,
+   "submergence": 1,
+   "forest_land": 52,
+   "ancillary": 6
+  }
+ },
+ {
+  "slug": "tato-i",
+  "name": "Tato-I",
+  "match_method": "exact",
+  "dhpd_id": "D110",
+  "gem_unit_id": "G100000604862",
+  "match_notes": "",
+  "kml_mw": 186.0,
+  "kml_mw_source": "project text",
+  "title_district": "",
+  "centroid": [
+   94.33633,
+   28.53889
+  ],
+  "pin": [
+   94.3586,
+   28.5314
+  ],
+  "pin_km": 2.3,
+  "marker": [
+   28.5314,
+   94.3586
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/447696/2023",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/447696/2023",
+    "status": "Granted",
+    "kind": "default",
+    "geometry_note": "All of its geometry is only in this proposal",
+    "files": [
+     {
+      "label": "Tato-I Project Area EC",
+      "status": "mapped",
+      "bytes": 2179,
+      "roles": {
+       "project_area": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/tato-i.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   94.3104,
+   28.52641,
+   94.36226,
+   28.55137
+  ],
+  "counts": {
+   "project_area": 1
+  }
+ },
+ {
+  "slug": "hirong",
+  "name": "Hirong",
+  "match_method": "unmatched",
+  "dhpd_id": "",
+  "gem_unit_id": "",
+  "match_notes": "Same name as DHPD D010 / GEM G100000604428. This may be a re-scoped version of that project, but capacity (351 vs 500 MW) and location (61 km apart) differ, so it is not matched. Shown as 'EC proposal only'.",
+  "kml_mw": 351.0,
+  "kml_mw_source": "project text",
+  "title_district": "Shi Yomi",
+  "centroid": [
+   94.3853,
+   28.58598
+  ],
+  "pin": null,
+  "pin_km": null,
+  "marker": [
+   28.58598,
+   94.3853
+  ],
+  "marker_source": "kml_centroid",
+  "default_proposal": "IA/AR/RIV/592970/2026",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/592970/2026",
+    "status": "Proposal Accepted and Referred to EAC",
+    "kind": "default",
+    "geometry_note": "All of its geometry is only in this proposal",
+    "files": [
+     {
+      "label": "hirong kml",
+      "status": "mapped",
+      "bytes": 59180,
+      "roles": {
+       "ancillary": 37,
+       "submergence": 1,
+       "project_layout": 2
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/hirong.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   94.35242,
+   28.53832,
+   94.40427,
+   28.63859
+  ],
+  "counts": {
+   "project_layout": 2,
+   "submergence": 1,
+   "ancillary": 37
+  }
+ },
+ {
+  "slug": "subansiri-upper",
+  "name": "Subansiri Upper",
+  "match_method": "fuzzy",
+  "dhpd_id": "D028",
+  "gem_unit_id": "G100000604924",
+  "match_notes": "KML centroid is 69 km from the GEM pin (Upper Subansiri). No MW in the Parivesh project text or file names; matched on name only. Match unverified (name/MW only).",
+  "kml_mw": null,
+  "kml_mw_source": "",
+  "title_district": "",
+  "centroid": [
+   94.15882,
+   28.08312
+  ],
+  "pin": [
+   93.818,
+   27.538
+  ],
+  "pin_km": 69.3,
+  "marker": [
+   28.08312,
+   94.15882
+  ],
+  "marker_source": "kml_centroid",
+  "default_proposal": "IA/AR/RIV/584408/2026",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/584408/2026",
+    "status": "ADS Raised",
+    "kind": "default",
+    "geometry_note": "Same geometry as 466971/2024",
+    "files": [
+     {
+      "label": "Drift",
+      "status": "mapped",
+      "bytes": 2651,
+      "roles": {
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Drift Subansiri Upper",
+      "status": "mapped",
+      "bytes": 2764,
+      "roles": {
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "ge 2",
+      "status": "mapped",
+      "bytes": 3864,
+      "roles": {
+       "forest_land": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "subansiri upper land kml 29-08-24",
+      "status": "mapped",
+      "bytes": 225973,
+      "roles": {
+       "forest_land": 20,
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Alternate Sites Upper Subansiri Polygon",
+      "status": "mapped",
+      "bytes": 3799,
+      "roles": {
+       "dam_axis": 5
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Site B",
+      "status": "duplicate",
+      "bytes": 1673,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Alternate Sites Upper Subansiri_Polygon.kml"
+     },
+     {
+      "label": "Site C",
+      "status": "mapped",
+      "bytes": 1673,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Site D",
+      "status": "mapped",
+      "bytes": 1708,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Site E (1)",
+      "status": "mapped",
+      "bytes": 1459,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Site E",
+      "status": "mapped",
+      "bytes": 1673,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Site A",
+      "status": "mapped",
+      "bytes": 1661,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Subansiri Upper For ToR",
+      "status": "mapped",
+      "bytes": 132986,
+      "roles": {
+       "submergence": 1,
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/466971/2024",
+    "status": "ToR Granted",
+    "kind": "earlier",
+    "geometry_note": "Same geometry as 584408/2026",
+    "files": [
+     {
+      "label": "Drift",
+      "status": "duplicate",
+      "bytes": 2651,
+      "roles": {
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__49653079_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1715419789330_Drift.kml"
+     },
+     {
+      "label": "Drift Subansiri Upper",
+      "status": "duplicate",
+      "bytes": 2764,
+      "roles": {
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__49653079_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1715425441811_Drift Subansiri Upper.kml"
+     },
+     {
+      "label": "ge 2",
+      "status": "duplicate",
+      "bytes": 3864,
+      "roles": {
+       "forest_land": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__49653079_FC_FORM_C_FOREST_LAND_PROPOSED_DIVERSION_KML_1725018848409_ge 2.kml"
+     },
+     {
+      "label": "subansiri upper land kml 29-08-24",
+      "status": "duplicate",
+      "bytes": 225973,
+      "roles": {
+       "forest_land": 20,
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__49653079_FC_KML_1724925107590_subansiri_upper_land kml_29-08-24.kml"
+     },
+     {
+      "label": "Alternate Sites Upper Subansiri Polygon",
+      "status": "duplicate",
+      "bytes": 3799,
+      "roles": {
+       "dam_axis": 5
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Alternate Sites Upper Subansiri_Polygon.kml"
+     },
+     {
+      "label": "Site B",
+      "status": "duplicate",
+      "bytes": 1673,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Alternate Sites Upper Subansiri_Polygon.kml"
+     },
+     {
+      "label": "Site C",
+      "status": "duplicate",
+      "bytes": 1673,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Site C.kml"
+     },
+     {
+      "label": "Site D",
+      "status": "duplicate",
+      "bytes": 1708,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Site D.kml"
+     },
+     {
+      "label": "Site E (1)",
+      "status": "duplicate",
+      "bytes": 1459,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Site E (1).kml"
+     },
+     {
+      "label": "Site E",
+      "status": "duplicate",
+      "bytes": 1673,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Site E.kml"
+     },
+     {
+      "label": "Site A",
+      "status": "duplicate",
+      "bytes": 1661,
+      "roles": {
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Site_A.kml"
+     },
+     {
+      "label": "Subansiri Upper For ToR",
+      "status": "duplicate",
+      "bytes": 132986,
+      "roles": {
+       "submergence": 1,
+       "dam_axis": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_584408_2026__Subansiri Upper For ToR.kml"
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/subansiri-upper.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   93.90182,
+   27.55269,
+   94.28713,
+   28.38186
+  ],
+  "counts": {
+   "dam_axis": 7,
+   "submergence": 1,
+   "forest_land": 21,
+   "ancillary": 9
+  }
+ },
+ {
+  "slug": "tato-ii",
+  "name": "Tato-II",
+  "match_method": "exact",
+  "dhpd_id": "D108",
+  "gem_unit_id": "G100000604863",
+  "match_notes": "",
+  "kml_mw": 700.0,
+  "kml_mw_source": "project text",
+  "title_district": "",
+  "centroid": [
+   94.3964,
+   28.5349
+  ],
+  "pin": [
+   94.3618,
+   28.5072
+  ],
+  "pin_km": 4.6,
+  "marker": [
+   28.5072,
+   94.3618
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/449080/2023",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/537011/2025",
+    "status": "Proposal returned in present form",
+    "kind": "returned",
+    "geometry_note": "Same geometry as 449080/2023",
+    "files": [
+     {
+      "label": "Tato-II Polygon",
+      "status": "duplicate",
+      "bytes": 3591,
+      "roles": {
+       "forest_land": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1705040772675_Tato-II Polygon.kml"
+     },
+     {
+      "label": "Land Area Tato-II 313.88 Ha Rev1 12-01-2024 Final",
+      "status": "duplicate",
+      "bytes": 167717,
+      "roles": {
+       "dam_axis": 1,
+       "forest_land": 22,
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "Land Area Tato-II 313.88 Ha 13-01-24",
+      "status": "duplicate",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "LA Tato-II 24-01-24",
+      "status": "duplicate",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "2 land area tato-ii 313.88 ha 13-01-24",
+      "status": "duplicate",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "3 Land Area Tato-II 313.88 Ha 23-01-2024",
+      "status": "duplicate",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "LA Tato-II 24-01-24",
+      "status": "duplicate",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "Tato-II Polygon",
+      "status": "duplicate",
+      "bytes": 3591,
+      "roles": {
+       "other": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1705040772675_Tato-II Polygon.kml"
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/449080/2023",
+    "status": "Granted",
+    "kind": "default",
+    "geometry_note": "Same geometry as 537011/2025 (Proposal returned in present form)",
+    "files": [
+     {
+      "label": "Tato-II Polygon",
+      "status": "mapped",
+      "bytes": 3591,
+      "roles": {
+       "forest_land": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Land Area Tato-II 313.88 Ha Rev1 12-01-2024 Final",
+      "status": "mapped",
+      "bytes": 167717,
+      "roles": {
+       "dam_axis": 1,
+       "forest_land": 22,
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "Land Area Tato-II 313.88 Ha 13-01-24",
+      "status": "duplicate",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "LA Tato-II 24-01-24",
+      "status": "mapped",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "3 Land Area Tato-II 313.88 Ha 23-01-2024",
+      "status": "duplicate",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "LA Tato-II 24-01-24",
+      "status": "duplicate",
+      "bytes": 66921,
+      "roles": {
+       "forest_land": 22
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1707388801399_LA_Tato-II_24-01-24.kml"
+     },
+     {
+      "label": "Tato-II Polygon",
+      "status": "duplicate",
+      "bytes": 3591,
+      "roles": {
+       "other": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_449080_2023__17383794_FC_KML_1705040772675_Tato-II Polygon.kml"
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/tato-ii.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   94.36844,
+   28.5021,
+   94.43689,
+   28.55144
+  ],
+  "counts": {
+   "dam_axis": 1,
+   "forest_land": 24,
+   "ancillary": 3
+  }
+ },
+ {
+  "slug": "attunli",
+  "name": "Attunli",
+  "match_method": "exact",
+  "dhpd_id": "D055",
+  "gem_unit_id": "G100000601831",
+  "match_notes": "",
+  "kml_mw": 680.0,
+  "kml_mw_source": "project text",
+  "title_district": "",
+  "centroid": [
+   96.11085,
+   28.66492
+  ],
+  "pin": [
+   96.1169,
+   28.6669
+  ],
+  "pin_km": 0.6,
+  "marker": [
+   28.6669,
+   96.1169
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/582227/2026",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/582227/2026",
+    "status": "EC Granted",
+    "kind": "default",
+    "geometry_note": "Same geometry as 455548/2023",
+    "files": [
+     {
+      "label": "Project Layout",
+      "status": "mapped",
+      "bytes": 63809,
+      "roles": {
+       "project_layout": 4,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/455548/2023",
+    "status": "ToR Granted",
+    "kind": "earlier",
+    "geometry_note": "Same geometry as 582227/2026",
+    "files": [
+     {
+      "label": "Project Layout",
+      "status": "duplicate",
+      "bytes": 63809,
+      "roles": {
+       "project_layout": 4,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_582227_2026__Project Layout.kml"
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/attunli.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   96.03041,
+   28.65374,
+   96.14006,
+   28.67105
+  ],
+  "counts": {
+   "project_layout": 4,
+   "submergence": 1
+  }
+ },
+ {
+  "slug": "emra-ii",
+  "name": "Emra II",
+  "match_method": "fuzzy",
+  "dhpd_id": "D059",
+  "gem_unit_id": "G100001030881",
+  "match_notes": "KML centroid is 32 km from the GEM pin (Emra II). No MW in the Parivesh project text or file names; matched on name only. Match unverified (name/MW only).",
+  "kml_mw": null,
+  "kml_mw_source": "",
+  "title_district": "",
+  "centroid": [
+   95.81938,
+   28.58026
+  ],
+  "pin": [
+   95.893,
+   28.8564
+  ],
+  "pin_km": 31.5,
+  "marker": [
+   28.58026,
+   95.81938
+  ],
+  "marker_source": "kml_centroid",
+  "default_proposal": "IA/AR/RIV/439743/2023",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/439743/2023",
+    "status": "ToR Granted",
+    "kind": "default",
+    "geometry_note": "All of its geometry is only in this proposal",
+    "files": [
+     {
+      "label": "Project Layout",
+      "status": "mapped",
+      "bytes": 557409,
+      "roles": {
+       "project_layout": 8,
+       "submergence": 1,
+       "ancillary": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/emra-ii.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   95.80594,
+   28.56629,
+   95.84106,
+   28.59726
+  ],
+  "counts": {
+   "project_layout": 7,
+   "submergence": 1,
+   "ancillary": 1
+  }
+ },
+ {
+  "slug": "naying",
+  "name": "Naying",
+  "match_method": "fuzzy",
+  "dhpd_id": "D009",
+  "gem_unit_id": "G100000601997",
+  "match_notes": "KML centroid is 104 km from the GEM pin (Naying). Match unverified (name/MW only).",
+  "kml_mw": 1000.0,
+  "kml_mw_source": "project text",
+  "title_district": "Shi Yomi & Siang",
+  "centroid": [
+   94.56428,
+   28.53094
+  ],
+  "pin": [
+   95.3976,
+   29.1133
+  ],
+  "pin_km": 103.8,
+  "marker": [
+   28.53094,
+   94.56428
+  ],
+  "marker_source": "kml_centroid",
+  "default_proposal": "IA/AR/RIV/470969/2024",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/573573/2026",
+    "status": "DELISTED_BY_SYSTEM",
+    "kind": "delisted",
+    "geometry_note": "Same geometry as 470969/2024",
+    "files": [
+     {
+      "label": "naying 470.80ha full r8",
+      "status": "duplicate",
+      "bytes": 172932,
+      "roles": {
+       "forest_land": 33,
+       "project_layout": 10
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_470969_2024__64143334_FC_KML_1724141978261_naying_470.80ha_full_r8.kml"
+     },
+     {
+      "label": "KML Naying HEP Layout 23 4 24",
+      "status": "duplicate",
+      "bytes": 24853,
+      "roles": {
+       "project_layout": 20,
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": "IA_AR_RIV_470969_2024__KML_Naying_HEP_Layout_23 4 24.kml"
+     }
+    ]
+   },
+   {
+    "proposal_no": "IA/AR/RIV/470969/2024",
+    "status": "ToR Granted",
+    "kind": "default",
+    "geometry_note": "Same geometry as 573573/2026 (DELISTED_BY_SYSTEM)",
+    "files": [
+     {
+      "label": "naying 470.80ha full r8",
+      "status": "mapped",
+      "bytes": 172932,
+      "roles": {
+       "forest_land": 33,
+       "project_layout": 10
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "KML Naying HEP Layout 23 4 24",
+      "status": "mapped",
+      "bytes": 24853,
+      "roles": {
+       "project_layout": 20,
+       "ancillary": 3
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/naying.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   94.43368,
+   28.50345,
+   94.58325,
+   28.53947
+  ],
+  "counts": {
+   "project_layout": 30,
+   "forest_land": 33,
+   "ancillary": 3
+  }
+ },
+ {
+  "slug": "heo",
+  "name": "Heo",
+  "match_method": "exact",
+  "dhpd_id": "D109",
+  "gem_unit_id": "G100000604424",
+  "match_notes": "",
+  "kml_mw": 240.0,
+  "kml_mw_source": "project text",
+  "title_district": "",
+  "centroid": [
+   94.29364,
+   28.54159
+  ],
+  "pin": [
+   94.3119,
+   28.5422
+  ],
+  "pin_km": 1.8,
+  "marker": [
+   28.5422,
+   94.3119
+  ],
+  "marker_source": "pin",
+  "default_proposal": "IA/AR/RIV/448652/2023",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/448652/2023",
+    "status": "Granted",
+    "kind": "default",
+    "geometry_note": "All of its geometry is only in this proposal",
+    "files": [
+     {
+      "label": "KML Heo-Oct-23 mod",
+      "status": "mapped",
+      "bytes": 2301,
+      "roles": {
+       "other": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/heo.geojson",
+  "cad_geojson": null,
+  "bbox": [
+   94.27452,
+   28.53843,
+   94.31276,
+   28.54476
+  ],
+  "counts": {
+   "other": 1
+  }
+ },
+ {
+  "slug": "niare",
+  "name": "Niare",
+  "match_method": "fuzzy",
+  "dhpd_id": "D032",
+  "gem_unit_id": "G100001030877",
+  "match_notes": "MW differs: KML/Parivesh text 909 (project text), DHPD 800. KML centroid is 40 km from the GEM pin (Niare). Match unverified (name/MW only).",
+  "kml_mw": 909.0,
+  "kml_mw_source": "project text",
+  "title_district": "",
+  "centroid": [
+   93.54481,
+   28.36929
+  ],
+  "pin": [
+   93.9496,
+   28.337
+  ],
+  "pin_km": 39.8,
+  "marker": [
+   28.36929,
+   93.54481
+  ],
+  "marker_source": "kml_centroid",
+  "default_proposal": "IA/AR/RIV/573804/2026",
+  "proposals": [
+   {
+    "proposal_no": "IA/AR/RIV/573804/2026",
+    "status": "Forwarded to MS SPCB/PCC by MS",
+    "kind": "default",
+    "geometry_note": "All of its geometry is only in this proposal",
+    "files": [
+     {
+      "label": "dam alternate study-niare",
+      "status": "mapped",
+      "bytes": 3475,
+      "roles": {
+       "dam_axis": 4
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "niare hep",
+      "status": "mapped",
+      "bytes": 412689,
+      "roles": {
+       "ancillary": 32,
+       "project_layout": 25,
+       "submergence": 1
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "power house alt-1 niare hep",
+      "status": "mapped",
+      "bytes": 1697865,
+      "roles": {
+       "project_layout": 215,
+       "cad_detail": 1433
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "power house alt-2 niare hep",
+      "status": "mapped",
+      "bytes": 1698675,
+      "roles": {
+       "project_layout": 220,
+       "cad_detail": 1408
+      },
+      "flags": [],
+      "duplicate_of": ""
+     },
+     {
+      "label": "power house alt-3 niare hep",
+      "status": "mapped",
+      "bytes": 270153,
+      "roles": {
+       "project_layout": 22,
+       "ancillary": 6,
+       "cad_detail": 14
+      },
+      "flags": [],
+      "duplicate_of": ""
+     }
+    ]
+   }
+  ],
+  "geojson": "kml_geojson/niare.geojson",
+  "cad_geojson": "kml_geojson/niare_cad.geojson",
+  "bbox": [
+   93.48443,
+   28.35061,
+   93.58912,
+   28.37754
+  ],
+  "counts": {
+   "project_layout": 419,
+   "dam_axis": 4,
+   "submergence": 1,
+   "ancillary": 31,
+   "cad_detail": 2085
+  }
+ }
+]

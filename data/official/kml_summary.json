@@ -1,0 +1,26 @@
+{
+ "manifest_rows": 149,
+ "files_by_dedupe_status": {
+  "mapped": 54,
+  "duplicate": 90,
+  "excluded": 2,
+  "missing": 3
+ },
+ "projects": 14,
+ "matched": 13,
+ "unmatched": 1,
+ "unique_geometries": 6055,
+ "size_bytes": {
+  "kml_all_files": 53617003,
+  "kml_mapped_files": 21032876,
+  "geojson_deduped_unsimplified": 9603541,
+  "geojson_simplified_main": 1634446,
+  "geojson_simplified_cad": 1695448,
+  "geojson_simplified_total": 3329894
+ },
+ "simplify_tolerance_deg": {
+  "main": 3e-05,
+  "cad_detail": 0.0001
+ },
+ "coordinate_decimals": 5
+}
