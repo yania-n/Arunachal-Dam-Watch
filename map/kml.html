@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arunachal EC proposal map</title>
+<link rel="icon" href="data:,">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Map of the dam projects with environment clearance (EC) proposals on Parivesh, drawn from the KML files uploaded with each proposal.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<style>
+  :root{
+    --bg:#0a1020; --card:#121a2f; --card2:#1a2440; --line:#2b3860;
+    --fg:#eef1fb; --mute:#aab5d3; --link:#9cbcff; --focus:#ffd166;
+    --pv:#8be3cf; --dhpd:#f1ead8; --gem:#b8c2ff;
+    /* proposal status groups: Okabe-Ito set, each with its own shape */
+    --s-granted:#009E73; --s-tor:#56B4E9; --s-review:#F0E442; --s-returned:#E69F00; --s-delisted:#8892b8;
+    /* geometry roles */
+    --r-project_layout:#56B4E9; --r-project_area:#CC79A7; --r-dam_axis:#F0E442; --r-submergence:#3b6fe0;
+    --r-forest_land:#2fd39a; --r-ancillary:#E69F00; --r-other:#d7dcec; --r-cad_detail:#8892b8; --r-grey:#7b86a6;
+    --warn:#ffcf70; --warn-bg:#3a2b0c;
+    --font:"Avenir Next","Trebuchet MS",system-ui,"Roboto",sans-serif;
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);font-variant-numeric:tabular-nums;overflow-x:hidden}
+  a{color:var(--link);text-underline-offset:3px;overflow-wrap:anywhere}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.15;margin:0}
+  p{margin:0 0 12px}
+  button{font:inherit;color:inherit}
+  .mute{color:var(--mute)} .sm{font-size:14px}
+
+  /* ---------- hero: full-bleed map with floating cards ---------- */
+  .hero{position:relative;height:88vh;height:88dvh;min-height:460px;max-height:980px;isolation:isolate}
+  #map{position:absolute;inset:0;background:#0d1426}
+  .rail{position:absolute;z-index:1100;top:10px;left:10px;width:calc(100% - 20px);max-height:calc(100% - 20px);overflow:auto;display:flex;flex-direction:column;gap:8px;pointer-events:none;overscroll-behavior:contain}
+  .rail>*{pointer-events:auto}
+  .card{background:rgba(18,26,47,.94);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 8px 28px rgba(0,0,0,.45);padding:10px 14px}
+  .title h1{font-size:22px}
+  .badge{display:inline-block;font-size:14px;font-weight:700;color:#0a1020;background:var(--pv);border-radius:999px;padding:1px 10px;margin-bottom:4px;line-height:1.3}
+  .title p{font-size:14px;line-height:1.4;margin:4px 0 0;color:var(--mute)}
+  .title .count{color:var(--fg);font-weight:600}
+  .bar{display:flex;gap:8px;flex-wrap:wrap}
+  .btn{min-height:44px;min-width:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card2);font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .btn[aria-expanded=true]{background:var(--fg);color:#0a1020;border-color:var(--fg)}
+  .panel[hidden]{display:none}
+  .panel h2{font-size:16px;margin:0 0 8px}
+  .panel fieldset{border:0;padding:0;margin:0 0 14px}
+  .panel legend{font-weight:800;font-size:15px;padding:0;margin-bottom:6px}
+  .panel .hint{font-size:14px;color:var(--mute);margin:-2px 0 8px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{position:relative}
+  .chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+  .chip span{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card2);font-size:15px}
+  .chip input:checked+span{border-color:var(--fg);background:#27345c}
+  .chip input:checked+span::before{content:"✓";font-weight:800}
+  .chip input:focus-visible+span{outline:3px solid var(--focus);outline-offset:2px}
+  .chip .sw{flex:none}
+  .legend ul{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:6px}
+  .legend li{display:flex;gap:10px;align-items:center;font-size:14px}
+  .legend svg{flex:none}
+  .legend .sep{margin:10px 0 6px;font-weight:800;font-size:15px}
+  .drawn{position:absolute;z-index:1000;left:10px;bottom:10px;max-width:min(420px,calc(100% - 80px));font-size:14px;line-height:1.4;padding:8px 12px;border-radius:12px}
+  .drawn[hidden]{display:none}
+  .drawn b{font-weight:800}
+
+  .toast{position:absolute;z-index:1200;left:50%;bottom:70px;transform:translateX(-50%);background:var(--fg);color:#0a1020;font-weight:700;font-size:15px;padding:10px 16px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;max-width:calc(100% - 30px);text-align:center}
+  .toast.on{opacity:1}
+
+  /* leaflet on dark */
+  .leaflet-container{font:inherit;background:#0d1426}
+  .dark-tiles{filter:invert(1) hue-rotate(188deg) brightness(.82) contrast(.92) saturate(.55)}
+  .leaflet-bar a,.leaflet-bar a:hover{width:44px;height:44px;line-height:44px;font-size:22px;background:var(--card);color:var(--fg);border-color:var(--line)}
+  .leaflet-bar{border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.45)}
+  .leaflet-control-attribution{background:rgba(10,16,32,.82)!important;color:#c3cce6!important;font-size:12px}
+  .leaflet-control-attribution a{color:#a9c4ff!important}
+  .leaflet-marker-icon.pin{background:none;border:0}
+  .pin svg{display:block;overflow:visible;filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+  .pin .o{vector-effect:non-scaling-stroke;stroke:#fff;stroke-width:2px}
+  .pin.apx .o{stroke-dasharray:3.2 2.6;stroke-width:2.4px}
+  .pin .x{vector-effect:non-scaling-stroke;stroke:#0a1020;stroke-width:2.4px;fill:none}
+  .pin.sel svg{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 6px #fff) drop-shadow(0 0 3px #fff);transform:scale(1.18)}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg);border:1px solid var(--line)}
+  .leaflet-popup-content{margin:10px 14px;font-size:14px;line-height:1.45}
+  .leaflet-popup-close-button{color:var(--mute)!important;width:32px!important;height:32px!important;font-size:22px!important}
+  .leaflet-tooltip{background:var(--card);color:var(--fg);border:1px solid var(--line);font-size:13px}
+  .leaflet-tooltip-top:before{border-top-color:var(--line)}
+
+  /* ---------- bottom sheet ---------- */
+  .sheet{position:fixed;z-index:2000;left:0;right:0;bottom:0;max-height:74vh;max-height:74dvh;overflow:auto;background:var(--card);border:1px solid var(--line);border-bottom:0;border-radius:20px 20px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.6);padding:14px 16px calc(20px + env(safe-area-inset-bottom));transform:translateY(105%);visibility:hidden;transition:transform .22s,visibility .22s;overscroll-behavior:contain}
+  .sheet.open{transform:none;visibility:visible}
+  .sheet .grab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 10px}
+  .sheet-head{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+  .sheet h2{font-size:24px}
+  .close{flex:none;min-width:44px;min-height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card2);font-size:22px;line-height:1;cursor:pointer}
+  .stat{display:inline-flex;align-items:center;gap:8px;margin:8px 6px 2px 0;padding:5px 12px;border-radius:999px;background:var(--card2);border:1px solid var(--line);font-size:15px;font-weight:700}
+  .stat small{font-weight:600;color:var(--mute);font-size:14px}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .fact{background:var(--card2);border-radius:12px;padding:10px 12px}
+  .fact .k{font-size:14px;color:var(--mute)}
+  .fact .v{font-size:19px;font-weight:800;letter-spacing:-.02em;overflow-wrap:anywhere}
+  .fact .v.t{font-size:16px;font-weight:700;letter-spacing:0}
+  .src{display:inline-block;font-size:14px;font-weight:700;padding:0 8px;border-radius:6px;margin-left:4px;color:#0a1020;letter-spacing:0;vertical-align:middle}
+  .src.gem{background:var(--gem)} .src.dhpd{background:var(--dhpd)} .src.pv{background:var(--pv)} .src.kml{background:#ffd9a0}
+  .block{margin:12px 0;padding:12px 14px;border-radius:12px;background:var(--card2)}
+  .block h3{font-size:16px;margin-bottom:4px}
+  .flag{background:var(--warn-bg);border:1.5px solid var(--warn)}
+  .flag b.hd{color:var(--warn)}
+  .ok{background:none;border:1px dashed var(--line);color:var(--mute);font-size:15px}
+  .prop{margin:10px 0;padding:10px 12px;border-radius:12px;background:var(--card2);border-left:5px solid var(--line)}
+  .prop.default{border-left-color:var(--pv)} .prop.delisted{border-left-color:var(--r-grey);opacity:.9}
+  .prop .no{font-weight:800;overflow-wrap:anywhere}
+  .prop .m{font-size:14px;color:var(--mute)}
+  .pill{display:inline-block;font-size:14px;font-weight:700;padding:1px 9px;border-radius:999px;border:1px solid var(--line);background:var(--card);margin-right:4px}
+  details{margin-top:8px}
+  summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:800;list-style:none;padding:0 2px}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸";margin-right:8px;color:var(--mute)}
+  details[open]>summary::before{content:"▾"}
+  dl.kv{display:grid;grid-template-columns:minmax(110px,max-content) 1fr;gap:6px 14px;margin:6px 0 0;font-size:15px}
+  dl.kv dt{color:var(--mute)} dl.kv dd{margin:0;overflow-wrap:anywhere}
+  table.rl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+  table.rl th,table.rl td{text-align:left;padding:5px 6px;border-top:1px solid var(--line);vertical-align:top}
+  table.rl td.n{text-align:right}
+  .sw{width:14px;height:14px;border-radius:4px;display:inline-block;border:1px solid rgba(255,255,255,.5);vertical-align:-2px;margin-right:6px}
+  ul.files{list-style:none;margin:6px 0 0;padding:0;font-size:14px;display:grid;gap:6px}
+  ul.files li{overflow-wrap:anywhere}
+
+  /* ---------- below the map ---------- */
+  .page{max-width:880px;margin:0 auto;padding:28px 16px 70px}
+  .page>section{margin-top:44px}
+  .page h2.sec{font-size:clamp(24px,6vw,32px);margin-bottom:10px}
+  .kicker{font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pv);margin-bottom:6px}
+  .note{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--pv);border-radius:12px;padding:12px 14px;font-size:15px}
+  .list{list-style:none;margin:0;padding:0}
+  .list li{padding:11px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);gap:2px}
+  .list li:first-child{border-top:0}
+  .list .n{font-weight:800;overflow-wrap:anywhere}
+  .list .m{font-size:14px;color:var(--mute);overflow-wrap:anywhere}
+  .foot{font-size:14px;color:var(--mute)}
+  .err{padding:20px;color:#ffb4b4}
+
+  @media (min-width:760px){
+    .rail{width:360px}
+    .title h1{font-size:26px}
+    .sheet{left:auto;right:16px;bottom:36px;width:440px;max-height:calc(100dvh - 80px);border-radius:20px;border-bottom:1px solid var(--line)}
+    .sheet .grab{display:none}
+    .toast{bottom:36px}
+    .drawn{left:390px}
+  }
+  @media (max-width:759px){ .drawn{bottom:56px} }
+  @media (prefers-reduced-motion:reduce){.sheet,.toast{transition:none}}
+</style>
+</head>
+<body>
+<noscript><p class="err">This map needs JavaScript. The data is in <a href="../data/official/">data/official/</a>.</p></noscript>
+
+<section class="hero" aria-label="Map of EC proposals">
+  <div id="map" role="region" aria-label="Map of dam projects with environment clearance proposals in Arunachal Pradesh. Markers can be tabbed to and opened with Enter."></div>
+  <div class="rail" id="rail">
+    <div class="card title">
+      <span class="badge">Environment clearance (EC) proposals · KML files</span>
+      <h1>Arunachal EC proposal map</h1>
+      <p>Tap a project to draw the geometry uploaded with its Parivesh EC proposals. <span class="count" id="count" aria-live="polite"></span></p>
+    </div>
+    <div class="bar">
+      <button class="btn" id="b-filters" aria-expanded="false" aria-controls="filters">Filters</button>
+      <button class="btn" id="b-legend" aria-expanded="false" aria-controls="legend">Legend</button>
+      <button class="btn" id="b-reset">Reset view</button>
+    </div>
+    <div class="card panel" id="filters" hidden>
+      <h2>Filter the map</h2>
+      <fieldset><legend>Proposal status (Parivesh)</legend><div class="chips" id="f-status"></div></fieldset>
+      <fieldset><legend>Which proposals to draw</legend>
+        <p class="hint">Applies to the project you have open. The latest live proposal is the default.</p>
+        <div class="chips" id="f-kind"></div></fieldset>
+      <fieldset><legend>Layers by role</legend><div class="chips" id="f-role"></div></fieldset>
+      <button class="btn" id="f-clear" type="button">Reset filters</button>
+    </div>
+    <div class="card panel legend" id="legend" hidden>
+      <h2>How to read the map</h2>
+      <div class="sep" style="margin-top:0">Marker: status of the default proposal</div>
+      <ul id="lg-status"></ul>
+      <div class="sep">Marker outline</div>
+      <ul id="lg-outline"></ul>
+      <div class="sep">Size</div>
+      <ul><li>Bigger marker = more megawatts (DHPD, else GEM, else the figure in the Parivesh project title).</li></ul>
+      <div class="sep">Drawn geometry</div>
+      <ul id="lg-role"></ul>
+      <div class="sep">Which proposal</div>
+      <ul id="lg-kind"></ul>
+      <div class="sep">Touch screens</div>
+      <ul><li>One finger scrolls the page. Use two fingers, or the + and − buttons, to move and zoom the map.</li></ul>
+    </div>
+  </div>
+  <div class="card drawn" id="drawn" role="status" hidden></div>
+  <div class="toast" id="toast" role="status">Use two fingers to move the map</div>
+</section>
+
+<aside class="sheet" id="sheet" role="dialog" aria-labelledby="sh-title" aria-hidden="true"></aside>
+
+<main class="page" id="page">
+  <p class="foot"><a href="index.html">&larr; Back to the dam map (GEM, DHPD and Parivesh forest data)</a></p>
+  <p class="foot" id="loading">Loading data…</p>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+"use strict";
+/* ============================================================ helpers */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const nf = (n, d = 0) => Number(n).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+const mwf = n => nf(n, Number.isInteger(+n) ? 0 : 1);
+
+function parseCSV(t) {
+  const rows = []; let r = [], f = "", q = false;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ",") { r.push(f); f = ""; }
+    else if (c === "\n") { r.push(f); rows.push(r); r = []; f = ""; }
+    else if (c !== "\r") f += c;
+  }
+  if (f !== "" || r.length) { r.push(f); rows.push(r); }
+  const h = rows.shift();
+  return rows.filter(x => x.length > 1).map(x => Object.fromEntries(h.map((k, i) => [k, x[i] ?? ""])));
+}
+const getCSV = u => fetch(u).then(r => { if (!r.ok) throw new Error(u + " " + r.status); return r.text(); }).then(parseCSV);
+const getJSON = u => fetch(u).then(r => { if (!r.ok) throw new Error(u + " " + r.status); return r.json(); });
+
+/* ============================================================ vocab */
+// Proposal status -> group. Parivesh's own wording is always shown; the group only picks marker colour and shape.
+const GROUPS = [ // order = legend order
+  { k: "granted", label: "Granted / EC granted", hex: "#009E73", shape: "circle", statuses: ["Granted", "EC Granted"] },
+  { k: "tor", label: "ToR granted (terms of reference)", hex: "#56B4E9", shape: "square", statuses: ["ToR Granted"] },
+  { k: "review", label: "Under review", hex: "#F0E442", shape: "diamond", statuses: ["Proposal Accepted and Referred to EAC", "ADS Raised", "Forwarded to MS SPCB/PCC by MS"] },
+  { k: "returned", label: "Returned", hex: "#E69F00", shape: "triangle", statuses: ["Proposal returned in present form"] },
+  { k: "delisted", label: "Delisted by system", hex: "#8892b8", shape: "cross", statuses: ["DELISTED_BY_SYSTEM"] },
+];
+const groupOf = s => GROUPS.find(g => g.statuses.includes(s)) || GROUPS[2];
+const statusLabel = s => s === "DELISTED_BY_SYSTEM" ? "Delisted by system (DELISTED_BY_SYSTEM)" : s;
+
+const ROLES = [ // order = legend and chip order
+  { k: "project_layout", label: "Project layout", color: "#56B4E9", geom: "polygon" },
+  { k: "project_area", label: "Project area", color: "#CC79A7", geom: "polygon" },
+  { k: "dam_axis", label: "Dam axis / alternative sites", color: "#F0E442", geom: "line" },
+  { k: "submergence", label: "Reservoir / submergence", color: "#3b6fe0", geom: "polygon" },
+  { k: "forest_land", label: "Forest land to be diverted", color: "#2fd39a", geom: "polygon" },
+  { k: "ancillary", label: "Ancillary works (drift, drilling, muck, roads)", color: "#E69F00", geom: "point" },
+  { k: "other", label: "Other (role not stated in the file)", color: "#d7dcec", geom: "polygon" },
+  { k: "cad_detail", label: "CAD / survey detail (off by default)", color: "#8892b8", geom: "line" },
+];
+const RL = Object.fromEntries(ROLES.map(r => [r.k, r]));
+const GREY = "#7b86a6";
+const KINDS = [
+  { k: "default", label: "Default (latest live proposal)", on: true },
+  { k: "delisted", label: "Delisted (greyed)", on: true },
+  { k: "earlier", label: "Earlier proposals", on: false },
+  { k: "returned", label: "Returned proposals", on: false },
+];
+const KL = Object.fromEntries(KINDS.map(k => [k.k, k]));
+const KIND_WORD = { default: "Default", earlier: "Earlier proposal", returned: "Returned", delisted: "DELISTED" };
+const shortNo = p => p.split("/").slice(3).join("/");
+
+function shapeSVG(shape, d, fill, cls = "") {
+  const P = {
+    circle: `<circle class="o" cx="50" cy="50" r="44"/>`,
+    square: `<rect class="o" x="9" y="9" width="82" height="82" rx="9"/>`,
+    diamond: `<polygon class="o" points="50,3 97,50 50,97 3,50"/>`,
+    triangle: `<polygon class="o" points="50,6 97,90 3,90"/>`,
+    cross: `<circle class="o" cx="50" cy="50" r="44"/><path class="x" d="M32 32L68 68M68 32L32 68"/>`,
+  }[shape];
+  return `<svg class="${cls}" width="${d}" height="${d}" viewBox="0 0 100 100" aria-hidden="true" focusable="false" fill="${fill}">${P}</svg>`;
+}
+const src = k => `<span class="src ${k}">${{ gem: "GEM", dhpd: "DHPD", pv: "Parivesh", kml: "KML" }[k]}</span>`;
+
+/* ============================================================ load */
+Promise.all([
+  getJSON("../data/official/kml_projects.json"),
+  getCSV("../data/official/dhpd_projects.csv"),
+  getCSV("../data/official/gem_projects.csv"),
+  getCSV("../data/official/kml_catalogue.csv"),
+  getJSON("../data/official/kml_summary.json"),
+]).then(([projects, dh, gem, cat, summary]) => start(projects, dh, gem, cat, summary)).catch(e => {
+  $("#loading").innerHTML = `<span class="err">Could not load the data (${esc(e.message)}). Serve the repo over http: run <code>python -m http.server 8000 --bind 127.0.0.1</code> in the repo folder, then open <code>http://localhost:8000/map/kml.html</code>.</span>`;
+});
+
+function start(projects, dhRaw, gemRaw, cat, summary) {
+  const dhById = Object.fromEntries(dhRaw.map(d => [d.dhpd_id, { ...d, mw: +d.capacity_mw }]));
+  const gemById = Object.fromEntries(gemRaw.map(g => [g.gem_unit_id, g]));
+  const P = projects.map(p => {
+    const d = p.dhpd_id ? dhById[p.dhpd_id] : null, g = p.gem_unit_id ? gemById[p.gem_unit_id] : null;
+    const def = p.proposals.find(x => x.proposal_no === p.default_proposal) || p.proposals[0];
+    const mw = d ? d.mw : g ? +g.capacity_mw : p.kml_mw;
+    return { ...p, d, g, def, grp: groupOf(def.status), mw: mw || null, verified: p.match_method === "exact" || p.match_method === "manual",
+      propBy: Object.fromEntries(p.proposals.map(x => [x.proposal_no, x])) };
+  });
+
+  /* ---- map ---- */
+  const wide = matchMedia("(min-width:760px)").matches;
+  const coarse = matchMedia("(pointer:coarse)").matches && ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  const map = L.map("map", { zoomControl: false, scrollWheelZoom: false, dragging: !coarse, tap: false, minZoom: 6, zoomSnap: 0.25, preferCanvas: true });
+  L.control.zoom({ position: wide ? "topright" : "bottomleft" }).addTo(map);
+  // Same basemap as map/index.html: OpenStreetMap tiles darkened with CSS.
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { subdomains: "abc", maxZoom: 18, className: "dark-tiles",
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+  const allBounds = L.latLngBounds(P.map(p => p.marker));
+  const fitAll = () => map.fitBounds(allBounds, wide
+    ? { paddingTopLeft: [390, 30], paddingBottomRight: [60, 40] }
+    : { paddingTopLeft: [16, 190], paddingBottomRight: [16, 60] });
+  fitAll();
+  $("#b-reset").onclick = () => { closeSheet(true); fitAll(); };
+  if (!coarse) {
+    map.on("click focus", () => map.scrollWheelZoom.enable());
+    map.getContainer().addEventListener("mouseleave", () => map.scrollWheelZoom.disable());
+  }
+  const toast = $("#toast"); let tt;
+  const showHint = () => { toast.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove("on"), 3200); };
+  if (coarse) {
+    let seen = false; try { seen = localStorage.getItem("hintSeen") === "1"; } catch (e) {}
+    if (!seen) { showHint(); try { localStorage.setItem("hintSeen", "1"); } catch (e) {} }
+    let last = 0;
+    map.getContainer().addEventListener("touchmove", e => {
+      if (e.touches.length === 1 && Date.now() - last > 6000) { last = Date.now(); showHint(); }
+    }, { passive: true });
+  }
+
+  /* ---- markers ---- */
+  const markerLayer = L.layerGroup().addTo(map);
+  const diam = mw => mw ? Math.round(26 + 22 * Math.sqrt(Math.min(mw, 4000) / 4000)) : 30;
+  const capText = p => p.d ? `${mwf(p.d.mw)} MW (DHPD)` : p.g ? `${mwf(+p.g.capacity_mw)} MW (GEM)` : p.kml_mw ? `${mwf(p.kml_mw)} MW (Parivesh title)` : "capacity not stated";
+  const matchText = p => p.match_method === "unmatched" ? "EC proposal only" : p.verified ? "match checked by name and MW" : "match unverified (name/MW only)";
+  [...P].sort((a, b) => (b.mw || 0) - (a.mw || 0)).forEach(p => {
+    const d = diam(p.mw);
+    const icon = L.divIcon({ className: "pin" + (p.verified ? "" : " apx"), iconSize: [d, d], iconAnchor: [d / 2, d / 2], html: shapeSVG(p.grp.shape, d, p.grp.hex) });
+    const mk = L.marker(p.marker, { icon, keyboard: true, title: `${p.name}, ${capText(p)}`, alt: p.name });
+    mk.on("add", () => { const el = mk.getElement(); if (el) { el.setAttribute("role", "button"); el.setAttribute("aria-label", `${p.name}, ${capText(p)}, ${statusLabel(p.def.status)}, ${matchText(p)}. Open details`); } });
+    mk.on("click", e => { L.DomEvent.stopPropagation(e); openProject(p, mk); });
+    p.mk = mk;
+  });
+
+  /* ---- state and filters ---- */
+  const allStatuses = [...new Set(P.flatMap(p => p.proposals.map(x => x.status)))]
+    .sort((a, b) => GROUPS.indexOf(groupOf(a)) - GROUPS.indexOf(groupOf(b)) || a.localeCompare(b));
+  const sel = { status: new Set(allStatuses), kind: new Set(KINDS.filter(k => k.on).map(k => k.k)),
+                role: new Set(ROLES.filter(r => r.k !== "cad_detail").map(r => r.k)), alt: true };
+  const defaults = () => ({ status: new Set(allStatuses), kind: new Set(KINDS.filter(k => k.on).map(k => k.k)), role: new Set(ROLES.filter(r => r.k !== "cad_detail").map(r => r.k)) });
+  function chips(el, items, set, onchange) {
+    el.innerHTML = items.map(i => `<label class="chip"><input type="checkbox" data-k="${esc(i.k)}" ${set.has(i.k) ? "checked" : ""}><span>${i.icon || ""}${esc(i.label)}</span></label>`).join("");
+    el.addEventListener("change", e => { const k = e.target.dataset.k; e.target.checked ? set.add(k) : set.delete(k); onchange(k); });
+  }
+  chips($("#f-status"), allStatuses.map(s => ({ k: s, label: statusLabel(s), icon: shapeSVG(groupOf(s).shape, 18, groupOf(s).hex, "pin") })), sel.status, () => { applyMarkers(); redraw(); });
+  chips($("#f-kind"), KINDS, sel.kind, redraw);
+  chips($("#f-role"), ROLES.map(r => ({ k: r.k, label: r.label, icon: `<i class="sw" style="background:${r.color}"></i>` })), sel.role, k => { if (k === "cad_detail") loadCad().then(redraw); else redraw(); });
+  $("#f-clear").onclick = () => {
+    // reset in place: the chip handlers hold references to these exact Set objects
+    const d = defaults(); ["status", "kind", "role"].forEach(k => { sel[k].clear(); d[k].forEach(x => sel[k].add(x)); });
+    document.querySelectorAll("#filters .chip input").forEach(i => {
+      const k = i.dataset.k; const set = i.closest("#f-status") ? sel.status : i.closest("#f-kind") ? sel.kind : sel.role; i.checked = set.has(k);
+    });
+    applyMarkers(); redraw();
+  };
+  function toggle(btn, panel, startOpen) {
+    const set = o => { btn.setAttribute("aria-expanded", o); panel.hidden = !o; };
+    set(startOpen); btn.onclick = () => set(btn.getAttribute("aria-expanded") !== "true");
+  }
+  toggle($("#b-filters"), $("#filters"), false);
+  toggle($("#b-legend"), $("#legend"), wide);
+
+  function applyMarkers() {
+    let n = 0;
+    P.forEach(p => {
+      const on = p.proposals.some(x => sel.status.has(x.status));
+      if (on) { markerLayer.addLayer(p.mk); n++; } else markerLayer.removeLayer(p.mk);
+    });
+    $("#count").textContent = `Showing ${n} of ${P.length} projects.`;
+    if (current && !markerLayer.hasLayer(current.mk)) closeSheet(true);
+  }
+
+  /* ---- legend ---- */
+  $("#lg-status").innerHTML = GROUPS.map(g => `<li>${shapeSVG(g.shape, 26, g.hex, "pin")}<span>${esc(g.label)}</span></li>`).join("");
+  $("#lg-outline").innerHTML =
+    `<li><span class="pin">${shapeSVG("circle", 26, "#8892b8")}</span><span>Solid outline: matched to a DHPD / GEM project by name and MW.</span></li>` +
+    `<li><span class="pin apx">${shapeSVG("circle", 26, "#8892b8")}</span><span>Dashed outline: match unverified (name or MW only), or an EC proposal with no DHPD / GEM match.</span></li>`;
+  const geomSwatch = r => r.geom === "line"
+    ? `<svg width="26" height="14" aria-hidden="true"><line x1="1" y1="7" x2="25" y2="7" stroke="${r.color}" stroke-width="4"/></svg>`
+    : r.geom === "point" ? `<svg width="26" height="14" aria-hidden="true"><circle cx="13" cy="7" r="5" fill="${r.color}" stroke="#fff" stroke-width="1"/></svg>`
+    : `<svg width="26" height="14" aria-hidden="true"><rect x="2" y="2" width="22" height="10" rx="2" fill="${r.color}" fill-opacity=".3" stroke="${r.color}" stroke-width="2"/></svg>`;
+  $("#lg-role").innerHTML = ROLES.map(r => `<li>${geomSwatch(r)}<span>${esc(r.label)}</span></li>`).join("") +
+    `<li><svg width="26" height="14" aria-hidden="true"><line x1="1" y1="7" x2="25" y2="7" stroke="#d7dcec" stroke-width="3" stroke-dasharray="6 4"/></svg><span>Dashed line or outline: an alternative (labelled Alt or Site in the pop-up).</span></li>`;
+  $("#lg-kind").innerHTML =
+    `<li><i class="sw" style="background:#56B4E9"></i><span>Full colour: default proposal.</span></li>` +
+    `<li><i class="sw" style="background:#56B4E9;opacity:.45"></i><span>Faded: earlier proposal, labelled with its number and status.</span></li>` +
+    `<li><i class="sw" style="background:${GREY}"></i><span>Grey: delisted by the system, labelled DELISTED.</span></li>`;
+
+  /* ---- drawing ---- */
+  const renderer = L.canvas({ padding: 0.3 });
+  const drawGroup = L.layerGroup().addTo(map);
+  const geoCache = {};              // url -> Promise of features
+  let current = null, lastEl = null, entries = [];   // entries: [{layer, props}]
+  const fetchGeo = url => geoCache[url] ||= getJSON("../data/official/" + url).then(g => g.features);
+
+  function style(props, geomType) {
+    const role = RL[props.role] || RL.other, kind = props.layer, alt = !!props.alt;
+    let color = role.color, op = 1, dash = alt ? "8 6" : null;
+    if (kind === "delisted") { color = GREY; dash = dash || "3 5"; }
+    else if (kind === "earlier") op = 0.5;
+    else if (kind === "returned") { op = 0.55; dash = dash || "2 6"; }
+    const line = geomType === "LineString";
+    return { renderer, color, weight: props.role === "dam_axis" && line ? 4 : props.role === "cad_detail" ? 1 : 2, opacity: op * (props.role === "cad_detail" ? .6 : 1),
+      dashArray: dash, fillColor: color, fillOpacity: op * (props.role === "submergence" ? .3 : .22), bubblingMouseEvents: false };
+  }
+  function popupHTML(p, pr) {
+    const st = p.propBy[pr.proposal_no]?.status || pr.status;
+    const kind = pr.layer;
+    const bits = [
+      `<b>${esc(pr.label || RL[pr.role]?.label || pr.role)}</b>`,
+      `${esc(RL[pr.role]?.label || pr.role)}${pr.alt ? ` · ${esc(pr.alt)}` : ""}`,
+      pr.note ? esc(pr.note) : "",
+      `Proposal ${esc(pr.proposal_no)}<br>${esc(statusLabel(st))}${kind === "delisted" ? " · DELISTED" : kind === "earlier" ? " · earlier proposal" : kind === "returned" ? " · returned" : ""}`,
+      pr.also_in ? `Also in: ${pr.also_in.map(x => esc(shortNo(x))).join(", ")}` : "",
+      pr.area_ha != null ? `${nf(pr.area_ha, pr.area_ha >= 100 ? 0 : 1)} ha` : pr.length_km != null ? `${nf(pr.length_km, 2)} km` : "",
+      `Role confidence: ${esc(pr.role_confidence)}`,
+    ].filter(Boolean);
+    return bits.join("<br>");
+  }
+  function build(p, feats) {
+    return feats.map(f => {
+      const pr = f.properties, t = f.geometry.type;
+      const layer = t === "Point"
+        ? L.circleMarker([f.geometry.coordinates[1], f.geometry.coordinates[0]], { ...style(pr, t), radius: 5, weight: 1.5, fillOpacity: .9 })
+        : L.geoJSON(f, { style: () => style(pr, t) });
+      layer.bindPopup(() => popupHTML(p, pr));
+      layer.bindTooltip(esc(pr.label || RL[pr.role]?.label || pr.role), { sticky: true });
+      return { layer, props: pr };
+    });
+  }
+  function visible(p, e) {
+    const pr = e.props;
+    if (!sel.role.has(pr.role) || !sel.kind.has(pr.layer)) return false;
+    if (sel.status.has(pr.status)) return true;
+    return (pr.also_in || []).some(x => sel.status.has(p.propBy[x]?.status));
+  }
+  function redraw() {
+    drawGroup.clearLayers();
+    if (!current) return;
+    const counts = {};
+    entries.forEach(e => { if (visible(current, e)) { drawGroup.addLayer(e.layer); counts[e.props.role] = (counts[e.props.role] || 0) + 1; } });
+    current.drawnCounts = counts;
+    renderCounts();
+    renderCaption();
+  }
+  function renderCaption() {
+    const p = current, el = $("#drawn");
+    if (!p) { el.hidden = true; return; }
+    const shown = new Set(entries.filter(e => visible(p, e)).map(e => e.props.layer));
+    const parts = [`<b>${esc(p.name)}</b>`];
+    p.proposals.forEach(x => {
+      if (!shown.has(x.kind)) return;
+      const w = KIND_WORD[x.kind];
+      parts.push(`${w} ${esc(shortNo(x.proposal_no))} (${esc(x.status)})${x.kind === "delisted" ? ", drawn grey" : ""}`);
+    });
+    if (parts.length === 1) parts.push("nothing to draw with the current filters");
+    el.innerHTML = parts.join(" · ");
+    el.hidden = false;
+  }
+  function renderCounts() {
+    const box = $("#counts", sheet); if (!box || !current) return;
+    const c = current.drawnCounts || {}, tot = current.counts;
+    box.innerHTML = `<table class="rl"><thead><tr><th>Role</th><th class="n">Drawn now</th><th class="n">In data</th></tr></thead><tbody>` +
+      ROLES.filter(r => tot[r.k]).map(r => `<tr><td><i class="sw" style="background:${r.color}"></i>${esc(r.label)}</td><td class="n">${c[r.k] || 0}</td><td class="n">${tot[r.k]}</td></tr>`).join("") + `</tbody></table>`;
+  }
+  function loadCad() {
+    const p = current;
+    if (!p || !p.cad_geojson || p.cadLoaded) return Promise.resolve();
+    p.cadLoaded = true;
+    return fetchGeo(p.cad_geojson).then(f => { if (current === p) entries = entries.concat(build(p, f)); });
+  }
+
+  /* ---- sheet ---- */
+  const sheet = $("#sheet");
+  function openProject(p, mk) {
+    if (current && current.mk.getElement()) current.mk.getElement().classList.remove("sel");
+    current = p; lastEl = document.activeElement; entries = []; p.cadLoaded = false;
+    drawGroup.clearLayers();
+    mk.getElement().classList.add("sel");
+    sheet.innerHTML = sheetHTML(p);
+    sheet.classList.add("open"); sheet.setAttribute("aria-hidden", "false"); sheet.scrollTop = 0;
+    $(".close", sheet).onclick = () => closeSheet();
+    $(".close", sheet).focus({ preventScroll: true });
+    const pad = wide ? { paddingTopLeft: [390, 40], paddingBottomRight: [490, 40] } : { paddingTopLeft: [16, 190], paddingBottomRight: [16, Math.round(innerHeight * .46)] };
+    if (p.bbox) map.fitBounds([[p.bbox[1], p.bbox[0]], [p.bbox[3], p.bbox[2]]], { ...pad, maxZoom: 14 });
+    else map.setView(p.marker, 11);
+    const gj = fetchGeo(p.geojson);
+    const bar = $("#loadmsg", sheet); if (bar) bar.textContent = "Loading geometry…";
+    gj.then(f => {
+      if (current !== p) return;
+      entries = build(p, f);
+      return sel.role.has("cad_detail") ? loadCad() : null;
+    }).then(() => { if (current === p) { redraw(); const m = $("#loadmsg", sheet); if (m) m.textContent = ""; } })
+      .catch(err => { const m = $("#loadmsg", sheet); if (m) m.innerHTML = `<span class="err">Could not load the geometry (${esc(err.message)}).</span>`; });
+  }
+  function closeSheet(noFocus) {
+    if (!current) return;
+    const el = current.mk.getElement(); if (el) el.classList.remove("sel");
+    sheet.classList.remove("open"); sheet.setAttribute("aria-hidden", "true");
+    const back = el; current = null; entries = [];
+    drawGroup.clearLayers(); renderCaption(); map.closePopup();
+    if (!noFocus && back) back.focus({ preventScroll: true });
+  }
+  map.on("click", () => closeSheet(true));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+
+  function sheetHTML(p) {
+    const d = p.d, g = p.g;
+    const statusBadge = `<span class="stat">${shapeSVG(p.grp.shape, 18, p.grp.hex, "pin")} ${src("pv")} ${esc(statusLabel(p.def.status))}</span>`;
+    const matchBadge = p.match_method === "unmatched"
+      ? `<span class="stat">EC proposal only</span>`
+      : p.verified ? `<span class="stat">${src(d ? "dhpd" : "gem")} Match checked <small>name + MW</small></span>`
+      : `<span class="stat">Match unverified <small>name/MW only</small></span>`;
+    const cap = d ? `${mwf(d.mw)} MW ${src("dhpd")}` : g ? `${mwf(+g.capacity_mw)} MW ${src("gem")}` : p.kml_mw ? `${mwf(p.kml_mw)} MW ${src("pv")}<div class="sub sm mute">from the Parivesh project title</div>` : "Not stated";
+    const dist = d ? `${esc(d.district)} ${src("dhpd")}` : g && g.district ? `${esc(g.district)} ${src("gem")}` : p.title_district ? `${esc(p.title_district)} ${src("pv")}` : "Not stated";
+    const dev = d && d.developer_agency ? `${esc(d.developer_agency.replace(/\s+/g, " ").trim())} ${src("dhpd")}` : g && g.owner ? `${esc(g.owner)} ${src("gem")}` : "Not stated";
+
+    let matchBlock;
+    if (p.match_method === "unmatched") matchBlock = `<div class="block flag"><b class="hd">Not matched to DHPD or GEM.</b> ${esc(p.match_notes)}<div class="sub sm" style="color:var(--fg)">The marker is at the centre of the KML geometry.</div></div>`;
+    else if (!p.verified) matchBlock = `<div class="block flag"><b class="hd">Match unverified (name/MW only).</b> ${esc(p.match_notes.replace("Match unverified (name/MW only).", "").trim())}</div>`;
+    else matchBlock = `<div class="block ok"><b>Matched to ${d ? "DHPD " + esc(d.dhpd_id) : ""}${d && g ? " and " : ""}${g ? "GEM " + esc(g.gem_unit_id) : ""}</b> by name${p.kml_mw ? " and MW" : ""}. ${esc(p.match_notes)}</div>`;
+    const where = p.marker_source === "pin"
+      ? `Marker at the ${g ? "GEM" : "DHPD"} pin (the KML centroid is ${nf(p.pin_km, 1)} km away).`
+      : p.pin ? `Marker at the KML centroid. The GEM pin is ${nf(p.pin_km, 1)} km away (more than 10 km).` : `Marker at the KML centroid (no DHPD / GEM pin to use).`;
+
+    const props = p.proposals.map(x => {
+      const grp = groupOf(x.status);
+      const note = x.kind === "delisted" && x.geometry_note ? "DELISTED, " + x.geometry_note.charAt(0).toLowerCase() + x.geometry_note.slice(1) : x.geometry_note;
+      const files = x.files.map(f => {
+        const roles = Object.entries(f.roles).map(([k, n]) => `${n} ${RL[k] ? RL[k].label.split(" (")[0].toLowerCase() : k}`).join(", ");
+        const state = f.status === "mapped" ? "drawn" : f.status === "duplicate" ? `duplicate of ${esc(f.duplicate_of.replace(/^IA_AR_RIV_\d+_\d+__/, ""))}` : f.status === "excluded" ? "not drawn (NetworkLink to a .KMZ we do not have)" : "download failed (HTTP 500)";
+        return `<li><b>${esc(f.label)}</b><br><span class="mute">${state}${roles ? " · " + esc(roles) : ""}</span></li>`;
+      }).join("");
+      return `<div class="prop ${x.kind}"><div class="no">${esc(x.proposal_no)}</div>
+        <div><span class="pill">${KIND_WORD[x.kind]}</span><span class="pill">${shapeSVG(grp.shape, 12, grp.hex, "pin")} ${esc(statusLabel(x.status))}</span></div>
+        ${note ? `<div class="m">${esc(note)}</div>` : ""}
+        <div class="m">${src("pv")} <a href="https://parivesh.nic.in/" target="_blank" rel="noopener">Parivesh</a>: search for this proposal number.</div>
+        <details><summary>${x.files.length} KML file${x.files.length === 1 ? "" : "s"}</summary><ul class="files">${files}</ul></details></div>`;
+    }).join("");
+
+    const kv = [
+      ["Parivesh project", esc(p.name)], d ? ["DHPD name", esc(d.project.trim())] : null, g ? ["GEM name", esc(g.name)] : null,
+      d ? ["DHPD status", esc(d.dhpd_status)] : null, g ? ["GEM status", esc(g.status)] : null,
+      g ? ["River", esc(g.river || "Not stated")] : null,
+      p.kml_mw ? ["MW in Parivesh text", `${mwf(p.kml_mw)} (${esc(p.kml_mw_source)})`] : ["MW in Parivesh text", "Not stated"],
+      p.title_district ? ["District in Parivesh title", esc(p.title_district)] : null,
+      ["KML centroid", `${p.centroid[1].toFixed(4)}, ${p.centroid[0].toFixed(4)}`],
+      p.pin ? ["GEM coordinates", `${p.pin[1].toFixed(4)}, ${p.pin[0].toFixed(4)}`] : null,
+    ].filter(Boolean);
+
+    return `<div class="grab"></div>
+      <div class="sheet-head"><div><h2 id="sh-title">${esc(p.name)}</h2>${statusBadge}${matchBadge}</div><button class="close" aria-label="Close details" type="button">&times;</button></div>
+      <div class="facts"><div class="fact"><div class="k">Capacity</div><div class="v">${cap}</div></div>
+        <div class="fact"><div class="k">District</div><div class="v t">${dist}</div></div>
+        <div class="fact"><div class="k">Developer</div><div class="v t">${dev}</div></div></div>
+      ${matchBlock}<p class="sm mute">${esc(where)}</p>
+      <div class="block"><h3>On the map now</h3><div id="loadmsg" class="sm mute" role="status"></div><div id="counts"></div>
+        <p class="sm mute" style="margin:8px 0 0">Use Filters to turn roles and proposals on or off. Click a shape for its label, proposal, status and role confidence.</p></div>
+      <h3 style="margin-top:14px">Proposals (${p.proposals.length})</h3>${props}
+      <details><summary>More details</summary><dl class="kv">${kv.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl></details>`;
+  }
+
+  applyMarkers();
+
+  /* ============================================================ below the map */
+  const bad = cat.filter(r => r.dedupe_status === "excluded" || r.dedupe_status === "missing");
+  const st = summary.files_by_dedupe_status, sz = summary.size_bytes;
+  const nameOf = Object.fromEntries(P.map(p => [p.slug, p.name]));
+  const unres = bad.map(r => `<li><span class="n">${esc(nameOf[r.project_slug] || r.project)} · ${esc(r.manifest_name)}</span><span class="m">${esc(r.proposal_no)} · ${r.dedupe_status === "missing" ? "download failed (HTTP 500), no file" : "NetworkLink to a .KMZ that is not in the download set; skipped"}</span></li>`).join("");
+  const only = P.filter(p => p.match_method === "unmatched");
+  $("#page").innerHTML = `
+    <p class="foot"><a href="index.html">&larr; Back to the dam map (GEM, DHPD and Parivesh forest data)</a></p>
+    <section id="about">
+      <div class="kicker">About this page</div>
+      <h2 class="sec">${P.length} projects, ${nf(summary.unique_geometries)} shapes</h2>
+      <p class="note">These shapes come from the KML files uploaded with ${P.reduce((n, p) => n + p.proposals.length, 0)} Parivesh environment clearance (EC) proposals. Parivesh uses different proposal numbers for EC (IA/AR/RIV/…) and forest clearance (FP/AR/HYD/…), so projects are linked to DHPD and GEM by name and megawatts, not by an ID. ${P.filter(p => p.verified).length} matches are checked, ${P.filter(p => !p.verified && p.match_method !== "unmatched").length} are marked unverified, and ${only.length} ${only.length === 1 ? "is" : "are"} shown as EC proposal only (${only.map(p => esc(p.name)).join(", ") || "none"}). Role names (layout, dam axis, forest land…) are read from file and feature names, so the role confidence is shown in every pop-up.</p>
+      <p class="sm mute" style="margin-top:12px">${st.mapped || 0} KML files are drawn, ${st.duplicate || 0} repeat geometry already drawn from another file, ${st.excluded || 0} were skipped and ${st.missing || 0} could not be downloaded. The ${(sz.kml_all_files / 1e6).toFixed(1)} MB of KML became ${(sz.geojson_simplified_total / 1e6).toFixed(1)} MB of simplified GeoJSON (the CAD / survey line-work, ${(sz.geojson_simplified_cad / 1e6).toFixed(1)} MB of it, loads only when switched on). Data files: <a href="../data/official/kml_catalogue.csv">kml_catalogue.csv</a>, <a href="../data/official/kml_match_table.csv">kml_match_table.csv</a>, <a href="../data/official/kml_geojson/">kml_geojson/</a>.</p>
+    </section>
+    <section id="unresolved">
+      <div class="kicker">Not drawn</div>
+      <h2 class="sec">${bad.length} files with no usable geometry</h2>
+      <ul class="list">${unres}</ul>
+    </section>
+    <section id="credits">
+      <div class="kicker">Sources</div>
+      <p class="foot">Shapes: KML files downloaded from <a href="https://parivesh.nic.in/" target="_blank" rel="noopener">Parivesh</a> EC proposals. Capacity, district and developer: DHPD (<a href="https://dhpdap.online/" target="_blank" rel="noopener">dhpdap.online</a>), or <a href="https://globalenergymonitor.org/projects/global-hydropower-tracker" target="_blank" rel="noopener">Global Energy Monitor</a> (CC BY 4.0) where DHPD has no row. Anything not in those sources reads "Not stated". Basemap: &copy; OpenStreetMap contributors.</p>
+      <p class="foot"><a href="index.html">&larr; Back to the dam map</a></p>
+    </section>`;
+  window.__kml = { P, map, sel, openProject: slug => { const p = P.find(x => x.slug === slug); openProject(p, p.mk); }, redraw, get entries() { return entries; } };
+}
+</script>
+</body>
+</html>
